@@ -44,8 +44,7 @@
 
 <style>
 	.lang__container {
-		margin-top: auto;
-		margin-right: auto;
+		margin: auto auto 0 0;
 	}
 
 	section {
