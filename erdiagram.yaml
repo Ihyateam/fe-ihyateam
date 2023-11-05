@@ -1,0 +1,150 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table users {
+  id integer [pk]
+  firstName varchar
+  lastName varchar
+  age integer
+  email varchar
+  isActive boolean
+  loginInfo_id integer [ref: - loginInfo.id]
+  address_id integer [ref: - address.id]
+}
+
+Table activity {
+  id integer [pk]
+  title varchar
+  description varchar
+  wageId integer [ref: - wage.id]
+  photoId integer [ref: - photo.id]
+  cityId integer [ref: - city.id]
+}
+
+Table activityVolunteer {
+  userId integer [ref: > users.id]
+  activityId integer [ref: > activity.id]
+  enroll_date timestamp
+}
+
+Table activityResponsibles {
+  userId integer [ref: > users.id]
+  activityId integer [ref: > activity.id]
+  responsible_type integer [ref: - responsibleType.id]
+  repsonsbility_date timestamp
+}
+
+Table spendingActivityFromUsers {
+  activityId integer [ref: > activity.id]
+  spendingId integer [ref: > spending.id]
+  insert_date timestamp
+}
+
+Table effortActivityFromUsers {
+  activityId integer [ref: > activity.id]
+  effortId integer [ref: > effort.id]
+  insert_date timestamp
+}
+
+Table commuteActivityFromUsers{
+  activityId integer [ref: > activity.id]
+  commuteId integer [ref: > commute.id]
+  insert_date timestamp
+}
+
+Table responsibleType {
+  id integer [pk]
+  respnosible_type enum
+}
+
+Table wage {
+  id integer [pk]  
+  workingHourRate float
+  commutingHourRate float
+  currencyId integer [ref: - currency.id]
+}
+
+Table commute {
+  id integer [pk]
+  userId integer [ref: - users.id]
+  hours float
+  isReimbursed boolean
+  last_update timestamp
+  date timestamp
+}
+
+Table effort {
+  id integer [pk]
+  userId integer [ref: - users.id]
+  hours float
+  isPaid boolean
+  payment_date timestamp
+  date timestamp
+}
+
+Table spending {
+  id integer [pk]
+  userId integer [ref: - users.id]
+  amount float
+  comment varchar
+  receiptId integer [ref: - receipt.id]
+  currencyId integer [ref: - currency.id]
+  isReimbursed boolean
+  last_update timestamp
+  date timestamp
+}
+
+Table receipt {
+  id integer [pk]
+  photoId integer [ ref: - photo.id]
+  receiptType integer [ ref: - receiptType.id]
+  description varchar
+}
+
+Table receiptType {
+  id integer [pk]
+  type enum
+  name varchar
+}
+
+Table photo {
+  id integer [pk]
+  photo blob
+  photoType enum
+  last_update timestamp
+}
+
+Table currency {
+  id integer [pk]
+  currency_name varchar
+  currency_country integer [ref: - country.id]
+}
+
+Table loginInfo {
+  id integer [pk]
+  username varchar
+  password varchar
+  saltHashedPassword varchar
+  last_login timestamp
+}
+
+Table address {
+  id integer [pk]
+  city_id integer [ref: > city.id]
+  district varchar
+  street varchar
+  neighborhood varchar
+  building_no varchar
+  door_no varchar
+}
+
+Table city {
+  id integer [pk]
+  city_name varchar
+  country_id varchar [ref: > country.id]
+}
+
+Table country {
+  id integer [pk]
+  country_name varchar
+}
