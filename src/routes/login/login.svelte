@@ -1,53 +1,101 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
-	import LanguageBtn from '../language/language-btn.svelte';
+	import { lang } from '$lib/stores/lang';
+
+	import LanguageBtn from '$lib/components/language/language-btn.svelte';
+
+	export let legend: boolean = false;
 
 	const data = {
 		ar: {
 			username: 'اسم المستخدم',
 			password: 'كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
+			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول'
 		},
 		en: {
 			username: 'username',
 			password: 'password',
 			forgetPassword: 'forget password',
-			login: 'login'
+			errorMsg: 'The email or password is not valid.',
+			login: 'Login'
+		},
+		tr: {
+			username: 'Kullanıcı Adı',
+			password: 'Şifre',
+			forgetPassword: 'şifre unuttum',
+			errorMsg: 'Lütfen geçerli bir e-posta adresi giriniz!',
+			login: 'Giriş Yap'
 		}
 	};
-	const lang: 'ar' | 'en' | 'tr' = 'ar';
 </script>
 
-<section dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+<section dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
 	<div class="logo" />
-	<form name="login-form" autocomplete="on" method="POST" action="/auth?/login" use:enhance>
-		<label
-			>{data[lang].username}:
-			<input name="username" placeholder={data[lang].username} autocomplete="username" />
+	<form name="login-form" autocomplete="on" method="POST" use:enhance>
+		<label>
+			<span>
+				{data[$lang].username}:
+			</span>
+			<input name="username" placeholder={data[$lang].username} autocomplete="username" required />
 		</label>
-		<label
-			>{data[lang].password}:
+		<label>
+			<span>
+				{data[$lang].password}:
+			</span>
 			<input
 				type="password"
 				name="password"
-				placeholder={data[lang].password}
+				placeholder={data[$lang].password}
 				autocomplete="current-password"
+				required
 			/>
 		</label>
-		<button type="submit">{data[lang].login}</button>
+		<button type="submit">{data[$lang].login}</button>
+		<p class="error" class:visible={$page.form?.failed}>{data[$lang].errorMsg}</p>
 	</form>
 	<div class="lang__container">
-		<LanguageBtn />
+		<LanguageBtn {legend} />
 	</div>
 </section>
 
 <style>
+	.error {
+		opacity: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 1rem;
+		border: 0.5px solid red;
+		border-radius: 5px;
+		color: hsl(0, 100%, 40%);
+		font-size: 16px;
+		background-color: hsla(0, 100%, 70%, 0.1);
+		padding: 0.5rem 1rem 0.5rem 1rem;
+	}
+
+	.visible {
+		animation: fadeIn 400ms ease;
+		opacity: 1;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
 	.lang__container {
 		margin: auto auto 0 0;
 	}
 
 	section {
+		overflow: auto;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -60,7 +108,7 @@
 		max-height: 80%;
 		padding: 2rem 1rem 1rem 1rem;
 
-		background-color: rgb(236, 236, 236);
+		background-color: hsl(0, 0%, 93%);
 
 		border-radius: 1rem;
 		outline: 1px solid hsl(0, 0%, 85%);
@@ -85,19 +133,28 @@
 		flex-direction: column;
 	}
 
+	label > span {
+		padding-inline-start: 5px;
+		text-transform: capitalize;
+	}
+
 	input:is(:focus, :focus-visible) {
 		outline: 2px solid hsl(35.7, 100%, 70.6%);
 		box-shadow: 0px 0px 4px 1px hsl(35.6, 100%, 50.6%);
 	}
 
+	/* space for left-to-right written languages */
+	[dir='ltr'] [type='submit'] {
+		letter-spacing: 0.8px;
+	}
+
 	[type='submit'] {
 		width: 40%;
 		cursor: pointer;
-		font-weight: 800;
+		font-weight: 600;
 		margin-left: auto;
 		margin-top: 0.5rem;
 
-		text-transform: uppercase;
 		background-color: hsl(35.7, 100%, 50.6%);
 	}
 
@@ -116,7 +173,7 @@
 
 	.logo {
 		width: 80%;
-		height: 5rem;
+		min-height: 5rem;
 
 		background-size: 80%;
 		background-position: center;

@@ -1,23 +1,33 @@
 <script lang="ts">
-	import type { LanguageOptions } from '$lib/types';
+	import { isLangDialogOpen, lang } from '$lib/stores/lang';
 	import { EarthIcon } from '../icons';
-	import LanguageDialog from './language-dialog.svelte';
 
-	export let legend = true;
+	export let legend: boolean;
 
 	const langs = {
-		ar: 'العربية',
-		en: 'English',
-		tr: 'Türkçe'
+		ar: {
+			content: 'العربية',
+			title: 'غير اللغة'
+		},
+		en: {
+			content: 'English',
+			title: 'change language'
+		},
+		tr: {
+			content: 'Türkçe',
+			title: 'dil degistirme'
+		}
 	};
-
-	let lang: LanguageOptions = 'ar';
 </script>
 
-<button class="lang__container" data-tooltip="change langauge">
+<button
+	class="lang__container"
+	on:click={() => isLangDialogOpen.set(true)}
+	title={langs[$lang].title}
+>
 	<span class="lang-icon"> <EarthIcon /> </span>
 	{#if legend}
-		<span class="lang">{langs[lang]}</span>
+		<span class="lang">{langs[$lang].content}</span>
 	{/if}
 </button>
 
@@ -38,7 +48,7 @@
 
 	.lang__container:hover {
 		cursor: pointer;
-		background-color: hsl(0, 0%, 85%);
+		background-color: hsl(0, 0%, 90%);
 		box-shadow: 2px 2px 1px 1px hsla(0, 0%, 80%, 0.9);
 	}
 
