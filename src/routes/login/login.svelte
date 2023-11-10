@@ -30,6 +30,8 @@
 			login: 'Giriş Yap'
 		}
 	};
+
+	$: visible = $page.form?.failed;
 </script>
 
 <section dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
@@ -39,13 +41,20 @@
 			<span>
 				{data[$lang].username}:
 			</span>
-			<input name="username" placeholder={data[$lang].username} autocomplete="username" required />
+			<input
+				on:focus={() => (visible = false)}
+				name="username"
+				placeholder={data[$lang].username}
+				autocomplete="username"
+				required
+			/>
 		</label>
 		<label>
 			<span>
 				{data[$lang].password}:
 			</span>
 			<input
+				on:focus={() => (visible = false)}
 				type="password"
 				name="password"
 				placeholder={data[$lang].password}
@@ -53,8 +62,8 @@
 				required
 			/>
 		</label>
-		<button type="submit">{data[$lang].login}</button>
-		<p class="error" class:visible={$page.form?.failed}>{data[$lang].errorMsg}</p>
+		<button type="submit" title={data[$lang].login}>{data[$lang].login}</button>
+		<p class="error" class:visible>{data[$lang].errorMsg}</p>
 	</form>
 	<div class="lang__container">
 		<LanguageBtn {legend} />
@@ -62,31 +71,44 @@
 </section>
 
 <style>
+	input[name] {
+		caret-color: hsl(35.7, 100%, 50.6%);
+	}
+
 	.error {
 		opacity: 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 1rem;
-		border: 0.5px solid red;
-		border-radius: 5px;
+		height: fit-content;
+		outline: 0.5px solid red;
+		border-radius: 3px;
 		color: hsl(0, 100%, 40%);
-		font-size: 16px;
-		background-color: hsla(0, 100%, 70%, 0.1);
-		padding: 0.5rem 1rem 0.5rem 1rem;
+		font-size: 14px;
+		background-color: hsla(0, 100%, 80%, 0.1);
+		padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 	}
 
 	.visible {
-		animation: fadeIn 400ms ease;
+		animation: shake 200ms ease-in-out;
 		opacity: 1;
 	}
 
-	@keyframes fadeIn {
+	@keyframes shake {
 		0% {
-			opacity: 0;
+			transform: translateX(3px);
+		}
+		40% {
+			transform: translateX(-3px);
+		}
+		70% {
+			transform: translateX(3px);
+		}
+		90% {
+			transform: translateX(-3px);
 		}
 		100% {
-			opacity: 1;
+			transform: translateX(0px);
 		}
 	}
 
@@ -100,7 +122,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2rem;
+		gap: 1rem;
 
 		width: 25rem;
 		height: 29rem;

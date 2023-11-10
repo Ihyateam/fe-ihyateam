@@ -17,9 +17,7 @@ export const actions = {
 		const res: { failed?: boolean } = {};
 
 		try {
-			await locals.pb
-				?.collection('admins')
-				.authWithPassword(loginData.username, loginData.password);
+			await locals.pb?.collection('users').authWithPassword(loginData.username, loginData.password);
 			throw redirect(303, targetUrl);
 		} catch (_) {
 			res['failed'] = true;
