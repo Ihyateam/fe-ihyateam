@@ -12,6 +12,7 @@
 			username: 'اسم المستخدم',
 			password: 'كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
+			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول'
 		},
@@ -19,6 +20,7 @@
 			username: 'username',
 			password: 'password',
 			forgetPassword: 'forget password',
+			errorAdm: 'Something has gone wrong, please contact the admin!',
 			errorMsg: 'The email or password is not valid.',
 			login: 'Login'
 		},
@@ -26,11 +28,15 @@
 			username: 'Kullanıcı Adı',
 			password: 'Şifre',
 			forgetPassword: 'şifre unuttum',
+			errorAdm: "Hata oluştu lütfen yetkili'ya haberdar ediniz!",
 			errorMsg: 'Lütfen geçerli bir e-posta adresi giriniz!',
 			login: 'Giriş Yap'
 		}
 	};
 
+	$: if ($page.form?.err) {
+		console.error($page.form?.err);
+	}
 	$: visible = $page.form?.failed;
 </script>
 
@@ -63,7 +69,11 @@
 			/>
 		</label>
 		<button type="submit" title={data[$lang].login}>{data[$lang].login}</button>
-		<p class="error" class:visible>{data[$lang].errorMsg}</p>
+		{#if $page.form?.error}
+			<p class="error" class:visible>{data[$lang].errorAdm}</p>
+		{:else if $page.form?.failed}
+			<p class="error" class:visible>{data[$lang].errorMsg}</p>
+		{/if}
 	</form>
 	<div class="lang__container">
 		<LanguageBtn {legend} />
@@ -96,15 +106,21 @@
 
 	@keyframes shake {
 		0% {
-			transform: translateX(3px);
+			transform: translateX(0px);
 		}
-		40% {
+		15% {
 			transform: translateX(-3px);
 		}
-		70% {
+		30% {
 			transform: translateX(3px);
 		}
-		90% {
+		45% {
+			transform: translateX(-3px);
+		}
+		60% {
+			transform: translateX(3px);
+		}
+		75% {
 			transform: translateX(-3px);
 		}
 		100% {

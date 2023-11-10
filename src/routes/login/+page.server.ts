@@ -14,12 +14,28 @@ export const actions = {
 			password: string;
 		};
 
-		const res: { failed?: boolean } = {};
+		const res: {
+			failed?: boolean;
+			error?: boolean;
+			err?: { message: string; reference_code: number };
+		} = {};
 
 		try {
 			await locals.pb?.collection('users').authWithPassword(loginData.username, loginData.password);
 			throw redirect(303, targetUrl);
-		} catch (_) {
+		} catch ({ originalError }) {
+			res['err'] =
+				originalError instanceof TypeError
+					? {
+							reference_code: 500,
+							message:
+								'Oops! something has gone wrong in the server please contact the administrator of the page'
+					  }
+					: {
+							reference_code: 404,
+							message: 'You were not autherized please try again!'
+					  };
+			res['error'] = originalError instanceof TypeError;
 			res['failed'] = true;
 		}
 		return res;
