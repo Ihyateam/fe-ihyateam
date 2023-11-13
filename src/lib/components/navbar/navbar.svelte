@@ -3,8 +3,13 @@
 </script>
 
 <nav>
-	<img class="brand-logo" src="/ihya-logo.svg" alt="ihya logo" />
+	<a class="brand-logo" href="/" target="_self">
+		<img src="/ihya-logo.svg" alt="ihya logo" />
+	</a>
 	<img class="profile" src={profile.url} alt={profile.user?.username || 'user-profile-img'} />
+	<form method="POST" action="/logout">
+		<button>logout</button>
+	</form>
 </nav>
 
 <style>
@@ -19,6 +24,9 @@
 		border-bottom: 0.5px solid #8888;
 	}
 
+	.brand-logo > img {
+		height: 100%;
+	}
 	.brand-logo {
 		display: block;
 		height: 90%;

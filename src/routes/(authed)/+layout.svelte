@@ -34,5 +34,6 @@
 	main {
 		display: flex;
 		height: calc(100vh - 3.5rem);
+		overflow: auto;
 	}
 </style>
