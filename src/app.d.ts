@@ -8,7 +8,9 @@ declare global {
 			user?: string;
 			pb?: PocketBase;
 		}
-		// interface PageData {}
+		// interface PageData {
+		// 	users?: Array<UserAdminEntity>;
+		// }
 		// interface Platform {}
 	}
 }

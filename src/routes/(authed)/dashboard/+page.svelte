@@ -14,8 +14,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
 		gap: 2rem;
-		height: 100vh;
 	}
 </style>

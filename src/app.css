@@ -1,5 +1,67 @@
 body,
-html {
+html,
+* {
 	padding: 0;
 	margin: 0;
+}
+
+* {
+	box-sizing: Border-box;
+}
+
+body {
+	--baseFontFamily: 'Source Sans Pro', sans-serif, emoji;
+	--monospaceFontFamily: 'Ubuntu Mono', monospace, emoji;
+	--iconFontFamily: 'remixicon';
+	--txtPrimaryColor: hsl(240, 8.3%, 9.4%);
+	--txtHintColor: hsl(204, 6.8%, 42.9%);
+	--txtDisabledColor: hsl(210, 6.7%, 65.1%);
+	--primaryColor: hsl(240, 8.3%, 9.4%);
+	--bodyColor: hsl(210, 16.7%, 97.6%);
+	--baseColor: hsl(0, 0%, 100%);
+	--baseAlt1Color: hsl(202.5, 17.4%, 91%);
+	--baseAlt2Color: hsl(212.3, 19.4%, 86.9%);
+	--baseAlt3Color: hsl(215.3, 17.5%, 81%);
+	--baseAlt4Color: hsl(215.6, 17.6%, 70%);
+	--infoColor: hsl(212, 76.3%, 62%);
+	--infoAltColor: hsl(211.4, 75%, 89%);
+	--successColor: hsl(160, 55.2%, 43.7%);
+	--successAltColor: hsl(154.3, 55.3%, 85.1%);
+	--dangerColor: hsl(349, 73.8%, 58%);
+	--dangerAltColor: hsl(349.3, 73.8%, 88%);
+	--warningColor: hsl(23.9, 100%, 65.1%);
+	--warningAltColor: hsl(23.7, 100%, 86.1%);
+	--overlayColor: hsla(218.8, 32.5%, 30.8%, 0.28);
+	--tooltipColor: hsla(0, 0%, 0%, 0.85);
+	--shadowColor: hsla(0, 0%, 0%, 0.06);
+	--baseFontSize: 14.5px;
+	--xsFontSize: 12px;
+	--smFontSize: 13px;
+	--lgFontSize: 15px;
+	--xlFontSize: 16px;
+	--baseLineHeight: 22px;
+	--smLineHeight: 16px;
+	--lgLineHeight: 24px;
+	--inputHeight: 34px;
+	--btnHeight: 40px;
+	--xsBtnHeight: 22px;
+	--smBtnHeight: 30px;
+	--lgBtnHeight: 54px;
+	--baseSpacing: 30px;
+	--xsSpacing: 15px;
+	--smSpacing: 20px;
+	--lgSpacing: 50px;
+	--xlSpacing: 60px;
+	--wrapperWidth: 850px;
+	--smWrapperWidth: 420px;
+	--lgWrapperWidth: 1200px;
+	--appSidebarWidth: 75px;
+	--pageSidebarWidth: 230px;
+	--baseAnimationSpeed: 0.15s;
+	--activeAnimationSpeed: 70ms;
+	--entranceAnimationSpeed: 0.25s;
+	--baseRadius: 4px;
+	--lgRadius: 12px;
+	--btnRadius: 4px;
+	accent-color: var(--primaryColor);
 }
