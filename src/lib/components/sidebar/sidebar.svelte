@@ -18,6 +18,10 @@
 					['data-tooltip']: 'faaliyetler'
 				}
 			},
+			props: {
+				href: '/activities',
+				target: '_self'
+			},
 			icon: ActivityIcon,
 			component: Component
 		},
@@ -34,6 +38,10 @@
 					['data-tooltip']: 'ayarlar'
 				}
 			},
+			props: {
+				href: '/settings',
+				target: '_self'
+			},
 			icon: SettingsIcon,
 			component: Component
 		}
@@ -46,9 +54,9 @@
 	<menu>
 		{#each config as item}
 			<li>
-				<button {...item.attr[$lang]}>
+				<a {...item.attr[$lang]} {...item.props}>
 					<svelte:component this={item.icon} />
-				</button>
+				</a>
 			</li>
 		{/each}
 	</menu>
@@ -57,7 +65,7 @@
 <style>
 	.upper-div {
 		display: flex;
-		height: calc(100vh - 3.5rem);
+		height: calc(100svh - 3.5rem);
 	}
 
 	menu {
@@ -72,7 +80,7 @@
 		border-right: 0.5px solid #8888;
 	}
 
-	button {
+	a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -85,9 +93,10 @@
 		background-color: var(--baseColor);
 		border: 0.5px solid hsla(0, 0%, 70%, 0.8);
 		font-size: 1em;
+		color: black;
 	}
 
-	button:hover {
+	a:hover {
 		background-color: hsla(35.6, 100%, 80%, 0.4);
 	}
 

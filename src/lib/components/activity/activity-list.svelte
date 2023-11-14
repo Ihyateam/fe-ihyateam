@@ -26,7 +26,7 @@
 	}
 
 	li {
-		height: 18.375rem;
+		height: 22rem;
 		width: 18.75rem;
 		background-color: #fff;
 		border: 0.0625rem solid #dadce0;

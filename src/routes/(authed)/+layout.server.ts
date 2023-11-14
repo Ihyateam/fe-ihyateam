@@ -1,3 +1,4 @@
+import type { UserEntity } from '$lib/types.js';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, url }) {
@@ -9,9 +10,12 @@ export async function load({ locals, url }) {
 			locals.pb.authStore.model.photo,
 			{ thumb: '50x50' }
 		);
+		locals.pb.authStore.model.photo = url;
+
+		const user: UserEntity = locals.pb.authStore.model as UserEntity;
 
 		return {
-			profile: { user: locals.pb.authStore.model, url }
+			user
 		};
 	}
 }
