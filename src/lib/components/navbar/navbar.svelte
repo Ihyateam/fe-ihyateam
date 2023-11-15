@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
-	import Profile from './profile.svelte';
+	import Profile from '../profile/profile.svelte';
 
 	export let user: UserEntity;
 </script>
@@ -31,5 +31,6 @@
 	.brand-logo {
 		display: block;
 		height: 90%;
+		width: 9rem;
 	}
 </style>

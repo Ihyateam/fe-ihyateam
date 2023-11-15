@@ -1,3 +1,4 @@
+import type { UserEntity } from '$lib/types';
 import PocketBase from 'pocketbase';
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
@@ -7,9 +8,9 @@ declare global {
 		interface Locals {
 			pb?: PocketBase;
 		}
-		// interface PageData {
-		// 	users?: Array<UserAdminEntity>;
-		// }
+		interface PageData {
+			user?: UserEntity;
+		}
 		// interface Platform {}
 	}
 }

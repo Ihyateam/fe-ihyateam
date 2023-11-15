@@ -65,3 +65,15 @@ body {
 	--btnRadius: 4px;
 	accent-color: var(--primaryColor);
 }
+
+.flex {
+	display: flex;
+}
+
+.justfiy-center {
+	justify-content: center;
+}
+
+.items-center {
+	align-items: center;
+}

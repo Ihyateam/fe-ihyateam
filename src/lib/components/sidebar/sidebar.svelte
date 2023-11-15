@@ -54,8 +54,8 @@
 	<menu>
 		{#each config as item}
 			<li>
-				<a {...item.attr[$lang]} {...item.props}>
-					<svelte:component this={item.icon} />
+				<a {...item.attr[$lang]} href={item.props.href} target={item.props.target}>
+					<svelte:component this={item.icon} width="75%" />
 				</a>
 			</li>
 		{/each}

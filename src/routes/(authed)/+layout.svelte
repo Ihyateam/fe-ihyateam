@@ -34,6 +34,7 @@
 	main {
 		display: flex;
 		height: calc(100svh - 3.5rem);
+		background-color: var(--bodyColor);
 		overflow: auto;
 	}
 </style>

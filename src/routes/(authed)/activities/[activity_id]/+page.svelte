@@ -1,5 +1,10 @@
 <script lang="ts">
+	import ProfileList from '$lib/components/profile/profile-list.svelte';
 	export let data;
+	console.log(data.activity);
 </script>
 
-<pre>{JSON.stringify(data, null, 2)}</pre>
+{#if data.activity?.expand}
+	{@const users = data.activity.expand.volunteers}
+	<ProfileList {users} />
+{/if}
