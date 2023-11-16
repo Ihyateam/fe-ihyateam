@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { lang } from '$lib/stores/lang';
 	import ActivityCard from './activity-card.svelte';
-	import { NewItemIcon } from '../icons';
 
 	export let activities: any[];
 	const data = {
@@ -17,30 +16,39 @@
 	};
 </script>
 
-{#if activities.length}
-	<menu dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
-		{#each activities as activity (activity)}
-			<li>
-				<ActivityCard {activity} />
-			</li>
-		{/each}
-		<li class="new-activity">
-			<a href="/create/activity">
-				{data[$lang].new_activity}
-			</a>
+<div
+	style="display: flex; padding-bottom: 8px;border-bottom: 1px solid black;justify-content: space-between;width: 100%;"
+>
+	<span>{activities.length} نشاط </span>
+	<button on:click={() => (activities = activities.reverse())}>filter</button>
+</div>
+
+<menu dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
+	{#each activities as activity (activity)}
+		<li>
+			<ActivityCard {activity} />
 		</li>
-	</menu>
-{/if}
+	{/each}
+	<li class="new-activity">
+		<a href="/create/activity">
+			{data[$lang].new_activity}
+		</a>
+	</li>
+</menu>
 
 <style>
 	menu {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(18.75rem, 19rem));
+		grid-template-rows: repeat(auto-fit, 26rem);
 		flex-wrap: wrap;
 		width: 100%;
+		min-width: 20rem;
 		padding: 1.5rem;
 		list-style: none;
 		gap: 1.5rem;
 		justify-content: center;
+		justify-items: center;
 	}
 
 	li {

@@ -4,6 +4,9 @@
 	import { lang } from '$lib/stores/lang';
 
 	import LanguageBtn from '$lib/components/language/language-btn.svelte';
+	import Label from '$lib/components/form/label.svelte';
+	import Input from '$lib/components/form/input.svelte';
+	import { onDestroy } from 'svelte';
 
 	export let legend: boolean = false;
 
@@ -34,40 +37,30 @@
 		}
 	};
 
+	let visible: boolean;
+
 	$: if ($page.form?.err) {
 		console.error($page.form?.err);
 	}
-	$: visible = $page.form?.failed;
+
+	$: {
+		visible = $page.form?.failed;
+		const timeoutId = setTimeout(() => {
+			visible = false;
+			clearTimeout(timeoutId);
+		}, 1500);
+	}
 </script>
 
 <section dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
-	<div class="logo" />
+	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance>
-		<label>
-			<span>
-				{data[$lang].username}:
-			</span>
-			<input
-				on:focus={() => (visible = false)}
-				name="username"
-				placeholder={data[$lang].username}
-				autocomplete="username"
-				required
-			/>
-		</label>
-		<label>
-			<span>
-				{data[$lang].password}:
-			</span>
-			<input
-				on:focus={() => (visible = false)}
-				type="password"
-				name="password"
-				placeholder={data[$lang].password}
-				autocomplete="current-password"
-				required
-			/>
-		</label>
+		<Label label={data[$lang].username}>
+			<Input name="username" placeholder={data[$lang].username} />
+		</Label>
+		<Label label={data[$lang].password}>
+			<Input name="password" placeholder={data[$lang].password} />
+		</Label>
 		<button type="submit" title={data[$lang].login}>{data[$lang].login}</button>
 		{#if $page.form?.error}
 			<p class="error" class:visible>{data[$lang].errorAdm}</p>
@@ -81,10 +74,6 @@
 </section>
 
 <style>
-	input[name] {
-		caret-color: hsl(35.7, 100%, 50.6%);
-	}
-
 	.error {
 		opacity: 0;
 		display: flex;
@@ -153,37 +142,10 @@
 		box-shadow: 0px 0px 8px 1px hsl(0, 0%, 80%);
 	}
 
-	input {
-		outline: 0.5px solid hsl(0, 0%, 85%);
-		padding-inline-start: 1rem;
-	}
-
-	input,
 	[type='submit'] {
 		border: none;
 		height: 2.5rem;
 		border-radius: 5px;
-	}
-
-	label {
-		gap: 0.3rem;
-		display: flex;
-		flex-direction: column;
-	}
-
-	label > span {
-		padding-inline-start: 5px;
-		text-transform: capitalize;
-	}
-
-	input:is(:focus, :focus-visible) {
-		outline: 2px solid hsl(35.7, 100%, 70.6%);
-		box-shadow: 0px 0px 4px 1px hsl(35.6, 100%, 50.6%);
-	}
-
-	/* space for left-to-right written languages */
-	[dir='ltr'] [type='submit'] {
-		letter-spacing: 0.8px;
 	}
 
 	[type='submit'] {
@@ -201,6 +163,11 @@
 		background-color: hsl(35.7, 100%, 64.6%);
 	}
 
+	/* space for left-to-right written languages */
+	[dir='ltr'] [type='submit'] {
+		letter-spacing: 0.8px;
+	}
+
 	form {
 		width: 75%;
 		display: flex;
@@ -210,12 +177,8 @@
 	}
 
 	.logo {
-		width: 80%;
+		width: 70%;
 		min-height: 5rem;
-
-		background-size: 80%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-image: url('/ihya-logo.svg');
+		object-fit: cover;
 	}
 </style>

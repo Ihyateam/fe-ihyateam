@@ -1,6 +1,7 @@
 <script>
 	import Navbar from '$lib/components/navbar/navbar.svelte';
 	import Sidebar from '$lib/components/sidebar/sidebar.svelte';
+	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 
 	export let data;
 </script>
@@ -10,7 +11,9 @@
 	<div class="inner">
 		<Sidebar />
 		<main>
-			<slot />
+			<PageLayout>
+				<slot />
+			</PageLayout>
 		</main>
 	</div>
 </div>
@@ -33,7 +36,11 @@
 
 	main {
 		display: flex;
+		justify-content: center;
+
 		height: calc(100svh - 3.5rem);
+		width: 100%;
+
 		background-color: var(--bodyColor);
 		overflow: auto;
 	}

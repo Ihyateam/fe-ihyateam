@@ -25,7 +25,9 @@
 	on:click={() => isLangDialogOpen.set(true)}
 	title={langs[$lang].title}
 >
-	<span class="lang-icon"> <EarthIcon /> </span>
+	<span class="lang-icon">
+		<EarthIcon width="75%" height="75%" />
+	</span>
 	{#if legend}
 		<span class="lang">{langs[$lang].content}</span>
 	{/if}
