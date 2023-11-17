@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { lang } from '$lib/stores/lang';
+	import type { ActivityEntity } from '$lib/types';
 	import { dateFormater } from '$lib/utils/date-formater';
 	import { CalenderIcon, PupilsIcon } from '../icons';
 
-	export let activity: any;
+	export let activity: ActivityEntity;
 
 	const data = {
 		done: 'انتهت',
@@ -125,19 +126,19 @@
 	}
 
 	.postponed {
-		background-color: hsla(217.6, 89.4%, 62.9%, 0.8);
+		background-color: hsl(217.6, 89.4%, 62.9%);
 	}
 
 	.ongoing {
-		background-color: hsla(150.7, 69.9%, 37.8%, 0.8);
+		background-color: hsl(150.7, 69.9%, 37.8%);
 	}
 
 	.scheduled {
-		background-color: hsla(43.8, 100%, 63.7%, 0.8);
+		background-color: hsl(43.8, 100%, 63.7%);
 	}
 
 	.done {
-		background-color: hsla(5.1, 69.2%, 56.7%, 0.8);
+		background-color: hsl(5.1, 69.2%, 56.7%);
 	}
 	/* 
 	* {

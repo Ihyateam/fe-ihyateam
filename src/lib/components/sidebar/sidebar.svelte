@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { ActivityIcon, SettingsIcon, SpendingIcon } from '../icons';
+	import { ActivityIcon, SettingsIcon } from '../icons';
 	import Component from './component.svelte';
-	import { factory } from './sidebar';
 	import { lang } from '$lib/stores/lang';
 
 	export let config = [
@@ -46,8 +45,6 @@
 			component: Component
 		}
 	];
-
-	const { action } = factory();
 </script>
 
 <div class="upper-div">

@@ -6,7 +6,6 @@
 	import LanguageBtn from '$lib/components/language/language-btn.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
-	import { onDestroy } from 'svelte';
 
 	export let legend: boolean = false;
 
@@ -56,10 +55,10 @@
 	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance>
 		<Label label={data[$lang].username}>
-			<Input name="username" placeholder={data[$lang].username} />
+			<Input name="username" type="username" placeholder={data[$lang].username} />
 		</Label>
 		<Label label={data[$lang].password}>
-			<Input name="password" placeholder={data[$lang].password} />
+			<Input name="password" type="password" placeholder={data[$lang].password} />
 		</Label>
 		<button type="submit" title={data[$lang].login}>{data[$lang].login}</button>
 		{#if $page.form?.error}

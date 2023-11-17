@@ -27,3 +27,23 @@ export type UserEntity = {
 	username: string;
 	verified: boolean;
 };
+
+export type ActivityEntity = {
+	name: string;
+	city_id: string[];
+	collectionId: string;
+	collectionName: string;
+	created: Date;
+	created_by: string;
+	description: StringConstructor;
+	end_date: Date;
+	id: string;
+	profile: string;
+	start_date: Date;
+	status: 'done' | 'scheduled' | 'ongoing' | 'postponed';
+	students: number;
+	title: string;
+	updated: Date;
+	volunteers: string[];
+	wage_id: string;
+};

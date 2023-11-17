@@ -8,6 +8,7 @@ import CalenderIcon from './calender-icon.svelte';
 import PupilsIcon from './pupils-icon.svelte';
 import VolunteersIcon from './volunteers-icon.svelte';
 import NewItemIcon from './new-item-icon.svelte';
+import SortIcon from './sort-icon.svelte';
 
 export {
 	EarthIcon,
@@ -19,5 +20,6 @@ export {
 	CalenderIcon,
 	PupilsIcon,
 	VolunteersIcon,
-	NewItemIcon
+	NewItemIcon,
+	SortIcon
 };

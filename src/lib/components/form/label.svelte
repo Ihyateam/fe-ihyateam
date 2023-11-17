@@ -14,10 +14,9 @@
 		gap: 0.3rem;
 		display: flex;
 		flex-direction: column;
-	}
-
-	label > span {
-		padding-inline-start: 5px;
-		text-transform: capitalize;
+		& span {
+			padding-inline-start: 5px;
+			text-transform: capitalize;
+		}
 	}
 </style>

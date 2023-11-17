@@ -1,1 +1,1 @@
-<h1>settings page</h1>
+<h2>settings page</h2>
