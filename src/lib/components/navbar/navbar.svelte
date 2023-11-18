@@ -21,6 +21,7 @@
 		align-items: center;
 		width: 100vw;
 		justify-content: space-between;
+		background-color: hsla(0, 10%, 95%);
 		border-bottom: 0.5px solid #8888;
 	}
 

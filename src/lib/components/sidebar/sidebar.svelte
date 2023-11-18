@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ActivityIcon, SettingsIcon } from '../icons';
+	import { ActivityIcon, SettingsIcon, DashboardIcon } from '../icons';
 	import Component from './component.svelte';
 	import { lang } from '$lib/stores/lang';
 
@@ -24,24 +24,25 @@
 			icon: ActivityIcon,
 			component: Component
 		},
+
 		{
-			id: 'settings',
+			id: 'dashboard',
 			attr: {
 				ar: {
-					['data-tooltip']: 'الإعدادات'
+					['data-tooltip']: 'إحصائيات'
 				},
 				en: {
-					['data-tooltip']: 'settings'
+					['data-tooltip']: 'dashboard'
 				},
 				tr: {
-					['data-tooltip']: 'ayarlar'
+					['data-tooltip']: 'ön panel'
 				}
 			},
 			props: {
-				href: '/settings',
+				href: '/dashboard',
 				target: '_self'
 			},
-			icon: SettingsIcon,
+			icon: DashboardIcon,
 			component: Component
 		}
 	];
@@ -72,7 +73,7 @@
 		align-items: center;
 		flex-direction: column;
 		padding: 7px 0px 7px 0px;
-		background-color: white;
+		background-color: hsla(0, 10%, 95%);
 		list-style: none;
 		border-right: 0.5px solid #8888;
 	}
@@ -97,7 +98,7 @@
 		background-color: hsla(35.6, 100%, 80%, 0.4);
 	}
 
-	li:last-of-type {
+	.mt-auto {
 		margin-top: auto;
 	}
 

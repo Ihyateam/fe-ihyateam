@@ -41,7 +41,6 @@
 		height: calc(100svh - 3.5rem);
 		width: 100%;
 
-		background-color: var(--bodyColor);
 		overflow: auto;
 	}
 </style>

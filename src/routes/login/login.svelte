@@ -47,7 +47,7 @@
 		const timeoutId = setTimeout(() => {
 			visible = false;
 			clearTimeout(timeoutId);
-		}, 1500);
+		}, 3500);
 	}
 </script>
 

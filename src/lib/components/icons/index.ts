@@ -9,6 +9,8 @@ import PupilsIcon from './pupils-icon.svelte';
 import VolunteersIcon from './volunteers-icon.svelte';
 import NewItemIcon from './new-item-icon.svelte';
 import SortIcon from './sort-icon.svelte';
+import DashboardIcon from './dashboard-icon.svelte';
+import ShutdownIcon from './shutdown-icon.svelte';
 
 export {
 	EarthIcon,
@@ -21,5 +23,7 @@ export {
 	PupilsIcon,
 	VolunteersIcon,
 	NewItemIcon,
+	DashboardIcon,
+	ShutdownIcon,
 	SortIcon
 };
