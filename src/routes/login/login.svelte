@@ -42,13 +42,7 @@
 		console.error($page.form?.err);
 	}
 
-	$: {
-		visible = $page.form?.failed;
-		const timeoutId = setTimeout(() => {
-			visible = false;
-			clearTimeout(timeoutId);
-		}, 3500);
-	}
+	$: visible = $page.form?.failed;
 </script>
 
 <section dir={$lang === 'ar' ? 'rtl' : 'ltr'}>

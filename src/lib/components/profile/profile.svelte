@@ -40,6 +40,8 @@
 	<img class="avater__img" src={user.photo} alt={user?.username || 'user-profile-img'} />
 	<menu class:flex={isSettingsOpen}>
 		<li><a href="/user/{user.id}" target="_self">{data[$lang].account}</a></li>
+		<li><a href="/user/{user.id}" target="_self">إضافة مهمة</a></li>
+		<li><a href="/user/{user.id}" target="_self">إضافة مهمة</a></li>
 		<li use:logout>
 			{data[$lang].logout}
 		</li>

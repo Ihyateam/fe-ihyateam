@@ -1,5 +1,5 @@
 import type { LanguageOptions } from '$lib/types';
-import {writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 
 export const lang = writable<LanguageOptions>('ar');
 
