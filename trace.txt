@@ -1,0 +1,48 @@
+
+; <<>> DiG 9.10.6 <<>> +trace engcastle.com
+;; global options: +cmd
+.			511974	IN	NS	a.root-servers.net.
+.			511974	IN	NS	b.root-servers.net.
+.			511974	IN	NS	c.root-servers.net.
+.			511974	IN	NS	d.root-servers.net.
+.			511974	IN	NS	e.root-servers.net.
+.			511974	IN	NS	f.root-servers.net.
+.			511974	IN	NS	g.root-servers.net.
+.			511974	IN	NS	h.root-servers.net.
+.			511974	IN	NS	i.root-servers.net.
+.			511974	IN	NS	j.root-servers.net.
+.			511974	IN	NS	k.root-servers.net.
+.			511974	IN	NS	l.root-servers.net.
+.			511974	IN	NS	m.root-servers.net.
+.			511974	IN	RRSIG	NS 8 0 518400 20231206050000 20231123040000 46780 . UQ+meyUT3QpdCvnmoJVeCP7KXeXGjk2ID9KKcCn5jYo8vHItCRsFmdnu rO2Mn01TkQzNDUQzSCu9eggbS0BjrUfhD2RmdYKws/8aV7XVb4szEGjU +OLmZsYylrUOvImYHKJM0Z2L61XlshGtI+Xcrd3KO0VE0gpQ32QAT5q2 9zan+8Ec3k+EFvNOP0b2ZMvL8UPS98/036KipLLb89ozv5/8kPCTcYHH apEpgdRIRkwGXwOo8kOdfw7hgdZ67vh6OfdQ7v8NI4OfllR22BQnkoQH tflmB1iNnxffb9Y1Ng1ZfkH2yXeM7nM/KVn4wE431ANmAKtXGAvWM6wM vvKM9Q==
+;; Received 525 bytes from 1.1.1.1#53(1.1.1.1) in 55 ms
+
+com.			172800	IN	NS	a.gtld-servers.net.
+com.			172800	IN	NS	b.gtld-servers.net.
+com.			172800	IN	NS	c.gtld-servers.net.
+com.			172800	IN	NS	d.gtld-servers.net.
+com.			172800	IN	NS	e.gtld-servers.net.
+com.			172800	IN	NS	f.gtld-servers.net.
+com.			172800	IN	NS	g.gtld-servers.net.
+com.			172800	IN	NS	h.gtld-servers.net.
+com.			172800	IN	NS	i.gtld-servers.net.
+com.			172800	IN	NS	j.gtld-servers.net.
+com.			172800	IN	NS	k.gtld-servers.net.
+com.			172800	IN	NS	l.gtld-servers.net.
+com.			172800	IN	NS	m.gtld-servers.net.
+com.			86400	IN	DS	30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766
+com.			86400	IN	RRSIG	DS 8 1 86400 20231206050000 20231123040000 46780 . m3ke1k7nUuyxsegrPb3TqZFCC1NQbx/uzDpUS+hhhToGID84coduGu5k DJYEPwaXuxiI+Gz+1/EWvB565cy1g1uWQnFmL1sCmPC+3iRmswDY6gLI 5sRg9XZpbSfTDljOp1ooKA0E1OGxSEo2w8PIoyMKeWAxrYObPMIxAmCH 5WNwOOO7wn/4y5cTYaVbjgS5Hq6lYdRvJnSZC6H5yrT9pV/fnU+n1tOC o5epXoTU7f11AdzeziHlvRXTov+yt07ryA4FPIcCK4/nMBtJ+jWVOtUR rker0xxTCwUvsKqlLkvb1M3PdQvUCITLJHt6unWJ+X3/7VXV2RZdql7/ XIpu3w==
+;; Received 1173 bytes from 199.7.83.42#53(l.root-servers.net) in 33 ms
+
+engcastle.com.		172800	IN	NS	ns1.digitalocean.com.
+engcastle.com.		172800	IN	NS	ns2.digitalocean.com.
+engcastle.com.		172800	IN	NS	ns3.digitalocean.com.
+CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q2D6NI4I7EQH8NA30NS61O48UL8G5  NS SOA RRSIG DNSKEY NSEC3PARAM
+CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20231130052548 20231123041548 63246 com. Sf9AxJLt1ltZPzdd8RcY0uTcrJPJqgBXPDEZ0ZV3606fJiIlwhaPCk+C X3GzS/22JpdHQDHMDHrkxc47MWIpZemYq5A5Mr45fPuEgRPmz5LXg1Kz H06gABzrOBrrKoZjuoWJVfSV1tvpwOo6e3FqGOVT1SSasscuqYro9qBr hn8KqNbjOLeGhdxEJ/zknD3h47pCJige52Fi1/L0YCIVvw==
+0178OAJ0UAPMJMIM2976LL8T9ESOAO99.com. 86400 IN NSEC3 1 1 0 - 0178QI8I1IIAI4C7G9EVI21P0L6VBIMD  NS DS RRSIG
+0178OAJ0UAPMJMIM2976LL8T9ESOAO99.com. 86400 IN RRSIG NSEC3 8 2 86400 20231130051557 20231123040557 63246 com. Xl7eJRj3nThPSAZPYX1JMDNOTY+3v/4ywwzkx+gmuSD0MDw/aOT6IOlG nfMSq7oaslJf/SnXK0as/pglvJf1RgxMn+T3vNwwNQ7Tnh2fXacc70qQ 7/veE+KqmbnV9MAIsRwgKsf6rEvitQSRj9VzeSugSCWAflJCbztbO6kx mHyZ+AeVsfcwdje8yvxPpF1uYeDkVHyuZM3cm+9E5inC2g==
+;; Received 790 bytes from 192.52.178.30#53(k.gtld-servers.net) in 61 ms
+
+engcastle.com.		3600	IN	A	65.109.109.51
+;; Received 58 bytes from 198.41.222.173#53(ns3.digitalocean.com) in 58 ms
+

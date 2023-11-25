@@ -3,11 +3,8 @@
 	import { enhance } from '$app/forms';
 	import { lang } from '$lib/stores/lang';
 
-	import LanguageBtn from '$lib/components/language/language-btn.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
-
-	export let legend: boolean = false;
 
 	const data = {
 		ar: {
@@ -54,16 +51,15 @@
 		<Label label={data[$lang].password}>
 			<Input name="password" type="password" placeholder={data[$lang].password} />
 		</Label>
-		<button type="submit" title={data[$lang].login}>{data[$lang].login}</button>
+		<button type="submit" title={data[$lang].login} on:click={() => (visible = false)}
+			>{data[$lang].login}</button
+		>
 		{#if $page.form?.error}
 			<p class="error" class:visible>{data[$lang].errorAdm}</p>
 		{:else if $page.form?.failed}
 			<p class="error" class:visible>{data[$lang].errorMsg}</p>
 		{/if}
 	</form>
-	<div class="lang__container">
-		<LanguageBtn {legend} />
-	</div>
 </section>
 
 <style>

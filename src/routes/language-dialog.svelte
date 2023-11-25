@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
 	import { isLangDialogOpen, lang } from '$lib/stores/lang';
 	import type { LanguageOptions } from '$lib/types';
 	const options: { value: LanguageOptions; name: string }[] = [
@@ -20,16 +21,6 @@
 		isLangDialogOpen.set(false);
 	}
 
-	function dialog(node: HTMLElement) {
-		node.addEventListener('click', closeLanguageDialog);
-
-		return {
-			destroy() {
-				node.removeEventListener('click', closeLanguageDialog);
-			}
-		};
-	}
-
 	function enhance_btn(node: HTMLButtonElement, { value }: { value: LanguageOptions }) {
 		node.disabled = $lang === value;
 
@@ -49,13 +40,13 @@
 </script>
 
 {#if $isLangDialogOpen}
-	<div class="bg" use:dialog />
-
-	<menu class="dialog__container">
-		{#each options as item (item.value)}
-			<li><button use:enhance_btn={{ ...item }}>{item.name}</button></li>
-		{/each}
-	</menu>
+	<BlurBackground>
+		<menu class="dialog__container">
+			{#each options as item (item.value)}
+				<li><button use:enhance_btn={{ ...item }}>{item.name}</button></li>
+			{/each}
+		</menu>
+	</BlurBackground>
 {/if}
 
 <style>
@@ -115,17 +106,6 @@
 		left: calc(50vw - 80px);
 		gap: 10px;
 		box-shadow: 0px 0px 8px 1px hsl(0, 0%, 30%);
-	}
-
-	.bg {
-		top: 0;
-		left: 0;
-		z-index: 0;
-		width: 100vw;
-		height: 100svh;
-		position: fixed;
-		backdrop-filter: blur(1px);
-		background-color: hsla(0, 0%, 80%, 0.6);
 	}
 
 	button:disabled {

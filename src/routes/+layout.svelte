@@ -6,3 +6,11 @@
 <slot />
 
 <LanguageDialog />
+
+<style>
+	div {
+		& span {
+			color: red;
+		}
+	}
+</style>

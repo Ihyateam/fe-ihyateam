@@ -11,6 +11,6 @@
 		height: max-content;
 		min-width: 20rem;
 		padding-top: 1.5rem;
-		outline: 1px solid salmon;
+		margin-bottom: 1.5rem;
 	}
 </style>

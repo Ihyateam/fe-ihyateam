@@ -43,6 +43,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.6.0
     version: 3.6.0(postcss@8.4.31)(svelte@4.2.5)
+  svelte-sequential-preprocessor:
+    specifier: ^2.0.1
+    version: 2.0.1
   tslib:
     specifier: ^2.6.2
     version: 2.6.2
@@ -1942,6 +1945,14 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.5
       typescript: 5.2.2
+    dev: true
+
+  /svelte-sequential-preprocessor@2.0.1:
+    resolution: {integrity: sha512-N5JqlBni6BzElxmuFrOPxOJnjsxh1cFDACLEVKs8OHBcx8ZNRO1p5SxuQex1m3qbLzAC8G99EHeWcxGkjyKjLQ==}
+    engines: {node: '>=16'}
+    dependencies:
+      svelte: 4.2.5
+      tslib: 2.6.2
     dev: true
 
   /svelte@4.2.5:

@@ -9,6 +9,12 @@ export type UserAdminEntity = {
 	created_by_admin: string;
 };
 
+export type CityEntity = {
+	id: string;
+	city_name: string;
+	country_id: string;
+};
+
 export type UserEntity = {
 	address_id: string;
 	age: number;
@@ -23,7 +29,7 @@ export type UserEntity = {
 	isActive: boolean;
 	last_name: string;
 	photo: string;
-	update: Date;
+	updated: Date;
 	username: string;
 	verified: boolean;
 };

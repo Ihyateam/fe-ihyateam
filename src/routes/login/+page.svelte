@@ -3,7 +3,7 @@
 </script>
 
 <main>
-	<Login legend={true} />
+	<Login />
 </main>
 
 <style>
