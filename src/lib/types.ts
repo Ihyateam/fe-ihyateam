@@ -1,5 +1,3 @@
-export type LanguageOptions = 'ar' | 'en' | 'tr';
-
 export type UserAdminEntity = {
 	id: string;
 	first_name: string;

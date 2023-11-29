@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { lang } from '$lib/stores/lang';
 	import type { UserEntity } from '$lib/types';
 
 	export let user: UserEntity;
@@ -39,11 +38,10 @@
 <button class="avater" on:click={() => (isSettingsOpen = !isSettingsOpen)}>
 	<img class="avater__img" src={user.photo} alt={user?.username || 'user-profile-img'} />
 	<menu class:flex={isSettingsOpen}>
-		<li><a href="/user/{user.id}" target="_self">{data[$lang].account}</a></li>
-		<li><a href="/user/{user.id}" target="_self">إضافة مهمة</a></li>
-		<li><a href="/user/{user.id}" target="_self">إضافة مهمة</a></li>
+		<li><a href="/user/{user.id}" target="_self">{data['ar'].account}</a></li>
+		<li><a href="/user/{user.id}/tasks" target="_self">مهامي</a></li>
 		<li use:logout>
-			{data[$lang].logout}
+			{data['ar'].logout}
 		</li>
 	</menu>
 </button>

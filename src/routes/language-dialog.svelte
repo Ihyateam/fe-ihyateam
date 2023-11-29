@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
-	import { isLangDialogOpen, lang } from '$lib/stores/lang';
-	import type { LanguageOptions } from '$lib/types';
+	let lang = 'ar;';
+	let isLangDialogOpen = false;
 	const options: { value: LanguageOptions; name: string }[] = [
 		{
 			value: 'ar',
@@ -18,14 +18,14 @@
 	];
 
 	function closeLanguageDialog() {
-		isLangDialogOpen.set(false);
+		isLangDialogOpen = false;
 	}
 
 	function enhance_btn(node: HTMLButtonElement, { value }: { value: LanguageOptions }) {
-		node.disabled = $lang === value;
+		node.disabled = lang === value;
 
 		function setLanguage() {
-			$lang = value;
+			lang = value;
 			closeLanguageDialog();
 		}
 
@@ -39,7 +39,7 @@
 	}
 </script>
 
-{#if $isLangDialogOpen}
+{#if isLangDialogOpen}
 	<BlurBackground>
 		<menu class="dialog__container">
 			{#each options as item (item.value)}

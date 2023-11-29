@@ -13,6 +13,6 @@ export async function load({ params, locals }) {
 	}
 
 	return {
-		activity
+		activity,
 	};
 }

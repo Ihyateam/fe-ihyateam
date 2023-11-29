@@ -8,14 +8,6 @@
 		ar: {
 			content: 'العربية',
 			title: 'غير اللغة'
-		},
-		en: {
-			content: 'English',
-			title: 'change language'
-		},
-		tr: {
-			content: 'Türkçe',
-			title: 'dil degistirme'
 		}
 	};
 </script>
@@ -23,13 +15,13 @@
 <button
 	class="lang__container"
 	on:click={() => isLangDialogOpen.set(true)}
-	title={langs[$lang].title}
+	title={langs['ar'].title}
 >
 	<span class="lang-icon">
 		<EarthIcon width="75%" height="75%" />
 	</span>
 	{#if legend}
-		<span class="lang">{langs[$lang].content}</span>
+		<span class="lang">{langs['ar'].content}</span>
 	{/if}
 </button>
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
-	import { lang } from '$lib/stores/lang';
 
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
@@ -14,22 +13,6 @@
 			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول'
-		},
-		en: {
-			username: 'username',
-			password: 'password',
-			forgetPassword: 'forget password',
-			errorAdm: 'Something has gone wrong, please contact the admin!',
-			errorMsg: 'The email or password is not valid.',
-			login: 'Login'
-		},
-		tr: {
-			username: 'Kullanıcı Adı',
-			password: 'Şifre',
-			forgetPassword: 'şifre unuttum',
-			errorAdm: "Hata oluştu lütfen yetkili'ya haberdar ediniz!",
-			errorMsg: 'Lütfen geçerli bir e-posta adresi giriniz!',
-			login: 'Giriş Yap'
 		}
 	};
 
@@ -42,22 +25,22 @@
 	$: visible = $page.form?.failed;
 </script>
 
-<section dir={$lang === 'ar' ? 'rtl' : 'ltr'}>
+<section dir="rtl">
 	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance>
-		<Label label={data[$lang].username}>
-			<Input name="username" type="username" placeholder={data[$lang].username} />
+		<Label label={data['ar'].username}>
+			<Input name="username" type="username" placeholder={data['ar'].username} />
 		</Label>
-		<Label label={data[$lang].password}>
-			<Input name="password" type="password" placeholder={data[$lang].password} />
+		<Label label={data['ar'].password}>
+			<Input name="password" type="password" placeholder={data['ar'].password} />
 		</Label>
-		<button type="submit" title={data[$lang].login} on:click={() => (visible = false)}
-			>{data[$lang].login}</button
+		<button type="submit" title={data['ar'].login} on:click={() => (visible = false)}
+			>{data['ar'].login}</button
 		>
 		{#if $page.form?.error}
-			<p class="error" class:visible>{data[$lang].errorAdm}</p>
+			<p class="error" class:visible>{data['ar'].errorAdm}</p>
 		{:else if $page.form?.failed}
-			<p class="error" class:visible>{data[$lang].errorMsg}</p>
+			<p class="error" class:visible>{data['ar'].errorMsg}</p>
 		{/if}
 	</form>
 </section>
@@ -104,10 +87,6 @@
 		100% {
 			transform: translateX(0px);
 		}
-	}
-
-	.lang__container {
-		margin: auto auto 0 0;
 	}
 
 	section {

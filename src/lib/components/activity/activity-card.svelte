@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { lang } from '$lib/stores/lang';
 	import type { ActivityEntity } from '$lib/types';
 	import { dateFormater } from '$lib/utils/date-formater';
 	import { CalenderIcon, PupilsIcon } from '../icons';
@@ -14,11 +13,7 @@
 	};
 </script>
 
-<a
-	dir={$lang === 'ar' ? 'rtl' : 'ltr'}
-	class="activity activity__card"
-	href="/activities/{activity.id}"
->
+<a dir="rtl" class="activity activity__card" href="/activities/{activity.id}">
 	<img src={activity.profile} alt={activity.name} />
 	<div class="activity__details">
 		<div class="activity__info">
@@ -26,9 +21,7 @@
 				{dateFormater(new Date(activity.start_date))}
 				<CalenderIcon width="1rem" height="1rem" style="margin-bottom: 4px;" />
 			</span>
-			<span class="activity__status {activity.status}"
-				>{$lang === 'ar' ? data[activity.status] : activity.status}</span
-			>
+			<span class="activity__status {activity.status}">{data[activity.status]}</span>
 		</div>
 		<h2 class="activity__title">{activity.title}</h2>
 		<p class="activity__description">{activity.description}</p>

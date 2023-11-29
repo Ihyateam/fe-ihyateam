@@ -68,7 +68,7 @@
 		</div>
 	</MultipleSelect>
 
-	<input name="profile" type="file" accept="image/*" />
+	<input name="profile" type="file" accept=".png,.jpeg" />
 	<label
 		>how many students: <input
 			type="number"

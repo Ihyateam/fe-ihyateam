@@ -11,6 +11,7 @@ import NewItemIcon from './new-item-icon.svelte';
 import SortIcon from './sort-icon.svelte';
 import DashboardIcon from './dashboard-icon.svelte';
 import ShutdownIcon from './shutdown-icon.svelte';
+import UsersIcon from './users-icon.svelte';
 
 export {
 	EarthIcon,
@@ -25,5 +26,6 @@ export {
 	NewItemIcon,
 	DashboardIcon,
 	ShutdownIcon,
+	UsersIcon,
 	SortIcon
 };

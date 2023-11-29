@@ -1,7 +1,6 @@
 <script>
 	import Navbar from '$lib/components/navbar/navbar.svelte';
-	import Sidebar from '$lib/components/sidebar/sidebar.svelte';
-	import PageLayout from '$lib/components/layouts/page-layout.svelte';
+	import Sidebar from './sidebar.svelte';
 
 	export let data;
 </script>
@@ -11,9 +10,7 @@
 	<div class="inner">
 		<Sidebar />
 		<main>
-			<PageLayout>
-				<slot />
-			</PageLayout>
+			<slot />
 		</main>
 	</div>
 </div>

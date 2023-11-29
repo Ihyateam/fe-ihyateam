@@ -23,7 +23,7 @@ export const actions = {
 			city_id: data.getAll('city_id')
 		};
 		try {
-			const record = await locals.pb?.collection('activities').create(res);
+			const record = await locals.pb?.collection('activities').create(data);
 			return {
 				msg: 'entity created',
 				record

@@ -1,7 +1,3 @@
-<script>
-	
-
-</script>
 <div class="bg">
 	<slot />
 </div>

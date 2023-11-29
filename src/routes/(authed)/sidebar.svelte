@@ -1,28 +1,33 @@
 <script lang="ts">
-	import { ActivityIcon, SettingsIcon, DashboardIcon } from '../icons';
-	import Component from './component.svelte';
-	import { lang } from '$lib/stores/lang';
+	import { ActivityIcon, DashboardIcon, UsersIcon } from '$lib/components/icons';
 
 	export let config = [
+		{
+			id: 'users',
+			attr: {
+				ar: {
+					['data-tooltip']: 'المتطوعين'
+				}
+			},
+			props: {
+				href: '/users',
+				target: '_self'
+			},
+			icon: UsersIcon
+		},
+
 		{
 			id: 'activity',
 			attr: {
 				ar: {
 					['data-tooltip']: 'أنشطة'
-				},
-				en: {
-					['data-tooltip']: 'activities'
-				},
-				tr: {
-					['data-tooltip']: 'faaliyetler'
 				}
 			},
 			props: {
 				href: '/activities',
 				target: '_self'
 			},
-			icon: ActivityIcon,
-			component: Component
+			icon: ActivityIcon
 		},
 
 		{
@@ -30,20 +35,13 @@
 			attr: {
 				ar: {
 					['data-tooltip']: 'إحصائيات'
-				},
-				en: {
-					['data-tooltip']: 'dashboard'
-				},
-				tr: {
-					['data-tooltip']: 'ön panel'
 				}
 			},
 			props: {
 				href: '/dashboard',
 				target: '_self'
 			},
-			icon: DashboardIcon,
-			component: Component
+			icon: DashboardIcon
 		}
 	];
 </script>
@@ -52,7 +50,7 @@
 	<menu>
 		{#each config as item}
 			<li>
-				<a {...item.attr[$lang]} href={item.props.href} target={item.props.target}>
+				<a {...item.attr['ar']} href={item.props.href} target={item.props.target}>
 					<svelte:component this={item.icon} width="75%" />
 				</a>
 			</li>
