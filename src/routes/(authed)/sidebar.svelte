@@ -71,7 +71,8 @@
 		align-items: center;
 		flex-direction: column;
 		padding: 7px 0px 7px 0px;
-		background-color: hsla(0, 10%, 95%);
+		/* background-color: hsla(0, 10%, 95%); */
+		background-color: hsla(0, 10%, 95%, 0.4);
 		list-style: none;
 		border-right: 0.5px solid #8888;
 	}

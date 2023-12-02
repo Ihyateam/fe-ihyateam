@@ -68,7 +68,7 @@
 		</div>
 	</MultipleSelect>
 
-	<input name="profile" type="file" accept=".png,.jpeg" />
+	<input name="photo" type="file" accept=".jpg,.png,.jpeg" />
 	<label
 		>how many students: <input
 			type="number"
@@ -112,18 +112,8 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		width: 50%;
+		width: 100%;
 		gap: 2rem;
 		padding-top: 0.5rem;
-
-		& .chosens {
-			display: flex;
-			gap: 0.5rem;
-
-			& > * {
-				padding: 0.5rem;
-				outline: 1px solid salmon;
-			}
-		}
 	}
 </style>

@@ -1,9 +1,12 @@
 <script>
+	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import ActivityForm from './activity-form.svelte';
 
 	export let data;
 </script>
 
-<h2>Create new an activity</h2>
+<PageLayout>
+	<h2 slot="header">Create new an activity</h2>
 
-<ActivityForm {...data} />
+	<svelte:component this={ActivityForm} {...data} slot="body" />
+</PageLayout>

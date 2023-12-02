@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
+	import { getURL } from '$lib/utils/backend-utils';
 	import { dateFormater } from '$lib/utils/date-formater';
 	import { CalenderIcon, PupilsIcon } from '../icons';
 
@@ -14,7 +15,7 @@
 </script>
 
 <a dir="rtl" class="activity activity__card" href="/activities/{activity.id}">
-	<img src={activity.profile} alt={activity.name} />
+	<img src={getURL(activity)} alt={activity.name} />
 	<div class="activity__details">
 		<div class="activity__info">
 			<span class="activity__date">

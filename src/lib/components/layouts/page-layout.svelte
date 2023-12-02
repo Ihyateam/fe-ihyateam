@@ -21,7 +21,7 @@
 
 		& > * {
 			width: 100%;
-			outline: 1px solid salmon;
+			/* outline: 1px solid salmon; */
 		}
 
 		& > :first-child {

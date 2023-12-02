@@ -42,7 +42,7 @@ export type ActivityEntity = {
 	description: StringConstructor;
 	end_date: Date;
 	id: string;
-	profile: string;
+	photo: string;
 	start_date: Date;
 	status: 'done' | 'scheduled' | 'ongoing' | 'postponed';
 	students: number;

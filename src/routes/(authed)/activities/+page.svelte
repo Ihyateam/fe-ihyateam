@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ActivityList from '$lib/components/activity/activity-list.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 
 	import { sort_by } from '$lib/utils';
@@ -39,8 +38,6 @@
 
 	let selection: 'oldest' | 'newest' | 'most' | 'less' | undefined;
 
-	export let data;
-
 	$: {
 		if (selection === 'oldest') {
 			data.activities = sort_by(data.activities, 'start_date', {
@@ -60,6 +57,8 @@
 			data.activities = sort_by(data.activities, 'students', { descending: false });
 		}
 	}
+
+	export let data;
 </script>
 
 <PageLayout>
@@ -156,7 +155,7 @@
 	}
 
 	li:is(:hover, :focus, :focus-visible) {
-		background-color: hsla(35, 100%, 80%, 0.1);
+		background-color: hsla(35, 100%, 80%, 0.258);
 	}
 
 	.new-activity {

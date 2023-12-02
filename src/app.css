@@ -70,14 +70,10 @@ body {
 	accent-color: var(--primaryColor);
 }
 
-.flex {
-	display: flex;
-}
-
-.justfiy-center {
-	justify-content: center;
-}
-
-.items-center {
-	align-items: center;
+.profile {
+	background-image: url('/profile.png');
+	background-repeat: no-repeat;
+	background-position: center 0px;
+	background-size: 125%;
+	color: transparent;
 }

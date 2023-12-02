@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
-	import Profile from '../profile/profile.svelte';
+	import Profile from '$lib/components/profile/profile.svelte';
 
 	export let user: UserEntity;
 </script>
@@ -21,7 +21,7 @@
 		align-items: center;
 		width: 100vw;
 		justify-content: space-between;
-		background-color: hsla(0, 10%, 95%);
+		background-color: hsla(0, 10%, 95%, 0.4);
 		border-bottom: 0.5px solid #8888;
 	}
 

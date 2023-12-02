@@ -1,7 +1,8 @@
 <script lang="ts">
+	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import type { PageData } from './$types';
-
-	export let data: PageData;
 </script>
 
-<h1>ihsayat</h1>
+<PageLayout>
+	<h1 slot="header">ihsayat</h1>
+</PageLayout>
