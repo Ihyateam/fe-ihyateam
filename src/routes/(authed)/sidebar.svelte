@@ -71,8 +71,8 @@
 		align-items: center;
 		flex-direction: column;
 		padding: 7px 0px 7px 0px;
-		/* background-color: hsla(0, 10%, 95%); */
-		background-color: hsla(0, 10%, 95%, 0.4);
+
+		background-color: var(--secondary-background-color);
 		list-style: none;
 		border-right: 0.5px solid #8888;
 	}
@@ -86,9 +86,9 @@
 
 		width: 2.5rem;
 		height: 2.5rem;
-		border-radius: var(--btnRadius);
-		background-color: var(--baseColor);
-		border: 0.5px solid hsla(0, 0%, 70%, 0.8);
+		border-radius: 4px;
+		background-color: var(--base-background-color);
+		outline: var(--base-outline);
 		font-size: 1em;
 		color: black;
 	}
@@ -102,15 +102,19 @@
 	}
 
 	[data-tooltip]::after {
-		z-index: 1;
 		left: 60px;
+
 		display: flex;
 		visibility: hidden;
 		border-radius: 4px;
 		position: absolute;
 		white-space: nowrap;
+
+		padding-top: 0.128rem;
+		padding-bottom: 0.128rem;
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
+
 		content: attr(data-tooltip);
 		background-color: hsl(35, 100%, 86%);
 		border: 0.5px solid hsl(35, 100%, 70%, 0.6);

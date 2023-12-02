@@ -1,6 +1,6 @@
 <script>
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import UserTable from '$lib/components/user/user-table.svelte';
+	import UserList from '$lib/components/user/user-list.svelte';
 
 	export let data;
 
@@ -19,7 +19,7 @@
 		{#if data.volunteers === undefined}
 			<p>testing..</p>
 		{:else}
-			<UserTable users={data.volunteers} />
+			<UserList users={data.volunteers} />
 		{/if}
 	</div>
 </PageLayout>

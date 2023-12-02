@@ -1,8 +1,8 @@
 <script lang="ts">
 	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
-	let lang = 'ar;';
+	let lang = 'ar';
 	let isLangDialogOpen = false;
-	const options: { value: LanguageOptions; name: string }[] = [
+	const options = [
 		{
 			value: 'ar',
 			name: 'العربية'

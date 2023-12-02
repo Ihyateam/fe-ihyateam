@@ -1,14 +1,12 @@
 <script lang="ts">
 	import Navbar from '$lib/components/navbar/navbar.svelte';
-	import type { UserEntity } from '$lib/types';
 	import Sidebar from './sidebar.svelte';
 
 	export let data;
-	const user = data.user as UserEntity;
 </script>
 
 <div class="upper">
-	<Navbar {user} />
+	<Navbar user={data.user} />
 	<div class="inner">
 		<Sidebar />
 		<main>

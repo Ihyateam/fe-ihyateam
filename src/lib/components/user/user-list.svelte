@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
-	import { getURL } from '$lib/utils/backend-utils';
-	import UserCard from './user-card.svelte';
+	import UserItem from './user-item.svelte';
 
 	export let users: UserEntity[];
 </script>
@@ -19,14 +18,7 @@
 	</li>
 	{#each users as user}
 		<li>
-			<UserCard id={user.id}>
-				<img class="profile" slot="avater" alt={user.first_name} src={getURL(user)} />
-				<span slot="name">{user.first_name} {user.last_name}</span>
-				<span slot="tel">{user.username}</span>
-				<span slot="activities">{Math.floor(Math.random() * 100)}</span>
-				<span slot="work-commute">{Math.floor(Math.random() * 100)}</span>
-				<div slot="status" class:active={user.isActive}>{user.isActive ? 'فعال' : 'معطل'}</div>
-			</UserCard>
+			<UserItem {user} />
 		</li>
 	{/each}
 </ul>
@@ -64,9 +56,5 @@
 		& > span {
 			justify-self: right;
 		}
-	}
-
-	[slot='status'].active {
-		background-color: hsl(150.7, 69.9%, 37.8%);
 	}
 </style>

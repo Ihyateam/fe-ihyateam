@@ -54,7 +54,7 @@
 		height: fit-content;
 		outline: 0.5px solid red;
 		border-radius: 3px;
-		color: hsl(0, 100%, 40%);
+		color: var(--error-background-color);
 		font-size: 14px;
 		background-color: hsla(0, 100%, 80%, 0.1);
 		padding: 0.2rem 0.4rem 0.2rem 0.4rem;
@@ -103,11 +103,11 @@
 		max-height: 80%;
 		padding: 2rem 1rem 1rem 1rem;
 
-		background-color: hsl(0, 0%, 93%);
+		background-color: var(--secondary-background-color);
 
 		border-radius: 1rem;
-		outline: 1px solid hsl(0, 0%, 85%);
-		box-shadow: 0px 0px 8px 1px hsl(0, 0%, 80%);
+		outline: var(--base-outline);
+		box-shadow: var(--full-box-shadow);
 	}
 
 	[type='submit'] {
@@ -123,17 +123,12 @@
 		margin-left: auto;
 		margin-top: 0.5rem;
 
-		background-color: hsl(35.7, 100%, 50.6%);
+		background-color: var(--button-background-color);
 	}
 
 	[type='submit']:hover {
-		color: hsla(0, 0%, 0%, 0.8);
-		background-color: hsl(35.7, 100%, 64.6%);
-	}
-
-	/* space for left-to-right written languages */
-	[dir='ltr'] [type='submit'] {
-		letter-spacing: 0.8px;
+		color: hsla(0, 0%, 10%, 0.8);
+		background-color: var(--button-hover-background-color);
 	}
 
 	form {

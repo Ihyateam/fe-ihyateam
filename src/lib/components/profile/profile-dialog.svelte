@@ -45,8 +45,7 @@
 		top: -100%;
 		right: 120%;
 
-		background-color: white;
-		border: 1px solid #8888;
+		border: var(--base-outline);
 		border-radius: 0.6rem;
 		padding: 1rem;
 

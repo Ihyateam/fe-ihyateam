@@ -21,8 +21,8 @@
 		align-items: center;
 		width: 100vw;
 		justify-content: space-between;
-		background-color: hsla(0, 10%, 95%, 0.4);
-		border-bottom: 0.5px solid #8888;
+		background-color: var(--secondary-background-color);
+		border-bottom: 0.5px solid var(--base-border-color);
 	}
 
 	.brand-logo > img {

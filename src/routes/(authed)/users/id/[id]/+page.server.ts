@@ -1,11 +1,11 @@
-export async function load({ params, locals }) {
-	if (locals.pb?.authStore.isValid && locals.pb?.authStore.model) {
-		return {
-			user: locals.pb.authStore.model
-		};
-	}
+import type { ActivityEntity, UserEntity } from '$lib/types.js';
 
+export async function load({
+	params,
+	locals
+}): Promise<{ user?: UserEntity; activities?: ActivityEntity[] }> {
 	return {
-		...params
+		user: await locals.pb?.collection('users').getOne(params.id),
+		activities: await locals.pb?.collection('activities').getFullList()
 	};
 }

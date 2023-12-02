@@ -51,3 +51,5 @@ export type ActivityEntity = {
 	volunteers: string[];
 	wage_id: string;
 };
+
+export type ExpandedActivityEntity = ActivityEntity & { expand: { volunteers?: UserEntity[] } };

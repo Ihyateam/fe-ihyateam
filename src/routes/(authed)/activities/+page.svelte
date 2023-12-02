@@ -107,7 +107,7 @@
 
 		& span {
 			font-size: 1rem;
-			color: hsla(0, 0%, 40%, 0.8);
+			color: var(--demphasized-font-color);
 			letter-spacing: 1px;
 			direction: rtl;
 		}
@@ -124,7 +124,7 @@
 			cursor: pointer;
 			font-size: 1rem;
 
-			background-color: hsla(0, 0%, 70%, 0.3);
+			background-color: var(--third-background-color);
 			border-radius: 8px;
 			appearance: none;
 			border: none;
@@ -147,8 +147,7 @@
 	li {
 		height: 26rem;
 		width: 18.75rem;
-		background-color: #fff;
-		border: 0.0625rem solid #dadce0;
+		border: var(--base-outline);
 		border-radius: 0.5rem;
 		background-clip: padding-box;
 		overflow: hidden;

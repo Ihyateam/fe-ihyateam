@@ -21,12 +21,6 @@
 
 		& > * {
 			width: 100%;
-			/* outline: 1px solid salmon; */
-		}
-
-		& > :first-child {
-			display: flex;
-			align-items: center;
 		}
 
 		& > :last-child {

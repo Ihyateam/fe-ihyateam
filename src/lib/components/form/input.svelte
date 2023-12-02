@@ -14,15 +14,15 @@
 		height: 2.5rem;
 		border-radius: 5px;
 		padding-inline-start: 1rem;
-		caret-color: hsl(35.7, 100%, 50.6%);
-		outline: 0.5px solid hsl(0, 0%, 85%);
+		caret-color: var(--gold-color);
+		outline: var(--base-outline);
 
 		&:focus,
 		:focus-visible,
 		:focus-within {
-			outline: 2px solid hsl(35.7, 100%, 70.6%);
+			outline: var(--focus-input-outline);
 
-			box-shadow: 0px 0px 4px 1px hsl(35.6, 100%, 50.6%);
+			box-shadow: var(--input-box-shadow);
 		}
 	}
 </style>

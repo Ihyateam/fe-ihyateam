@@ -66,19 +66,18 @@
 	}
 
 	.activity__date {
-		background-color: hsla(0, 0%, 80%, 0.5);
 		border-radius: 4px;
 		padding-left: 6px;
 		padding-right: 6px;
 		display: flex;
 		grid-area: 1/2;
 		align-items: center;
-		justify-content: center;
 		justify-self: left;
-		font-size: 0.9rem;
 		font-weight: 600;
 		gap: 1px;
-		color: hsla(0, 0%, 30%, 0.7);
+		color: var(--demphasized-font-color-2);
+		background-color: var(--third-background-color);
+		outline: var(--base-outline);
 	}
 
 	.activity__status {
@@ -91,7 +90,7 @@
 		padding: 0.1rem 0.6rem 0.1rem 0.6rem;
 		margin-inline-start: 4px;
 
-		color: hsl(0, 10%, 100%);
+		color: var(--font-color);
 		border-radius: 6px;
 	}
 
@@ -101,7 +100,7 @@
 
 	.activity__description {
 		margin-top: 4px;
-		color: hsl(0, 0%, 40%);
+		color: var(--demphasized-font-color);
 	}
 
 	footer {
@@ -109,7 +108,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		color: hsla(0, 0%, 10%, 0.7);
+		color: var(--demphasized-font-color-2);
 	}
 
 	.footer__div {
@@ -120,22 +119,18 @@
 	}
 
 	.postponed {
-		background-color: hsl(217.6, 89.4%, 62.9%);
+		background-color: var(--blue-color);
 	}
 
 	.ongoing {
-		background-color: hsl(150.7, 69.9%, 37.8%);
+		background-color: var(--green-color);
 	}
 
 	.scheduled {
-		background-color: hsl(43.8, 100%, 63.7%);
+		background-color: var(--gold-color);
 	}
 
 	.done {
-		background-color: hsl(5.1, 69.2%, 56.7%);
+		background-color: var(--red-color);
 	}
-	/* 
-	* {
-		outline: 1px solid salmon;
-	} */
 </style>

@@ -38,7 +38,11 @@
 
 <form method="post" action="/logout" id="logout-form" />
 <button class="avater" on:click={() => (isSettingsOpen = !isSettingsOpen)}>
-	<img class="avater__img profile" src={getURL(user)} alt={user?.username || 'user-profile-img'} />
+	<img
+		class="avater__img profile"
+		src={getURL(user, { thumb: '100x100' })}
+		alt={user?.username || 'user-profile-img'}
+	/>
 	<menu class:flex={isSettingsOpen}>
 		<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
 		<li><a href="/users/id/{user.id}/tasks" target="_self">مهامي</a></li>
@@ -64,7 +68,7 @@
 
 		&:hover {
 			transition: box-shadow 0.2s ease-in-out;
-			box-shadow: 0 0 0 0.25rem hsl(35, 100%, 85%);
+			box-shadow: 0 0 0 0.25rem var(--button-hover-background-color-2);
 		}
 	}
 
@@ -89,9 +93,9 @@
 		border-radius: 0.25rem;
 		font-size: 1.25rem;
 		overflow: hidden;
-		box-shadow: 2px 3px 0.25rem hsl(35, 0%, 70%);
+		box-shadow: var(--base-box-shadow);
 
-		outline: 1px solid hsla(0, 0%, 30%, 0.2);
+		outline: var(--base-outline);
 
 		&.flex {
 			display: flex;
@@ -105,7 +109,6 @@
 		width: 100%;
 		position: relative;
 		padding: 0.25rem;
-		color: hsla(0, 0%, 40%, 0.9);
 		padding-inline-start: 0.5rem;
 		padding-inline-end: 0.5rem;
 
@@ -114,7 +117,7 @@
 		direction: rtl;
 
 		&:hover {
-			background-color: hsla(0, 10%, 75%, 0.1);
+			background-color: var(--hover-background-color);
 			color: black;
 			/* color: ; */
 		}
@@ -126,7 +129,7 @@
 			content: ' ';
 			width: 75%;
 			height: 1px;
-			background-color: hsla(0, 0%, 80%, 0.7);
+			background-color: var(--third-background-color);
 		}
 
 		& a {

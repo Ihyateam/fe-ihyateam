@@ -1,10 +1,12 @@
 <script lang="ts">
+	import UserTable from '$lib/components/user/user-list.svelte';
+
 	export let data;
 </script>
 
 <div>
-	{#if data.activity?.expand}
+	{#if data.activity.expand.volunteers}
 		{@const users = data.activity.expand.volunteers}
-		<pre>{JSON.stringify(users, null, 2)}</pre>
+		<UserTable {users} />
 	{/if}
 </div>
