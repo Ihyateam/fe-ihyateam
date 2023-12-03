@@ -94,7 +94,7 @@
 	}
 
 	a:hover {
-		background-color: hsla(35.6, 100%, 80%, 0.4);
+		background-color: var(--button-secondary-hover-background-color);
 	}
 
 	.mt-auto {
@@ -116,8 +116,8 @@
 		padding-right: 0.5rem;
 
 		content: attr(data-tooltip);
-		background-color: hsl(35, 100%, 86%);
 		border: 0.5px solid hsl(35, 100%, 70%, 0.6);
+		background-color: var(--button-secondary-hover-background-color);
 	}
 
 	[data-tooltip]:hover::after {

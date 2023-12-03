@@ -1,6 +1,7 @@
 <script>
 	import ActivityList from '$lib/components/activity/activity-list.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
+	import TaskList from '$lib/components/task/task-list.svelte';
 	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
 
@@ -13,6 +14,7 @@
 		<div slot="body">
 			<UserProfileCard user={data.user} />
 			<ActivityList activities={data?.activities} />
+			<TaskList />
 		</div>
 	</PageLayout>
 {:else}
@@ -28,9 +30,9 @@
 		grid-template-columns: 7fr 3fr;
 
 		& > * {
-			background-color: var(--secondary-background-color);
 			border-radius: 0.25rem;
 			outline: var(--base-outline);
+			background-color: aliceblue;
 		}
 	}
 </style>

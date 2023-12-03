@@ -6,7 +6,7 @@
 
 	const config = {
 		ar: {
-			header: 'الفعاليات'
+			header: 'فعالياتي'
 		}
 	};
 </script>
@@ -27,12 +27,14 @@
 		height: 300px;
 		display: flex;
 		flex-direction: column;
+		overflow: hidden;
 
 		& > header {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 2rem;
+			border-bottom: var(--base-outline);
 		}
 
 		& > ul {

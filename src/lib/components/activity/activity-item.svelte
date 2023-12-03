@@ -23,12 +23,16 @@
 		justify-content: space-evenly;
 		align-items: center;
 
+		padding-top: 0.128rem;
+		padding-bottom: 0.128rem;
+
 		& > .card__img {
 			width: 90%;
 			height: 90%;
 			margin: 0.5rem;
-			border-radius: 0.128px;
+			border-radius: 0.128rem;
 			overflow: hidden;
+			outline: var(--base-outline);
 
 			& > img {
 				width: 100%;
@@ -42,7 +46,7 @@
 		}
 
 		&:hover {
-			background-color: var(--secondary-background-color);
+			background-color: var(--button-secondary-hover-background-color);
 			cursor: pointer;
 		}
 	}
