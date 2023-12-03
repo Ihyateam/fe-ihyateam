@@ -24,11 +24,13 @@
 		display: grid;
 		height: 300px;
 		width: 100%;
-		gap: 2rem;
+		gap: 0.5rem;
 		grid-template-columns: 7fr 3fr;
 
 		& > * {
-			outline: 1px solid salmon;
+			background-color: var(--secondary-background-color);
+			border-radius: 0.25rem;
+			outline: var(--base-outline);
 		}
 	}
 </style>

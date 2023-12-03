@@ -25,6 +25,7 @@ export type UserEntity = {
 	first_name: string;
 	id: string;
 	isActive: boolean;
+	isAdmin: boolean;
 	last_name: string;
 	photo: string;
 	updated: Date;

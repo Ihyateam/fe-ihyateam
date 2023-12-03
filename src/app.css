@@ -50,10 +50,6 @@ body {
 	--red-color: hsl(5.1, 69.2%, 56.7%);
 }
 
-.profile {
-	background-image: url('/profile.png');
-	background-repeat: no-repeat;
-	background-position: center 0px;
-	background-size: 125%;
-	color: transparent;
+img {
+	outline: var(--base-outline);
 }

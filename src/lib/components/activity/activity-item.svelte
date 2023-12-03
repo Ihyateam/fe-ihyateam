@@ -9,28 +9,41 @@
 	<div class="card__img">
 		<img src={getURL(activity)} alt={activity.title} />
 	</div>
-	<div class="card__body">
-		<h3>{activity.title}</h3>
-	</div>
+	<h3>{activity.title}</h3>
 </div>
 
 <style>
 	.card {
 		width: 100%;
-		height: 100%;
-		display: flex;
+		height: 3rem;
+		display: grid;
+		grid-template-columns: 3rem 1fr;
+		background-color: var(--base-background-color);
+		gap: 0.5rem;
 		justify-content: space-evenly;
 		align-items: center;
 
 		& > .card__img {
-			display: flex;
-			
+			width: 90%;
+			height: 90%;
+			margin: 0.5rem;
+			border-radius: 0.128px;
+			overflow: hidden;
 
+			& > img {
+				width: 100%;
+				height: 100%;
+			}
 		}
 
 		& > .card__body {
 			display: flex;
 			justify-content: space-evenly;
+		}
+
+		&:hover {
+			background-color: var(--secondary-background-color);
+			cursor: pointer;
 		}
 	}
 </style>

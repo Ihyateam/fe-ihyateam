@@ -34,5 +34,6 @@
 
 	[slot='body'] {
 		flex-direction: column;
+		height: min(max-content, 75svh);
 	}
 </style>

@@ -5,7 +5,7 @@
 	export let users: UserEntity[];
 </script>
 
-<ul>
+<ul class="outer">
 	<li class="header">
 		<header>
 			<div />
@@ -16,14 +16,28 @@
 			<span>الحالة</span>
 		</header>
 	</li>
-	{#each users as user}
-		<li>
-			<UserItem {user} />
-		</li>
-	{/each}
+	<ul class="inner">
+		{#each users as user}
+			<li>
+				<UserItem {user} />
+			</li>
+		{/each}
+	</ul>
 </ul>
 
 <style>
+	.outer {
+		display: grid;
+		grid-template-rows: 2rem 1fr;
+		height: 100%;
+	}
+
+	.inner {
+		overflow: scroll;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+	}
+
 	ul {
 		list-style-type: none;
 		border: 1px solid hsla(0, 0%, 30%, 0.2);
@@ -44,7 +58,7 @@
 	header {
 		width: 100%;
 		height: 2rem;
-		gap: 1.5rem;
+		gap: 0 1.5rem;
 		display: grid;
 		grid-template-columns: 3rem repeat(4, 1fr) 3rem;
 		align-items: center;
