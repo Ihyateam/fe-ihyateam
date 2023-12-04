@@ -1,44 +1,35 @@
 <script lang="ts">
-	import Navbar from '$lib/components/navbar/navbar.svelte';
-	import Sidebar from './sidebar.svelte';
+	import type { SidebarComponentConfig } from '$lib/types';
 
-	export let data;
+	export let item: SidebarComponentConfig;
+	let { Icon } = item;
 </script>
 
-<div class="upper">
-	<Navbar user={data.user} />
-	<div class="inner">
-		<Sidebar isAdmin={data.user.isAdmin} />
-		<main>
-			<slot />
-		</main>
-	</div>
-</div>
+<li class:admin={item?.adminRoleOnly} {...$$restProps}>
+	<a {...item.attr['ar']} href={item.props.href} target={item.props.target}>
+		<Icon width="75%" height="75%" />
+	</a>
+</li>
 
 <style>
-	.upper {
-		width: 100vw;
-		height: 100svh;
-		display: grid;
-		grid-template-rows: 3.5rem 1fr;
-		grid-template-columns: 1fr;
-		grid-template-areas: 'header' 'content';
-	}
-
-	.inner {
-		display: grid;
-		grid-template-columns: 3.5rem 1fr;
-		grid-template-rows: 1fr;
-	}
-
-	main {
+	a {
 		display: flex;
+		align-items: center;
 		justify-content: center;
 
-		height: calc(100svh - 3.5rem);
-		width: 100%;
+		cursor: pointer;
 
-		overflow: auto;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 4px;
+		background-color: var(--base-background-color);
+		outline: var(--base-outline);
+		font-size: 1em;
+		color: black;
+	}
+
+	a:hover {
+		background-color: var(--button-secondary-hover-background-color);
 	}
 
 	[data-tooltip]::after {
@@ -72,5 +63,9 @@
 		100% {
 			opacity: 1;
 		}
+	}
+
+	:global(:not(.admin) + .admin) {
+		margin-top: auto;
 	}
 </style>

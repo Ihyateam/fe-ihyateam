@@ -1,3 +1,5 @@
+import type { ComponentType } from 'svelte';
+
 export type UserAdminEntity = {
 	id: string;
 	first_name: string;
@@ -51,6 +53,21 @@ export type ActivityEntity = {
 	updated: Date;
 	volunteers: string[];
 	wage_id: string;
+};
+
+export type SidebarComponentConfig = {
+	id: string;
+	attr: {
+		[key: string]: {
+			['data-tooltip']: string;
+		};
+	};
+	props: {
+		href: string;
+		target: string;
+	};
+	adminRoleOnly?: boolean;
+	Icon: ComponentType;
 };
 
 export type ExpandedActivityEntity = ActivityEntity & { expand: { volunteers?: UserEntity[] } };

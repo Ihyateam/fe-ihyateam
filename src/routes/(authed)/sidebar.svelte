@@ -1,7 +1,25 @@
 <script lang="ts">
-	import { ActivityIcon, DashboardIcon, UsersIcon } from '$lib/components/icons';
+	import { ActivityIcon, DashboardIcon, UsersIcon, NewUserIcon } from '$lib/components/icons';
+	import AnchorItem from '$lib/components/layouts/anchor-item.svelte';
+	import type { SidebarComponentConfig } from '$lib/types';
 
-	export let config = [
+	export let isAdmin: boolean;
+
+	export let adminConfig: SidebarComponentConfig[] = [
+		{
+			id: 'new-user',
+			attr: {
+				ar: {
+					['data-tooltip']: 'إضافة متطوع'
+				}
+			},
+			props: {
+				href: '/create/user',
+				target: '_self'
+			},
+			adminRoleOnly: true,
+			Icon: NewUserIcon
+		},
 		{
 			id: 'users',
 			attr: {
@@ -13,9 +31,12 @@
 				href: '/users',
 				target: '_self'
 			},
-			icon: UsersIcon
-		},
+			adminRoleOnly: true,
+			Icon: UsersIcon
+		}
+	];
 
+	export let config: SidebarComponentConfig[] = [
 		{
 			id: 'activity',
 			attr: {
@@ -27,7 +48,7 @@
 				href: '/activities',
 				target: '_self'
 			},
-			icon: ActivityIcon
+			Icon: ActivityIcon
 		},
 
 		{
@@ -41,19 +62,17 @@
 				href: '/dashboard',
 				target: '_self'
 			},
-			icon: DashboardIcon
+			Icon: DashboardIcon
 		}
 	];
+
+	$: isAdmin && config.push(...adminConfig);
 </script>
 
 <div class="upper-div">
 	<menu>
 		{#each config as item}
-			<li>
-				<a {...item.attr['ar']} href={item.props.href} target={item.props.target}>
-					<svelte:component this={item.icon} width="75%" />
-				</a>
-			</li>
+			<AnchorItem {item} />
 		{/each}
 	</menu>
 </div>
@@ -67,6 +86,7 @@
 	menu {
 		display: flex;
 		width: 3.5rem;
+		height: 100%;
 		gap: 10px 0px;
 		align-items: center;
 		flex-direction: column;
@@ -75,62 +95,6 @@
 		background-color: var(--secondary-background-color);
 		list-style: none;
 		border-right: 0.5px solid #8888;
-	}
-
-	a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		cursor: pointer;
-
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: 4px;
-		background-color: var(--base-background-color);
-		outline: var(--base-outline);
-		font-size: 1em;
-		color: black;
-	}
-
-	a:hover {
-		background-color: var(--button-secondary-hover-background-color);
-	}
-
-	.mt-auto {
-		margin-top: auto;
-	}
-
-	[data-tooltip]::after {
-		left: 60px;
-
-		display: flex;
-		visibility: hidden;
-		border-radius: 4px;
-		position: absolute;
-		white-space: nowrap;
-
-		padding-top: 0.128rem;
-		padding-bottom: 0.128rem;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-
-		content: attr(data-tooltip);
-		border: 0.5px solid hsl(35, 100%, 70%, 0.6);
-		background-color: var(--button-secondary-hover-background-color);
-	}
-
-	[data-tooltip]:hover::after {
-		visibility: visible;
-		animation: tooltipkeys 200ms 1;
-	}
-
-	@keyframes tooltipkeys {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
+		padding-bottom: 2rem;
 	}
 </style>

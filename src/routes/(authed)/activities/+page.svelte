@@ -4,8 +4,9 @@
 	import { sort_by } from '$lib/utils';
 	import ActivityCard from '$lib/components/activity/activity-card.svelte';
 
-	const page_data = {
+	const config = {
 		ar: {
+			title: 'الأنشطة',
 			activity: 'فعالية',
 			new_activity: 'فعالية جديدة',
 			sort_by: 'ترتيب حسب',
@@ -61,13 +62,17 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>{config['ar'].title}</title>
+</svelte:head>
+
 <PageLayout>
 	<header slot="header">
-		<span>{data?.activities?.length} {page_data['ar'].activity}</span>
+		<span>{data?.activities?.length} {config['ar'].activity}</span>
 
 		<select bind:value={selection}>
 			<option value="" selected disabled hidden>ترتيب حسب</option>
-			{#each page_data['ar']['filter'] as group}
+			{#each config['ar']['filter'] as group}
 				<optgroup label={group.name}>
 					{#each group.options as option}
 						{@const [key, value] = Object.entries(option)[0]}
@@ -90,7 +95,7 @@
 				{/each}
 				<li class="new-activity">
 					<a href="/create/activity">
-						{page_data['ar'].new_activity}
+						{config['ar'].new_activity}
 					</a>
 				</li>
 			</menu>
@@ -133,9 +138,8 @@
 
 	menu {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, 18.75rem);
+		grid-template-columns: repeat(auto-fit, 17.75rem);
 		grid-template-rows: repeat(auto-fit, 26rem);
-		flex-wrap: wrap;
 		width: 100%;
 		padding: 1.5rem;
 		list-style: none;
@@ -146,7 +150,7 @@
 
 	li {
 		height: 26rem;
-		width: 18.75rem;
+		width: 100%;
 		border: var(--base-outline);
 		border-radius: 0.5rem;
 		background-clip: padding-box;

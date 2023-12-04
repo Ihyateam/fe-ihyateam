@@ -6,14 +6,19 @@
 
 	let config = {
 		ar: {
-			title: 'متطوع'
+			title: 'المتطوعين',
+			volunteers: 'متطوع'
 		}
 	};
 </script>
 
+<svelte:head>
+	<title>{config['ar'].title}</title>
+</svelte:head>
+
 <PageLayout>
 	<header slot="header">
-		<span>{data.volunteers?.length} {config['ar'].title}</span>
+		<span>{data.volunteers?.length} {config['ar'].volunteers}</span>
 	</header>
 	<div slot="body">
 		{#if data.volunteers === undefined}
@@ -28,6 +33,7 @@
 	header {
 		display: flex;
 		justify-content: flex-start;
+		align-items: center;
 		width: 100%;
 		height: 2rem;
 	}

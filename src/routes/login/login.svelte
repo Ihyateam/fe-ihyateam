@@ -13,6 +13,14 @@
 			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول'
+		},
+		en: {
+			username: 'Username',
+			password: 'Password',
+			forgetPassword: 'Forget Password',
+			errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
+			errorMsg: 'The password or username you entered is incorrect',
+			login: 'Login'
 		}
 	};
 

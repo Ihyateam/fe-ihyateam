@@ -33,7 +33,6 @@
 			}
 		};
 	}
-	$: console.log(user);
 </script>
 
 <form method="post" action="/logout" id="logout-form" />

@@ -40,6 +40,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		outline: var(--base-outline);
 	}
 
 	.activity__card {
