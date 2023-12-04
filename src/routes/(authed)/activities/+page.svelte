@@ -93,11 +93,6 @@
 						<ActivityCard {activity} />
 					</li>
 				{/each}
-				<li class="new-activity">
-					<a href="/create/activity">
-						{config['ar'].new_activity}
-					</a>
-				</li>
 			</menu>
 		{/if}
 	</svelte:fragment>

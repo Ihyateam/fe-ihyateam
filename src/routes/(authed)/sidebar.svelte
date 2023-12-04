@@ -1,11 +1,31 @@
 <script lang="ts">
-	import { ActivityIcon, DashboardIcon, UsersIcon, NewUserIcon } from '$lib/components/icons';
+	import {
+		ActivityIcon,
+		DashboardIcon,
+		UsersIcon,
+		NewUserIcon,
+		NewItemIcon
+	} from '$lib/components/icons';
 	import AnchorItem from '$lib/components/layouts/anchor-item.svelte';
 	import type { SidebarComponentConfig } from '$lib/types';
 
 	export let isAdmin: boolean;
 
 	export let adminConfig: SidebarComponentConfig[] = [
+		{
+			id: 'users',
+			attr: {
+				ar: {
+					['data-tooltip']: 'المتطوعين'
+				}
+			},
+			props: {
+				href: '/users',
+				target: '_self'
+			},
+			adminRoleOnly: true,
+			Icon: UsersIcon
+		},
 		{
 			id: 'new-user',
 			attr: {
@@ -21,18 +41,18 @@
 			Icon: NewUserIcon
 		},
 		{
-			id: 'users',
+			id: 'new-activity',
 			attr: {
 				ar: {
-					['data-tooltip']: 'المتطوعين'
+					['data-tooltip']: 'نشاط جديد'
 				}
 			},
 			props: {
-				href: '/users',
+				href: '/create/activity',
 				target: '_self'
 			},
 			adminRoleOnly: true,
-			Icon: UsersIcon
+			Icon: NewItemIcon
 		}
 	];
 
