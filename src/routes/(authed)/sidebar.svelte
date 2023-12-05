@@ -4,7 +4,8 @@
 		DashboardIcon,
 		UsersIcon,
 		NewUserIcon,
-		NewItemIcon
+		NewItemIcon,
+		MoneyIcon
 	} from '$lib/components/icons';
 	import AnchorItem from '$lib/components/layouts/anchor-item.svelte';
 	import type { SidebarComponentConfig } from '$lib/types';
@@ -26,6 +27,7 @@
 			adminRoleOnly: true,
 			Icon: UsersIcon
 		},
+
 		{
 			id: 'new-user',
 			attr: {
@@ -40,6 +42,7 @@
 			adminRoleOnly: true,
 			Icon: NewUserIcon
 		},
+
 		{
 			id: 'new-activity',
 			attr: {
@@ -53,6 +56,21 @@
 			},
 			adminRoleOnly: true,
 			Icon: NewItemIcon
+		},
+
+		{
+			id: 'wage',
+			attr: {
+				ar: {
+					['data-tooltip']: 'الأجور'
+				}
+			},
+			props: {
+				href: '/wages',
+				target: '_self'
+			},
+			adminRoleOnly: true,
+			Icon: MoneyIcon
 		}
 	];
 

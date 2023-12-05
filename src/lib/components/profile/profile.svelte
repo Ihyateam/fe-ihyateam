@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
+	import BlurBackground from '../layouts/blur-background.svelte';
 
 	export let user: UserEntity;
 	let isSettingsOpen = false;
@@ -35,6 +36,12 @@
 	}
 </script>
 
+<BlurBackground
+	isOpen={isSettingsOpen}
+	on:backgroundClick={(e) => {
+		isSettingsOpen = e.detail.isOpen;
+	}}
+/>
 <form method="post" action="/logout" id="logout-form" />
 <button class="avater" on:click={() => (isSettingsOpen = !isSettingsOpen)}>
 	<img

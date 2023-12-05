@@ -16,6 +16,7 @@
 			<ActivityList activities={data?.activities} />
 			<TaskList />
 		</div>
+		<pre>{JSON.stringify(data?.url, null, 2)}</pre>
 	</PageLayout>
 {:else}
 	<h2>wrong page</h2>

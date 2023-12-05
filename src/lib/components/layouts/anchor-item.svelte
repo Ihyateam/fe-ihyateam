@@ -47,13 +47,22 @@
 		padding-right: 0.5rem;
 
 		content: attr(data-tooltip);
-		border: 0.5px solid hsl(35, 100%, 70%, 0.6);
+		border: 0.5px solid var(--button-hover-background-color-2);
 		background-color: var(--button-secondary-hover-background-color);
 	}
 
 	[data-tooltip]:hover::after {
 		visibility: visible;
 		animation: tooltipkeys 200ms 1;
+	}
+
+	.admin > [data-tooltip]::after,
+	.admin > a:hover {
+		background-color: var(--button-admin-hover-background-color);
+	}
+
+	.admin > [data-tooltip]::after {
+		border: 0.5px solid var(--button-admin-hover-background-color-2);
 	}
 
 	@keyframes tooltipkeys {
