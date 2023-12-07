@@ -1,8 +1,8 @@
 import PocketBase from 'pocketbase';
-import { PUBLIC_POCKETBASE_HOST } from '$env/static/public';
+import { POCKETBASE_DB } from '$env/static/private';
 
 export async function handle({ event, resolve }) {
-	event.locals.pb = new PocketBase(PUBLIC_POCKETBASE_HOST);
+	event.locals.pb = new PocketBase(POCKETBASE_DB);
 
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 	try {

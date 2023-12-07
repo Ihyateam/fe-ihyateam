@@ -9,7 +9,7 @@
 	<Navbar user={data.user} />
 	<div class="inner">
 		<Sidebar isAdmin={data.user.isAdmin} />
-		<main>
+		<main dir="rtl">
 			<slot />
 		</main>
 	</div>
@@ -39,38 +39,5 @@
 		width: 100%;
 
 		overflow: auto;
-	}
-
-	[data-tooltip]::after {
-		left: 60px;
-
-		display: flex;
-		visibility: hidden;
-		border-radius: 4px;
-		position: absolute;
-		white-space: nowrap;
-
-		padding-top: 0.128rem;
-		padding-bottom: 0.128rem;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-
-		content: attr(data-tooltip);
-		border: 0.5px solid hsl(35, 100%, 70%, 0.6);
-		background-color: var(--button-secondary-hover-background-color);
-	}
-
-	[data-tooltip]:hover::after {
-		visibility: visible;
-		animation: tooltipkeys 200ms 1;
-	}
-
-	@keyframes tooltipkeys {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
 	}
 </style>

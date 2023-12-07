@@ -14,7 +14,7 @@
 	};
 </script>
 
-<a dir="rtl" class="activity activity__card" href="/activities/{activity.id}">
+<a class="activity activity__card" href="/activities/{activity.id}">
 	<img src={getURL(activity)} alt={activity.name} />
 	<div class="activity__details">
 		<div class="activity__info">

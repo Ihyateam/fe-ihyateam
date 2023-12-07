@@ -107,8 +107,6 @@
 
 		width: 25rem;
 		height: 29rem;
-		max-width: 80%;
-		max-height: 80%;
 		padding: 2rem 1rem 1rem 1rem;
 
 		background-color: var(--secondary-background-color);

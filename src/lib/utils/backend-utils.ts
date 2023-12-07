@@ -1,4 +1,4 @@
-import { PUBLIC_POCKETBASE_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 
 type GET_URL_OPTIONS = {
 	collectionId: string;
@@ -14,7 +14,7 @@ export function getURL(
 		return '/no-image.png';
 	}
 	const params = Object.entries(options);
-	const url = new URL(`api/files/${collectionId}/${id}/${photo}`, PUBLIC_POCKETBASE_HOST);
+	const url = new URL(`api/files/${collectionId}/${id}/${photo}`, env.PUBLIC_POCKETBASE_HOST);
 	params.forEach(([key, value]) => url.searchParams.append(key, value));
 	return url.toString();
 }

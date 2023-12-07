@@ -109,7 +109,6 @@
 			font-size: 1rem;
 			color: var(--demphasized-font-color);
 			letter-spacing: 1px;
-			direction: rtl;
 		}
 
 		& select {

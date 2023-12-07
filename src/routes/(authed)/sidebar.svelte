@@ -117,8 +117,9 @@
 
 <style>
 	.upper-div {
+		overflow: scroll;
 		display: flex;
-		height: calc(100svh - 3.5rem);
+		height: 100%;
 	}
 
 	menu {
