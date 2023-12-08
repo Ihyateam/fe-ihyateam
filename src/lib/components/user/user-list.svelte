@@ -19,26 +19,41 @@
 	}
 
 	export let users: UserEntity[];
-	for (let x in { length: 4 }) {
-		users.push(...users);
-	}
+
+	const config = {
+		ar: {
+			img: 'الصورة',
+			id: 'معرف المستخدم',
+			first_name: 'الاسم الأول',
+			last_name: 'الاسم الأخير',
+			username: 'اسم المستخدم',
+			age: 'العمر',
+			email: 'البريد الإلكتروني',
+			created_by: 'المسؤول',
+			status: 'الحالة'
+		}
+	};
 </script>
 
 <div>
 	<table>
 		<thead>
-			<th>img</th>
-			<th>first name</th>
-			<th>last name</th>
-			<th>created by</th>
-			<th>created at</th>
-			<th>status</th>
+			<th role="rowheader">#</th>
+			{#each Object.values(config['ar']) as key}
+				<th role="rowheader">{key}</th>
+			{/each}
 		</thead>
 		<tbody>
-			{#each users as user}
+			{#each users as user, id}
 				<tr data-user-id={user.id} use:applyAnchorBehavior>
 					<td>
+						{id + 1}
+					</td>
+					<td>
 						<img src={getURL(user)} alt={user.first_name} width="48px" height="48px" />
+					</td>
+					<td>
+						{user.id}
 					</td>
 					<td>
 						{user.first_name}
@@ -47,10 +62,16 @@
 						{user.last_name}
 					</td>
 					<td>
-						{user.created_by}
+						{user.username}
 					</td>
 					<td>
-						{user.created}
+						{user.age}
+					</td>
+					<td>
+						{user.email ?? '-'}
+					</td>
+					<td>
+						{user.created_by}
 					</td>
 					<td>
 						<UserStatus isActive={user.isActive} />
@@ -93,11 +114,20 @@
 		padding: 0.5rem;
 	}
 
+	th:first-of-type {
+		background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iLTUgLTUgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgNnYyaDJWNkg2em0wLTJoMlYxYTEgMSAwIDEgMSAyIDB2M2gzYTEgMSAwIDAgMSAwIDJoLTN2MmgzYTEgMSAwIDAgMSAwIDJoLTN2M2ExIDEgMCAwIDEtMiAwdi0zSDZ2M2ExIDEgMCAwIDEtMiAwdi0zSDFhMSAxIDAgMSAxIDAtMmgzVjZIMWExIDEgMCAxIDEgMC0yaDNWMWExIDEgMCAxIDEgMiAwdjN6Ii8+PC9zdmc+');
+		background-size: 65%;
+		background-repeat: no-repeat;
+		background-position: center;
+		color: transparent;
+	}
+
 	td {
 		height: 4rem;
 	}
 
 	tr {
+		color: var(--demphasized-font-color);
 		cursor: pointer;
 
 		&:nth-child(even) {

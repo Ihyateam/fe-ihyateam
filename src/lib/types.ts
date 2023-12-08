@@ -71,3 +71,14 @@ export type SidebarComponentConfig = {
 };
 
 export type ExpandedActivityEntity = ActivityEntity & { expand: { volunteers?: UserEntity[] } };
+
+export type WageEntity = {
+	id: string;
+	collectionId: string;
+	collectionName: string;
+	commuting_hour_rate: number;
+	working_hour_rate: number;
+	currency: string;
+	updated: Date;
+	created: Date;
+};

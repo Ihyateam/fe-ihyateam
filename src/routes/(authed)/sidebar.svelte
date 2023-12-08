@@ -29,18 +29,18 @@
 		},
 
 		{
-			id: 'new-user',
+			id: 'wage',
 			attr: {
 				ar: {
-					['data-tooltip']: 'إضافة متطوع'
+					['data-tooltip']: 'الأجور'
 				}
 			},
 			props: {
-				href: '/create/user',
+				href: '/wages',
 				target: '_self'
 			},
 			adminRoleOnly: true,
-			Icon: NewUserIcon
+			Icon: MoneyIcon
 		},
 
 		{
@@ -56,21 +56,6 @@
 			},
 			adminRoleOnly: true,
 			Icon: NewItemIcon
-		},
-
-		{
-			id: 'wage',
-			attr: {
-				ar: {
-					['data-tooltip']: 'الأجور'
-				}
-			},
-			props: {
-				href: '/wages',
-				target: '_self'
-			},
-			adminRoleOnly: true,
-			Icon: MoneyIcon
 		}
 	];
 

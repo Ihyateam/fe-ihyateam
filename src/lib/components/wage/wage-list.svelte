@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import type { WageEntity } from '$lib/types';
 
 	const config = {
 		ar: {
@@ -7,12 +8,13 @@
 			currency: 'العملة',
 			work_hour_rate: 'بدل التطوع',
 			commute_hour_rate: 'بدل المواصلات',
+			used: 'عدد الاستخدامات',
 			created_date: 'تاريخ الإنشاء',
 			created_by: 'المسؤول'
 		}
 	};
 
-	export let wages: any[] = [];
+	export let wages: WageEntity[] = [];
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
@@ -54,6 +56,9 @@
 					</td>
 					<td>
 						{wage.commuting_hour_rate}
+					</td>
+					<td>
+						{Math.floor(Math.random() * 120)}
 					</td>
 					<td>
 						{wage.created}
