@@ -14,10 +14,6 @@
 
 	export let wages: any[] = [];
 
-	for (let x in { length: 20 }) {
-		wages.push(...wages);
-	}
-
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
 			goto(`/wages/id/${node.dataset.wageItem}`);
@@ -76,54 +72,53 @@
 		display: flex;
 		width: 100%;
 		max-height: 65svh;
-		overflow: scroll;
-		background: linear-gradient(180deg, red 0%, red 50%, yellowgreen 50%, yellowgreen 100%);
-	}
+		overflow-y: scroll;
+		overflow-x: hidden;
 
-	thead,
-	tr {
-		outline: 1px solid black;
-	}
-
-	tr:last-child {
-		border-bottom: 2px solid black;
+		border-radius: 10px;
+		outline: var(--base-outline);
 	}
 
 	table {
 		width: 100%;
-	}
-
-	thead,
-	thead * {
-		position: sticky; /* make the table heads sticky */
-		top: 0px;
-	}
-
-	table,
-	tbody {
 		border-collapse: collapse;
+		background-color: white;
 	}
 
 	thead {
-		background-color: red;
-	}
-
-	tr {
-		background-color: yellowgreen;
-
-		&:hover {
-			background-color: hsla(0, 100%, 80%, 0.8);
-			cursor: pointer;
-		}
+		background-color: var(--secondary-background-color);
+		position: sticky;
+		top: 0px;
 	}
 
 	th,
 	td {
 		padding: 0.5rem;
-		text-align: center;
+	}
+
+	th:first-of-type {
+		background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iLTUgLTUgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgNnYyaDJWNkg2em0wLTJoMlYxYTEgMSAwIDEgMSAyIDB2M2gzYTEgMSAwIDAgMSAwIDJoLTN2MmgzYTEgMSAwIDAgMSAwIDJoLTN2M2ExIDEgMCAwIDEtMiAwdi0zSDZ2M2ExIDEgMCAwIDEtMiAwdi0zSDFhMSAxIDAgMSAxIDAtMmgzVjZIMWExIDEgMCAxIDEgMC0yaDNWMWExIDEgMCAxIDEgMiAwdjN6Ii8+PC9zdmc+');
+		background-size: 65%;
+		background-repeat: no-repeat;
+		background-position: center;
+		color: transparent;
 	}
 
 	td {
-		height: 3rem;
+		height: 4rem;
+	}
+
+	tr {
+		cursor: pointer;
+		text-align: center;
+
+		&:nth-child(even) {
+			background-color: hsla(0, 0%, 60%, 0.1);
+		}
+
+		&:hover {
+			background-color: var(--button-secondary-hover-background-color);
+			outline: var(--base-outline);
+		}
 	}
 </style>
