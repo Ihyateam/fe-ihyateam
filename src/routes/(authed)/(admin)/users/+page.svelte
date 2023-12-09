@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import NewUserIcon from '$lib/components/icons/new-user-icon.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import UserList from '$lib/components/user/user-list.svelte';

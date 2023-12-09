@@ -34,6 +34,7 @@
 		};
 	}
 
+	const dateFormater = new Intl.DateTimeFormat('en-us');
 	export let activities: ActivityEntity[] = [];
 </script>
 
@@ -76,10 +77,10 @@
 						{activity.city_id}
 					</td>
 					<td>
-						{activity.start_date}
+						{dateFormater.format(new Date(activity.start_date))}
 					</td>
 					<td>
-						{activity.end_date}
+						{dateFormater.format(new Date(activity.end_date))}
 					</td>
 					<td>
 						<ActivityStatus activityStatus={activity.status} />
@@ -123,7 +124,7 @@
 
 	th:first-of-type {
 		background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iLTUgLTUgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTYgNnYyaDJWNkg2em0wLTJoMlYxYTEgMSAwIDEgMSAyIDB2M2gzYTEgMSAwIDAgMSAwIDJoLTN2MmgzYTEgMSAwIDAgMSAwIDJoLTN2M2ExIDEgMCAwIDEtMiAwdi0zSDZ2M2ExIDEgMCAwIDEtMiAwdi0zSDFhMSAxIDAgMSAxIDAtMmgzVjZIMWExIDEgMCAxIDEgMC0yaDNWMWExIDEgMCAxIDEgMiAwdjN6Ii8+PC9zdmc+');
-		background-size: 65%;
+		background-size: 20px;
 		background-repeat: no-repeat;
 		background-position: center;
 		color: transparent;
