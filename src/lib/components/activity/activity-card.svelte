@@ -3,18 +3,12 @@
 	import { getURL } from '$lib/utils/backend-utils';
 	import { dateFormater } from '$lib/utils/date-formater';
 	import { CalenderIcon, PupilsIcon } from '../icons';
+	import ActivityStatus from './activity-status.svelte';
 
 	export let activity: ActivityEntity;
-
-	const data = {
-		done: 'انتهت',
-		postponed: 'مؤجلة',
-		scheduled: 'لم تبدأ',
-		ongoing: 'مستمرة'
-	};
 </script>
 
-<a class="activity activity__card" href="/activities/{activity.id}">
+<a class="activity activity__card" href="/my_activities/{activity.id}">
 	<img src={getURL(activity)} alt={activity.name} />
 	<div class="activity__details">
 		<div class="activity__info">
@@ -22,7 +16,7 @@
 				{dateFormater(new Date(activity.start_date))}
 				<CalenderIcon width="1rem" height="1rem" style="margin-bottom: 4px;" />
 			</span>
-			<span class="activity__status {activity.status}">{data[activity.status]}</span>
+			<ActivityStatus activityStatus={activity.status} />
 		</div>
 		<h2 class="activity__title">{activity.title}</h2>
 		<p class="activity__description">{activity.description}</p>
@@ -81,20 +75,6 @@
 		outline: var(--base-outline);
 	}
 
-	.activity__status {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		justify-self: right;
-
-		width: max-content;
-		padding: 0.1rem 0.6rem 0.1rem 0.6rem;
-		margin-inline-start: 4px;
-
-		color: var(--font-color);
-		border-radius: 6px;
-	}
-
 	.activity__title {
 		margin-top: 8px;
 	}
@@ -117,21 +97,5 @@
 		justify-content: center;
 		align-items: center;
 		gap: 2px;
-	}
-
-	.postponed {
-		background-color: var(--blue-color);
-	}
-
-	.ongoing {
-		background-color: var(--green-color);
-	}
-
-	.scheduled {
-		background-color: var(--gold-color);
-	}
-
-	.done {
-		background-color: var(--red-color);
 	}
 </style>

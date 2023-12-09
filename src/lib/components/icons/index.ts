@@ -15,6 +15,7 @@ import UsersIcon from './users-icon.svelte';
 import NewUserIcon from './new-user-icon.svelte';
 import MoneyIcon from './money-icon.svelte';
 import NewWageIcon from './new-wage-icon.svelte';
+import NewActivityIcon from './new-activity-icon.svelte';
 
 export {
 	EarthIcon,
@@ -33,5 +34,6 @@ export {
 	NewUserIcon,
 	SortIcon,
 	NewWageIcon,
+	NewActivityIcon,
 	MoneyIcon
 };

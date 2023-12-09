@@ -1,15 +1,14 @@
 <script>
-	import NewUserIcon from '$lib/components/icons/new-user-icon.svelte';
+	import ActivityTable from '$lib/components/activity/activity-table.svelte';
+	import NewItemIcon from '$lib/components/icons/new-item-icon.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import UserList from '$lib/components/user/user-list.svelte';
-
 	export let data;
 
 	let config = {
 		ar: {
 			title: 'المتطوعين',
-			volunteers: 'متطوع',
-			new_volunteer: 'متطوع جديد'
+			activites: 'الأنشطة',
+			new_activity: 'نشاط جديد'
 		}
 	};
 </script>
@@ -20,18 +19,14 @@
 
 <PageLayout>
 	<header slot="header">
-		<span>{data.volunteers?.length} {config['ar'].volunteers}</span>
-		<a href="/create/user" target="_self">
-			{config['ar'].new_volunteer}
-			<NewUserIcon width="24px" height="24px" />
+		<span>{data.activites?.length} {config['ar'].activites}</span>
+		<a href="/create/activity" target="_self">
+			{config['ar'].new_activity}
+			<NewItemIcon width="24px" height="24px" />
 		</a>
 	</header>
 	<div slot="body">
-		{#if data.volunteers === undefined}
-			<p>testing..</p>
-		{:else}
-			<UserList users={data.volunteers} />
-		{/if}
+		<ActivityTable activities={data.activites} />
 	</div>
 </PageLayout>
 

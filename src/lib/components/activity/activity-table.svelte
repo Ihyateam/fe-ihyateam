@@ -1,12 +1,28 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import type { UserEntity } from '$lib/types';
+	import type { ActivityEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
-	import UserStatus from './user-status.svelte';
+	import ActivityStatus from './activity-status.svelte';
+
+	const config = {
+		ar: {
+			img: 'الصورة',
+			id: 'معرف النشاط',
+			title: 'العنوان',
+			created_by: 'المسؤول',
+			volunteers: 'المتطوعين',
+			students: 'عدد الطلاب',
+			wage_id: 'معرف البدل',
+			city_id: 'معرف المدينة',
+			start_date: 'تاريخ البدء',
+			end_date: 'تاريخ الإنتهاء',
+			status: 'الحالة'
+		}
+	};
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
-			goto(`/users/id/${node.dataset.userId}`);
+			goto(`/activities/id/${node.dataset.activityId}`);
 		}
 
 		node.addEventListener('click', handleClick);
@@ -18,21 +34,7 @@
 		};
 	}
 
-	export let users: UserEntity[];
-
-	const config = {
-		ar: {
-			img: 'الصورة',
-			id: 'معرف المستخدم',
-			first_name: 'الاسم الأول',
-			last_name: 'الاسم الأخير',
-			username: 'اسم المستخدم',
-			age: 'العمر',
-			email: 'البريد الإلكتروني',
-			created_by: 'المسؤول',
-			status: 'الحالة'
-		}
-	};
+	export let activities: ActivityEntity[] = [];
 </script>
 
 <div>
@@ -44,37 +46,43 @@
 			{/each}
 		</thead>
 		<tbody>
-			{#each users as user, id}
-				<tr data-user-id={user.id} use:applyAnchorBehavior>
+			{#each activities as activity, id}
+				<tr data-activity-id={activity.id} use:applyAnchorBehavior>
 					<td>
 						{id + 1}
 					</td>
 					<td>
-						<img src={getURL(user)} alt={user.first_name} width="48px" height="48px" />
+						<img src={getURL(activity)} alt={activity.title} width="48px" height="48px" />
 					</td>
 					<td>
-						{user.id}
+						{activity.id}
 					</td>
 					<td>
-						{user.first_name}
+						{activity.title}
 					</td>
 					<td>
-						{user.last_name}
+						{activity.created_by}
 					</td>
 					<td>
-						{user.username}
+						{activity.volunteers?.length}
 					</td>
 					<td>
-						{user.age}
+						{activity.students}
 					</td>
 					<td>
-						{user.email ?? '-'}
+						{activity.wage_id}
 					</td>
 					<td>
-						{user.created_by}
+						{activity.city_id}
 					</td>
 					<td>
-						<UserStatus isActive={user.isActive} />
+						{activity.start_date}
+					</td>
+					<td>
+						{activity.end_date}
+					</td>
+					<td>
+						<ActivityStatus activityStatus={activity.status} />
 					</td>
 				</tr>
 			{/each}

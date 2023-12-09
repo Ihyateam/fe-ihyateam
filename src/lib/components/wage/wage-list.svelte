@@ -77,8 +77,7 @@
 		display: flex;
 		width: 100%;
 		max-height: 65svh;
-		overflow-y: scroll;
-		overflow-x: hidden;
+		overflow: scroll;
 
 		border-radius: 10px;
 		outline: var(--base-outline);

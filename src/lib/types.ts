@@ -35,6 +35,8 @@ export type UserEntity = {
 	verified: boolean;
 };
 
+export type ActivityStatus = 'done' | 'scheduled' | 'ongoing' | 'postponed';
+
 export type ActivityEntity = {
 	name: string;
 	city_id: string[];
@@ -47,7 +49,7 @@ export type ActivityEntity = {
 	id: string;
 	photo: string;
 	start_date: Date;
-	status: 'done' | 'scheduled' | 'ongoing' | 'postponed';
+	status: ActivityStatus;
 	students: number;
 	title: string;
 	updated: Date;

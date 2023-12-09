@@ -3,8 +3,7 @@
 		ActivityIcon,
 		DashboardIcon,
 		UsersIcon,
-		NewUserIcon,
-		NewItemIcon,
+		NewActivityIcon,
 		MoneyIcon
 	} from '$lib/components/icons';
 	import AnchorItem from '$lib/components/layouts/anchor-item.svelte';
@@ -13,6 +12,21 @@
 	export let isAdmin: boolean;
 
 	export let adminConfig: SidebarComponentConfig[] = [
+		{
+			id: 'activities',
+			attr: {
+				ar: {
+					['data-tooltip']: 'الأنشطة'
+				}
+			},
+			props: {
+				href: '/activities',
+				target: '_self'
+			},
+			adminRoleOnly: true,
+			Icon: NewActivityIcon
+		},
+
 		{
 			id: 'users',
 			attr: {
@@ -41,21 +55,6 @@
 			},
 			adminRoleOnly: true,
 			Icon: MoneyIcon
-		},
-
-		{
-			id: 'new-activity',
-			attr: {
-				ar: {
-					['data-tooltip']: 'نشاط جديد'
-				}
-			},
-			props: {
-				href: '/create/activity',
-				target: '_self'
-			},
-			adminRoleOnly: true,
-			Icon: NewItemIcon
 		}
 	];
 
@@ -68,7 +67,7 @@
 				}
 			},
 			props: {
-				href: '/activities',
+				href: '/my_activities',
 				target: '_self'
 			},
 			Icon: ActivityIcon
