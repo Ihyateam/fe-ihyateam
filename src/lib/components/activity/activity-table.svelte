@@ -15,7 +15,6 @@
 			wage_id: 'معرف البدل',
 			city_id: 'معرف المدينة',
 			start_date: 'تاريخ البدء',
-			end_date: 'تاريخ الإنتهاء',
 			status: 'الحالة'
 		}
 	};
@@ -78,9 +77,6 @@
 					</td>
 					<td>
 						{dateFormater.format(new Date(activity.start_date))}
-					</td>
-					<td>
-						{dateFormater.format(new Date(activity.end_date))}
 					</td>
 					<td>
 						<ActivityStatus activityStatus={activity.status} />

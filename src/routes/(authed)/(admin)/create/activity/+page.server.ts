@@ -22,6 +22,7 @@ export const actions = {
 			volunteers: data.getAll('volunteers'),
 			city_id: data.getAll('city_id')
 		};
+		console.log(res);
 		try {
 			const record = await locals.pb?.collection('activities').create(data);
 			return {

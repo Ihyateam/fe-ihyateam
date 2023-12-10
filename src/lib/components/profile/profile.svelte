@@ -89,6 +89,7 @@
 		position: absolute;
 		display: none;
 
+		z-index: 1;
 		right: 120%;
 		top: 60%;
 		width: 12ch;
