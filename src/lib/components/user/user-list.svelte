@@ -84,13 +84,14 @@
 
 <style>
 	div {
-		display: flex;
 		width: 100%;
 		max-height: 70svh;
+		height: fit-content;
 		overflow: scroll;
 
 		border-radius: 10px;
 		outline: var(--base-outline);
+		background-color: var(--base-background-color);
 
 		scrollbar-width: none;
 	}
@@ -98,7 +99,6 @@
 	table {
 		width: 100%;
 		border-collapse: collapse;
-		background-color: white;
 		text-align: center;
 	}
 
@@ -136,6 +136,10 @@
 		&:hover {
 			background-color: var(--button-secondary-hover-background-color);
 			outline: var(--base-outline);
+		}
+
+		&:last-child {
+			border-bottom: 0.5px dashed var(--base-border-color);
 		}
 	}
 

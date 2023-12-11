@@ -1,11 +1,12 @@
 <script>
-	import ActivityList from '$lib/components/activity/activity-list.svelte';
+	import ActivityContainer from '$lib/components/activity/activity-container.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import TaskList from '$lib/components/task/task-list.svelte';
 	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
 
 	export let data;
+	console.log(data.tasks);
 </script>
 
 {#if data.user}
@@ -13,7 +14,7 @@
 		<UserProfileHeader user={data.user} slot="header" />
 		<div slot="body">
 			<UserProfileCard user={data.user} />
-			<ActivityList activities={data?.activities} />
+			<ActivityContainer activities={data?.activities} />
 			<TaskList />
 		</div>
 		<pre>{JSON.stringify(data?.url, null, 2)}</pre>
@@ -30,10 +31,8 @@
 		gap: 0.5rem;
 		grid-template-columns: 7fr 3fr;
 
-		& > * {
-			border-radius: 0.25rem;
-			outline: var(--base-outline);
-			background-color: aliceblue;
+		& > div:last-child {
+			grid-column: span 2;
 		}
 	}
 </style>

@@ -1,5 +1,5 @@
 <script>
-	import ActivityTable from '$lib/components/activity/activity-table.svelte';
+	import ActivityList from '$lib/components/activity/activity-list.svelte';
 	import NewItemIcon from '$lib/components/icons/new-item-icon.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	export let data;
@@ -26,7 +26,7 @@
 		</a>
 	</header>
 	<div slot="body">
-		<ActivityTable activities={data.activites} />
+		<ActivityList activities={data.activites} />
 	</div>
 </PageLayout>
 

@@ -48,6 +48,12 @@
 		display: grid;
 		grid-template-columns: 2fr 4fr;
 
+		/* lately added */
+		background-color: aqua;
+		outline: var(--base-outline);
+		border-radius: 0.25rem;
+		/* must be deleted */
+
 		overflow: hidden;
 		& > .card__img {
 			display: flex;
