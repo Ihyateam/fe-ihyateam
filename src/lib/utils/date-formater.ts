@@ -1,2 +1,3 @@
-export const dateFormater = (date: Date, code: string = 'en-uk') =>
-	new Intl.DateTimeFormat(code).format(date);
+const dateTimeFormater = new Intl.DateTimeFormat('en-us');
+
+export const dateFormater = (date: Date) => dateTimeFormater.format(date);

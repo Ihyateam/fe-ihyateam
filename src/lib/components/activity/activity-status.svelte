@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ActivityStatus } from '$lib/types';
+	import type { ActivityEntity } from '$lib/types';
 
 	const data = {
 		done: 'انتهت',
@@ -8,10 +8,10 @@
 		ongoing: 'مستمرة'
 	};
 
-	export let activityStatus: ActivityStatus;
+	export let activity: ActivityEntity;
 </script>
 
-<span class="activity__status {activityStatus}">{data[activityStatus]}</span>
+<span class="activity__status {activity.status}">{data[activity.status]}</span>
 
 <style>
 	.activity__status {

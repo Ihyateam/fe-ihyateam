@@ -16,7 +16,7 @@
 				{dateFormater(new Date(activity.start_date))}
 				<CalenderIcon width="1rem" height="1rem" style="margin-bottom: 4px;" />
 			</span>
-			<ActivityStatus activityStatus={activity.status} />
+			<ActivityStatus {activity} />
 		</div>
 		<h2 class="activity__title">{activity.title}</h2>
 		<p class="activity__description">{activity.description}</p>

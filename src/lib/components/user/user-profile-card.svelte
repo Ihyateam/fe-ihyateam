@@ -39,7 +39,7 @@
 		<span>{config['ar'].info['hours']}: {Math.floor(Math.random() * 100)}</span>
 		<span>{config['ar'].info['stocks']}: {Math.floor(Math.random() * 100)}</span>
 		<span>{config['ar'].info['enroll_date']}: {user.created}</span>
-		<span>{config['ar'].info['role']}: {config['ar'].role[user.isAdmin]}</span>
+		<span>{config['ar'].info['role']}: {config['ar'].role[user.isAdmin ? 'true' : 'false']}</span>
 	</div>
 </div>
 

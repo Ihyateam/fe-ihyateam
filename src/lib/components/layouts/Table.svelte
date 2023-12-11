@@ -2,11 +2,12 @@
 	import { goto } from '$app/navigation';
 
 	export let baseUrl: string;
-	export let arr: any[] = [];
+	export let headerObj: {};
+	export let arr: any[];
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
-			goto(`${baseUrl}/${node.dataset.itemId}`);
+			goto(`${baseUrl}/${node.dataset.id}`);
 		}
 
 		node.addEventListener('click', handleClick);
@@ -23,21 +24,15 @@
 	<table>
 		<thead>
 			<th role="rowheader">#</th>
-			{#each Object.keys(arr[0]) as key}
+			{#each Object.values(headerObj) as key}
 				<th role="rowheader">{key}</th>
 			{/each}
 		</thead>
 		<tbody>
-			{#each arr as item, id}
-				<tr data-item-id={item.id} use:applyAnchorBehavior>
-					<td>
-						{id + 1}
-					</td>
-					{#each Object.values(item) as value}
-						<td>
-							{value}
-						</td>
-					{/each}
+			{#each arr as row, id}
+				<tr data-id={row.id} use:applyAnchorBehavior>
+					<td>{id + 1}</td>
+					<slot {row} />
 				</tr>
 			{/each}
 		</tbody>
@@ -46,13 +41,14 @@
 
 <style>
 	div {
-		display: flex;
 		width: 100%;
 		max-height: 70svh;
+		height: fit-content;
 		overflow: scroll;
 
 		border-radius: 10px;
 		outline: var(--base-outline);
+		background-color: var(--base-background-color);
 
 		scrollbar-width: none;
 	}
@@ -60,19 +56,14 @@
 	table {
 		width: 100%;
 		border-collapse: collapse;
-		background-color: white;
 		text-align: center;
 	}
 
 	thead {
 		background-color: var(--secondary-background-color);
+		height: 2.5rem;
 		position: sticky;
 		top: 0px;
-	}
-
-	th,
-	td {
-		padding: 0.5rem;
 	}
 
 	th:first-of-type {
@@ -81,10 +72,6 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		color: transparent;
-	}
-
-	td {
-		height: 4rem;
 	}
 
 	tr {
@@ -102,7 +89,22 @@
 
 		& img {
 			object-fit: cover;
+			height: 3rem;
+			width: 3rem;
 			border-radius: 10%;
 		}
+
+		& > td {
+			height: 4rem;
+			padding: 0.5rem;
+		}
+
+		&:last-child {
+			border-bottom: 0.5px dashed var(--base-border-color);
+		}
+	}
+
+	th:first-child {
+		width: 4ch;
 	}
 </style>

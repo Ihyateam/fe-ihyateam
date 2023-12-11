@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let isActive: Boolean;
+	import type { UserEntity } from '$lib/types';
+
+	export let user: UserEntity;
 
 	export let config = {
 		ar: {
@@ -9,7 +11,9 @@
 	};
 </script>
 
-<div class="status" class:active={isActive}>{config['ar'][isActive]}</div>
+<div class="status" class:active={user.isActive}>
+	{config['ar'][user.isActive ? 'true' : 'false']}
+</div>
 
 <style>
 	.status {

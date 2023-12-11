@@ -14,7 +14,7 @@
 		<span class="demphasize">{user.username}</span>
 	</div>
 	<div class="header__status">
-		<UserStatus isActive={user.isActive} />
+		<UserStatus {user} />
 	</div>
 </div>
 

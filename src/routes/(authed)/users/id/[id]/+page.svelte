@@ -1,12 +1,20 @@
 <script>
+	import { page } from '$app/stores';
 	import ActivityContainer from '$lib/components/activity/activity-container.svelte';
+	import Table from '$lib/components/layouts/Table.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import TaskList from '$lib/components/task/task-list.svelte';
 	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
 
 	export let data;
-	console.log(data.tasks);
+	let config = {
+		ar: {
+			user: 'المستفيد',
+			comment: 'التعليق',
+			createdAt: 'تاريخ المهمة',
+			isPaid: 'تم الدفع'
+		}
+	};
 </script>
 
 {#if data.user}
@@ -15,7 +23,25 @@
 		<div slot="body">
 			<UserProfileCard user={data.user} />
 			<ActivityContainer activities={data?.activities} />
-			<TaskList />
+			<Table
+				baseUrl={`/users/id/${$page.params.id}/tasks`}
+				headerObj={config['ar']}
+				arr={data.tasks ?? []}
+				let:row
+			>
+				<td>
+					{$page.params.id}
+				</td>
+				<td>
+					{row.comment}
+				</td>
+				<td>
+					{row.at_date}
+				</td>
+				<td>
+					{Math.random() > 0.5 ? 'نعم' : 'لا'}
+				</td>
+			</Table>
 		</div>
 		<pre>{JSON.stringify(data?.url, null, 2)}</pre>
 	</PageLayout>
