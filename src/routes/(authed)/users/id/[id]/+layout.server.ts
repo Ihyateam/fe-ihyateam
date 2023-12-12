@@ -12,6 +12,5 @@ export async function load({
 		user: await locals.pb?.collection('users').getOne(params.id),
 		activities: await locals.pb?.collection('activities').getFullList(),
 		tasks: await locals.pb?.collection('tasks').getFullList()
-		// .getFullList({ filter: 'id=ui9jkbouglfg7y6' })
 	};
 }

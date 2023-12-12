@@ -22,7 +22,7 @@
 
 		width: max-content;
 		padding: 0.1rem 0.6rem 0.1rem 0.6rem;
-		margin-inline-start: 4px;
+		/* margin-inline-start: 4px; */
 
 		color: var(--font-color);
 		border-radius: 6px;

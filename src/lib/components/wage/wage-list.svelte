@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { WageEntity } from '$lib/types';
 	import Table from '$lib/components/layouts/Table.svelte';
+	import { dateFormater } from '$lib/utils';
 
 	const config = {
 		ar: {
@@ -23,6 +24,6 @@
 	<td>{row.commuting_hour_rate}</td>
 	<td>{row.working_hour_rate}</td>
 	<td>{Math.floor(Math.random() * 20)}</td>
-	<td>{row.created}</td>
+	<td>{dateFormater(new Date(row.created))}</td>
 	<td>me</td>
 </Table>

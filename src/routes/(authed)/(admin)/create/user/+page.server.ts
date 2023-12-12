@@ -5,7 +5,7 @@ export const actions = {
 		const res = {
 			...Object.fromEntries(data),
 			isAdmin: data.get('isAdmin') === 'on',
-			created_by: locals.pb?.authStore?.model?.id,
+			created_by: 'yz16vdmpybxnzdx',
 			emailVisibility: true
 		};
 
