@@ -1,5 +1,3 @@
-import { error } from '@sveltejs/kit';
-
 export async function load({ locals }) {
 	return {
 		tasks: await locals.pb?.collection('tasks').getFullList()
@@ -7,11 +5,9 @@ export async function load({ locals }) {
 }
 
 export const actions = {
-	create: async ({ request, locals, params }) => {
-		if (params.id !== locals.pb?.authStore?.model?.user.id) {
-			throw error(403, 'Forbidden');
-		}
+	create: async ({ request }) => {
 		const data = await request.formData();
-		locals.pb?.collection('tasks').create(Object.fromEntries(data));
+		console.log(Object.fromEntries(data));
+		// locals.pb?.collection('tasks').create(Object.fromEntries(data));
 	}
 };

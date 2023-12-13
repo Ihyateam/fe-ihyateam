@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
-	import Table from '../layouts/Table.svelte';
+	import Table from '../layouts/table.svelte';
 	import UserStatus from './user-status.svelte';
 
 	export let users: UserEntity[];

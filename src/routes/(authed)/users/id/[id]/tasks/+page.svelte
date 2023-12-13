@@ -1,24 +1,44 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { NewTaskIcon } from '$lib/components/icons';
-	import Table from '$lib/components/layouts/Table.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
+	import TableDialog from '$lib/components/layouts/table-dialog.svelte';
+	import { dateFormater } from '$lib/utils/date-formater.js';
 
 	let config = {
 		ar: {
-			user: 'المستفيد',
-			comment: 'التعليق',
-			createdAt: 'تاريخ المهمة',
-			isPaid: 'تم الدفع'
-		},
-		tasks: 'مهام',
-		new_task: 'مهمة جديدة'
+			headerObj: {
+				user: 'المستفيد',
+				comment: 'التعليق',
+				createdAt: 'تاريخ المهمة',
+				isPaid: 'تم الدفع'
+			},
+			tasks: 'مهام',
+			new_task: 'مهمة جديدة'
+		}
 	};
 
 	let dialogEl: HTMLDialogElement;
 
-	function handleNewTaskButton() {
+	function handleNewTaskDialog() {
+		if (dialogEl.open) {
+			dialogEl.close();
+			return;
+		}
 		dialogEl.showModal();
+	}
+
+	function useDialog(node: HTMLDialogElement) {
+		function handleClickOutSide(e: MouseEvent) {
+			if (e.target instanceof HTMLElement && e.target?.id === 'dialog-container') node.close();
+		}
+		node.addEventListener('click', handleClickOutSide);
+		return {
+			destroy() {
+				node.removeEventListener('click', handleClickOutSide);
+			}
+		};
 	}
 
 	export let data;
@@ -26,35 +46,34 @@
 
 <PageLayout>
 	<header slot="header">
-		<span>{data.tasks?.length} {config.tasks}</span>
+		<span>{data.tasks?.length} {config['ar'].tasks}</span>
 		{#if $page.params.id === data.user.id}
-			<button on:click={handleNewTaskButton}>
-				{config.new_task}
+			<button on:click={handleNewTaskDialog}>
+				{config['ar'].new_task}
 				<NewTaskIcon width="22px" height="22px" />
 			</button>
 		{/if}
 	</header>
 
 	<svelte:fragment slot="body">
-		<Table
-			baseUrl={`/users/id/${$page.params.id}/tasks`}
-			headerObj={config['ar']}
-			arr={data.tasks ?? []}
-			let:row
-		>
+		<TableDialog headerObj={config['ar'].headerObj} arr={data.tasks} let:row>
 			<td>{row.id}</td>
 			<td>{row.comment}</td>
 			<td>{row.at_date}</td>
 			<td>{Math.random() > 0.5 ? 'نعم' : 'لا'}</td>
-		</Table>
+		</TableDialog>
 	</svelte:fragment>
 </PageLayout>
 
-<dialog bind:this={dialogEl}>
-	<div>
-		<h1>hello</h1>
+<dialog id="dialog-container" bind:this={dialogEl} use:useDialog>
+	<div id="dialog-div">
+		<form method="POST" action="?/create" use:enhance>
+			<label><input type="text" name="comment" placeholder="enter a comment" /></label>
+			<label><input name="beneficiary" value={data.user.id} inert /></label>
+			<label><input type="date" name="date_at" max={dateFormater(new Date())} /></label>
+			<button type="submit" on:click={handleNewTaskDialog}>close</button>
+		</form>
 	</div>
-	<button on:click={() => dialogEl.close()}>close</button>
 </dialog>
 
 <style>
@@ -88,18 +107,34 @@
 
 	dialog {
 		top: 0;
+		z-index: 2;
 		left: 0;
-		width: 40svw;
-		height: 40svh;
-		transform: translate(30svw, 30svh);
+		width: 50svw;
+		height: 90svh;
+		background-color: var(--secondary-background-color);
+		outline: var(--base-outline);
+		box-shadow: var(--full-box-shadow);
+		transform: translate(25svw, 5svh);
 		border: none;
 		border-radius: 10px;
+		overflow: auto;
+
+		& > #dialog-div {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+		}
 	}
 
-	dialog[open] {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+	dialog::backdrop {
+		backdrop-filter: blur(2px);
+	}
+
+	input[inert] {
+		background-color: var(--secondary-background-color);
+		cursor: not-allowed;
 	}
 </style>

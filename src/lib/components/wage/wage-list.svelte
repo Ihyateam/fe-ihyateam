@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { WageEntity } from '$lib/types';
-	import Table from '$lib/components/layouts/Table.svelte';
+	import Table from '$lib/components/layouts/table.svelte';
 	import { dateFormater } from '$lib/utils';
 
 	const config = {

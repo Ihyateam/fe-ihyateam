@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-
-	export let baseUrl: string;
 	export let headerObj: {};
 	export let arr: any[] = [];
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
-			goto(`${baseUrl}/${node.dataset.id}`);
+			console.log(node.dataset.id);
 		}
 
 		node.addEventListener('click', handleClick);

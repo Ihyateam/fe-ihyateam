@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import ActivityContainer from '$lib/components/activity/activity-container.svelte';
-	import Table from '$lib/components/layouts/Table.svelte';
+	import Table from '$lib/components/layouts/table.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
@@ -17,11 +17,11 @@
 	};
 </script>
 
-{#if data.user}
+{#if data.current_user}
 	<PageLayout>
-		<UserProfileHeader user={data.user} slot="header" />
+		<UserProfileHeader user={data.current_user} slot="header" />
 		<div slot="body">
-			<UserProfileCard user={data.user} />
+			<UserProfileCard user={data.current_user} />
 			<ActivityContainer activities={data?.activities} />
 			<Table
 				baseUrl={`/users/id/${$page.params.id}/tasks`}
