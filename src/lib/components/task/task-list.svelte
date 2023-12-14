@@ -56,7 +56,7 @@
 
 <style>
 	div {
-		overflow: scroll;
+		overflow: auto;
 
 		max-height: calc(5 * 4rem + 2rem);
 		height: fit-content;

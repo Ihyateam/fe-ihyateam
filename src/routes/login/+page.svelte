@@ -11,7 +11,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		overflow: scroll;
+		overflow: auto;
 		width: 100%;
 		gap: 2rem;
 		height: 100svh;

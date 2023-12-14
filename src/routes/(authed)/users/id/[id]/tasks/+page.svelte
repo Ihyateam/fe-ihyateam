@@ -70,7 +70,13 @@
 		<form method="POST" action="?/create" use:enhance>
 			<label><input type="text" name="comment" placeholder="enter a comment" /></label>
 			<label><input name="beneficiary" value={data.user.id} inert /></label>
-			<label><input type="date" name="date_at" max={dateFormater(new Date())} /></label>
+			<label
+				><input
+					type="date"
+					name="date_at"
+					max={dateFormater(new Date(), { forInputDate: true })}
+				/></label
+			>
 			<button type="submit" on:click={handleNewTaskDialog}>close</button>
 		</form>
 	</div>

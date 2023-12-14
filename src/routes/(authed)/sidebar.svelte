@@ -101,7 +101,7 @@
 
 <style>
 	.upper-div {
-		overflow: scroll;
+		overflow: auto;
 		display: flex;
 		height: 100%;
 	}
