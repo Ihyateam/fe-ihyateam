@@ -33,5 +33,17 @@
 	<td>{row.wage_id}</td>
 	<td>{row.city_id}</td>
 	<td>{dateFormater(new Date(row.start_date))}</td>
-	<td><ActivityStatus activity={row} /></td>
+	<td class="flex justify-center align-center"><ActivityStatus activity={row} /></td>
 </Table>
+
+<style>
+	.flex {
+		display: flex;
+	}
+	.justify-center {
+		justify-content: center;
+	}
+	.align-center {
+		align-items: center;
+	}
+</style>
