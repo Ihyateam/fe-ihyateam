@@ -27,11 +27,7 @@
 		</a>
 	</header>
 	<div slot="body">
-		{#if data.volunteers === undefined}
-			<p>testing..</p>
-		{:else}
-			<UserList users={data.volunteers} />
-		{/if}
+		<UserList users={data.volunteers} />
 	</div>
 </PageLayout>
 

@@ -3,17 +3,11 @@
 	import { page } from '$app/stores';
 	import { NewTaskIcon } from '$lib/components/icons';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import TableDialog from '$lib/components/layouts/table-dialog.svelte';
+	import TaskList from '$lib/components/task/task-list.svelte';
 	import { dateFormater } from '$lib/utils/date-formater.js';
 
 	let config = {
 		ar: {
-			headerObj: {
-				user: 'المستفيد',
-				comment: 'التعليق',
-				createdAt: 'تاريخ المهمة',
-				isPaid: 'تم الدفع'
-			},
 			tasks: 'مهام',
 			new_task: 'مهمة جديدة'
 		}
@@ -55,32 +49,27 @@
 		{/if}
 	</header>
 
-	<svelte:fragment slot="body">
-		<TableDialog headerObj={config['ar'].headerObj} arr={data.tasks} let:row>
-			<td>{row.id}</td>
-			<td>{row.comment}</td>
-			<td>{row.at_date}</td>
-			<td>{Math.random() > 0.5 ? 'نعم' : 'لا'}</td>
-		</TableDialog>
-	</svelte:fragment>
-</PageLayout>
+	<div slot="body">
+		<TaskList tasks={data.tasks} />
 
-<dialog id="dialog-container" bind:this={dialogEl} use:useDialog>
-	<div id="dialog-div">
-		<form method="POST" action="?/create" use:enhance>
-			<label><input type="text" name="comment" placeholder="enter a comment" /></label>
-			<label><input name="beneficiary" value={data.user.id} inert /></label>
-			<label
-				><input
-					type="date"
-					name="date_at"
-					max={dateFormater(new Date(), { forInputDate: true })}
-				/></label
-			>
-			<button type="submit" on:click={handleNewTaskDialog}>close</button>
-		</form>
+		<dialog id="dialog-container" bind:this={dialogEl} use:useDialog>
+			<div>
+				<form method="POST" action="?/create" use:enhance>
+					<label><input type="text" name="comment" placeholder="enter a comment" /></label>
+					<label><input name="beneficiary" value={data.user.id} inert /></label>
+					<label
+						><input
+							type="date"
+							name="date_at"
+							max={dateFormater(new Date(), { forInputDate: true })}
+						/></label
+					>
+					<button type="submit" on:click={handleNewTaskDialog}>close</button>
+				</form>
+			</div>
+		</dialog>
 	</div>
-</dialog>
+</PageLayout>
 
 <style>
 	header {
@@ -125,7 +114,7 @@
 		border-radius: 10px;
 		overflow: auto;
 
-		& > #dialog-div {
+		& > div {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -133,10 +122,10 @@
 			width: 100%;
 			height: 100%;
 		}
-	}
 
-	dialog::backdrop {
-		backdrop-filter: blur(2px);
+		&::backdrop {
+			backdrop-filter: blur(2px);
+		}
 	}
 
 	input[inert] {

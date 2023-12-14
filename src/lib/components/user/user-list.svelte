@@ -4,7 +4,7 @@
 	import Table from '../layouts/table.svelte';
 	import UserStatus from './user-status.svelte';
 
-	export let users: UserEntity[];
+	export let users: UserEntity[] = [];
 
 	const config = {
 		ar: {
