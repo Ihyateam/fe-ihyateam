@@ -15,7 +15,7 @@
 <style>
 	nav {
 		padding-inline-start: 0.5rem;
-		padding-inline-end: 1rem;
+		padding-inline-end: 0.5rem;
 
 		display: flex;
 		align-items: center;

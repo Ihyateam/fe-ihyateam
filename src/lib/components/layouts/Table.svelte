@@ -48,7 +48,7 @@
 	div {
 		width: 100%;
 		max-height: 70svh;
-		height: fit-content;
+		height: auto;
 		overflow: auto;
 
 		border-radius: 10px;

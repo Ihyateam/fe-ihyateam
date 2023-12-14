@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
-	import BlurBackground from '../layouts/blur-background.svelte';
+	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
 
 	export let user: UserEntity;
 	let isSettingsOpen = false;
@@ -65,8 +65,8 @@
 		justify-content: center;
 		align-items: center;
 
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.75rem;
+		height: 2.75rem;
 
 		cursor: pointer;
 		border-radius: 50%;
@@ -140,6 +140,8 @@
 		}
 
 		& a {
+			height: 100%;
+			width: 100%;
 			text-decoration: none;
 			color: inherit;
 		}
