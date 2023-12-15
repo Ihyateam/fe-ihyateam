@@ -2,7 +2,6 @@
 	import ActivityList from '$lib/components/activity/activity-list.svelte';
 	import NewItemIcon from '$lib/components/icons/new-item-icon.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	export let data;
 
 	let config = {
 		ar: {
@@ -11,6 +10,8 @@
 			new_activity: 'نشاط جديد'
 		}
 	};
+
+	export let data;
 </script>
 
 <svelte:head>

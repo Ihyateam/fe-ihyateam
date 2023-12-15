@@ -21,7 +21,9 @@
 			<NewWageIcon width="24px" height="24px" />
 		</a>
 	</header>
-	<WageList slot="body" wages={data.wages} />
+	<div slot="body">
+		<WageList wages={data.wages} />
+	</div>
 </PageLayout>
 
 <style>
