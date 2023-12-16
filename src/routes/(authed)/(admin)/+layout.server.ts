@@ -1,7 +1,14 @@
-import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
+const config = {
+	ar: {
+		error: {
+			message: 'تأكد من الصلاحيات التي تمكلها',
+		}
+	}
+}
 export async function load({ locals }) {
 	if (!locals.pb?.authStore?.model?.isAdmin) {
-		throw redirect(303, '/');
+		error(404, config['ar'].error);
 	}
 }

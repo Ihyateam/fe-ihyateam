@@ -1,99 +1,16 @@
 <script lang="ts">
-	import {
-		ActivityIcon,
-		DashboardIcon,
-		UsersIcon,
-		NewActivityIcon,
-		MoneyIcon
-	} from '$lib/components/icons';
 	import AnchorItem from '$lib/components/layouts/anchor-item.svelte';
 	import type { SidebarComponentConfig } from '$lib/types';
 
 	export let isAdmin: boolean;
-
-	export let adminConfig: SidebarComponentConfig[] = [
-		{
-			id: 'activities',
-			attr: {
-				ar: {
-					['data-tooltip']: 'الأنشطة'
-				}
-			},
-			props: {
-				href: '/activities',
-				target: '_self'
-			},
-			adminRoleOnly: true,
-			Icon: NewActivityIcon
-		},
-
-		{
-			id: 'users',
-			attr: {
-				ar: {
-					['data-tooltip']: 'المتطوعين'
-				}
-			},
-			props: {
-				href: '/users',
-				target: '_self'
-			},
-			adminRoleOnly: true,
-			Icon: UsersIcon
-		},
-
-		{
-			id: 'wage',
-			attr: {
-				ar: {
-					['data-tooltip']: 'الأجور'
-				}
-			},
-			props: {
-				href: '/wages',
-				target: '_self'
-			},
-			adminRoleOnly: true,
-			Icon: MoneyIcon
-		}
-	];
-
-	export let config: SidebarComponentConfig[] = [
-		{
-			id: 'activity',
-			attr: {
-				ar: {
-					['data-tooltip']: 'أنشطة'
-				}
-			},
-			props: {
-				href: '/my_activities',
-				target: '_self'
-			},
-			Icon: ActivityIcon
-		},
-
-		{
-			id: 'dashboard',
-			attr: {
-				ar: {
-					['data-tooltip']: 'إحصائيات'
-				}
-			},
-			props: {
-				href: '/dashboard',
-				target: '_self'
-			},
-			Icon: DashboardIcon
-		}
-	];
-
-	$: isAdmin && config.push(...adminConfig);
+	export let adminConfig: SidebarComponentConfig[] = [];
+	export let sidebarConfig: SidebarComponentConfig[];
+	$: isAdmin && sidebarConfig.push(...adminConfig);
 </script>
 
 <div class="upper-div">
 	<menu>
-		{#each config as item}
+		{#each sidebarConfig as item}
 			<AnchorItem {item} />
 		{/each}
 	</menu>

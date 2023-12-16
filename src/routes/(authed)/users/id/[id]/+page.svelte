@@ -32,7 +32,6 @@
 				<td>{dateFormater(new Date(row.end_date))}</td>
 				<td><ActivityStatus activity={row} /></td>
 			</Table>
-			<!-- <ActivityContainer activities={data?.activities} /> -->
 			<TaskList tasks={data?.tasks} />
 		</div>
 		<pre>{JSON.stringify(data?.url, null, 2)}</pre>
