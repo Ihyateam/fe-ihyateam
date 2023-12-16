@@ -11,7 +11,7 @@ export async function load({
 	url?: string;
 }> {
 	if (!locals.pb?.authStore.model?.isAdmin && locals.pb?.authStore?.model?.id !== params.id) {
-		throw error(402, 'You are not allowed to view this page');
+		error(402, 'You are not allowed to view this page');
 	}
 	return {
 		current_user: await locals.pb?.collection('users').getOne(params.id),

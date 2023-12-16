@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, url }) {
 	if (locals.pb?.authStore.isValid) {
-		throw redirect(300, url.searchParams.get('redirect') || '/');
+		redirect(300, url.searchParams.get('redirect') || '/');
 	}
 }
 
@@ -22,7 +22,7 @@ export const actions = {
 
 		try {
 			await locals.pb?.collection('users').authWithPassword(loginData.username, loginData.password);
-			throw redirect(303, targetUrl);
+			redirect(303, targetUrl);
 		} catch ({ originalError }) {
 			res['err'] =
 				originalError instanceof TypeError
