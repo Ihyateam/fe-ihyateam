@@ -2,5 +2,15 @@
 	import { page } from '$app/stores';
 </script>
 
-<h2>Opps! I believe that something is wrong</h2>
-<pre>You're redirected from {$page.url}</pre>
+<div>
+	<error>{$page.error?.message}</error>
+</div>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

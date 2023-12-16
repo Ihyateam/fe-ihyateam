@@ -47,7 +47,7 @@
 <style>
 	div {
 		width: 100%;
-		max-height: 70svh;
+		max-height: calc(4rem * 8);
 		height: auto;
 		overflow: auto;
 

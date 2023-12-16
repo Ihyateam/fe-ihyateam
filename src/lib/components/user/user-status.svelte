@@ -21,7 +21,8 @@
 		justify-content: center;
 		align-items: center;
 
-		width: 100%;
+		width: 75%;
+		height: 1.5rem;
 		padding-top: 5px;
 		padding-bottom: 5px;
 		border-radius: 5px;

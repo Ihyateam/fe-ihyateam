@@ -6,14 +6,7 @@
 	import TaskList from '$lib/components/task/task-list.svelte';
 	import { dateFormater } from '$lib/utils/date-formater.js';
 
-	let config = {
-		ar: {
-			tasks: 'مهام',
-			new_task: 'مهمة جديدة'
-		}
-	};
-
-	let dialogEl: HTMLDialogElement;
+	export let data;
 
 	function handleNewTaskDialog() {
 		if (dialogEl.open) {
@@ -35,8 +28,19 @@
 		};
 	}
 
-	export let data;
+	let dialogEl: HTMLDialogElement;
+	const config = {
+		ar: {
+			title: 'مهامي',
+			tasks: 'مهمة',
+			new_task: 'مهمة جديدة'
+		}
+	};
 </script>
+
+<svelte:head>
+	<title>{config['ar'].title}</title>
+</svelte:head>
 
 <PageLayout>
 	<header slot="header">

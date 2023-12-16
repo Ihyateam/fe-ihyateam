@@ -3,11 +3,13 @@
 	import Sidebar from './sidebar.svelte';
 	import {
 		ActivityIcon,
-		DashboardIcon,
+		HomeIcon,
 		UsersIcon,
 		NewActivityIcon,
 		MoneyIcon
 	} from '$lib/components/icons';
+
+	export let data;
 
 	const adminConfig = [
 		{
@@ -58,6 +60,19 @@
 
 	const sidebarConfig = [
 		{
+			id: 'landing-page',
+			attr: {
+				ar: {
+					['data-tooltip']: 'الصفحة الرئيسية'
+				}
+			},
+			props: {
+				href: '/',
+				target: '_self'
+			},
+			Icon: HomeIcon
+		},
+		{
 			id: 'activity',
 			attr: {
 				ar: {
@@ -69,24 +84,8 @@
 				target: '_self'
 			},
 			Icon: ActivityIcon
-		},
-
-		{
-			id: 'dashboard',
-			attr: {
-				ar: {
-					['data-tooltip']: 'إحصائيات'
-				}
-			},
-			props: {
-				href: '/dashboard',
-				target: '_self'
-			},
-			Icon: DashboardIcon
 		}
 	];
-
-	export let data;
 </script>
 
 <div class="upper">

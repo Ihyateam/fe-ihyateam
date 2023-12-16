@@ -13,6 +13,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>{config['ar'].title}</title>
+</svelte:head>
+
 <PageLayout>
 	<header slot="header">
 		<span>{data.wages?.length} {config['ar'].wages}</span>

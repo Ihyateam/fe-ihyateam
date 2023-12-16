@@ -20,7 +20,8 @@
 		align-items: center;
 		justify-self: right;
 
-		width: max-content;
+		width: 75%;
+		height: 1.5rem;
 		padding: 0.1rem 0.6rem 0.1rem 0.6rem;
 		/* margin-inline-start: 4px; */
 

@@ -9,7 +9,7 @@ import PupilsIcon from './pupils-icon.svelte';
 import VolunteersIcon from './volunteers-icon.svelte';
 import NewItemIcon from './new-item-icon.svelte';
 import SortIcon from './sort-icon.svelte';
-import DashboardIcon from './dashboard-icon.svelte';
+import HomeIcon from './home-icon.svelte';
 import ShutdownIcon from './shutdown-icon.svelte';
 import UsersIcon from './users-icon.svelte';
 import NewUserIcon from './new-user-icon.svelte';
@@ -29,7 +29,7 @@ export {
 	PupilsIcon,
 	VolunteersIcon,
 	NewItemIcon,
-	DashboardIcon,
+	HomeIcon,
 	ShutdownIcon,
 	UsersIcon,
 	NewUserIcon,

@@ -5,7 +5,7 @@
 
 	let config = {
 		ar: {
-			title: 'المتطوعين',
+			title: 'الأنشطة',
 			activites: 'الأنشطة',
 			new_activity: 'نشاط جديد'
 		}

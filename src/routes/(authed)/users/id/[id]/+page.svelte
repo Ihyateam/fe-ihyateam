@@ -9,7 +9,21 @@
 	import { dateFormater } from '$lib/utils';
 
 	export let data;
+	const config = {
+		ar: {
+			title: {
+				role: data.current_user?.isAdmin ? 'المدير' : 'المتطوع'
+			}
+		}
+	};
 </script>
+
+<svelte:head>
+	<title>
+		{config['ar'].title.role} - {data.current_user?.first_name}
+		{data.current_user?.last_name}
+	</title>
+</svelte:head>
 
 {#if data.current_user}
 	<PageLayout>
@@ -21,7 +35,6 @@
 				headerObj={{
 					image: 'الصورة',
 					start_date: 'تاريخ البدء',
-					end_date: 'تاريخ الانتهاء',
 					status: 'الحالة'
 				}}
 				arr={data.activities}
@@ -29,7 +42,6 @@
 			>
 				<td><img src={getURL(row.photo)} alt={row.id} /></td>
 				<td>{dateFormater(new Date(row.start_date))}</td>
-				<td>{dateFormater(new Date(row.end_date))}</td>
 				<td><ActivityStatus activity={row} /></td>
 			</Table>
 			<TaskList tasks={data?.tasks} />
@@ -43,10 +55,11 @@
 <style>
 	div[slot='body'] {
 		display: grid;
-		height: 300px;
 		width: 100%;
+		height: 100%;
 		gap: 0.5rem;
 		grid-template-columns: 7fr 3fr;
+		grid-template-rows: 300px 1fr;
 
 		& > div:last-child {
 			grid-column: span 2;
