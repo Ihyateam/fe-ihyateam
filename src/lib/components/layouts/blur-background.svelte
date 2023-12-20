@@ -4,31 +4,33 @@
 	const dispatcher = createEventDispatcher();
 
 	function useBackgroundAction(node: HTMLDivElement) {
+		function triggerBackgroundClick(option = {}) {
+			dispatcher('backgroundClick', option);
+		}
+
 		function handleBackgroundClick() {
-			dispatcher('backgroundClick', () => ({
-				isOpen: !isOpen
-			}));
+			triggerBackgroundClick();
+		}
+
+		function handleBackgroundKeydown({ key }: KeyboardEvent) {
+			if (key === 'Escape') triggerBackgroundClick();
 		}
 
 		node.addEventListener('click', handleBackgroundClick);
+		window.addEventListener('keydown', handleBackgroundKeydown);
 
 		return {
 			destroy() {
 				node.removeEventListener('click', handleBackgroundClick);
+				window.removeEventListener('keydown', handleBackgroundKeydown);
 			}
 		};
 	}
-
-	export let isOpen = false;
 </script>
 
-<div class:bg={isOpen} use:useBackgroundAction />
+<div class="bg" use:useBackgroundAction />
 
 <style>
-	div {
-		display: none;
-	}
-
 	.bg {
 		display: block;
 		top: 0;

@@ -34,28 +34,30 @@
 			}
 		};
 	}
+
+	function handleSettingsMenu() {
+		isSettingsOpen = !isSettingsOpen;
+	}
 </script>
 
-<BlurBackground
-	isOpen={isSettingsOpen}
-	on:backgroundClick={(e) => {
-		isSettingsOpen = e.detail.isOpen;
-	}}
-/>
 <form method="post" action="/logout" id="logout-form" />
-<button class="avater" on:click={() => (isSettingsOpen = !isSettingsOpen)}>
+<button class="avater" class:menuOpen={isSettingsOpen} on:click={handleSettingsMenu}>
 	<img
 		class="avater__img profile"
 		src={getURL(user, { thumb: '100x100' })}
 		alt={user?.username || 'user-profile-img'}
 	/>
-	<menu class:flex={isSettingsOpen}>
-		<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
-		<li><a href="/users/id/{user.id}/tasks" target="_self">مهامي</a></li>
-		<li use:logout>
-			{data['ar'].logout}
-		</li>
-	</menu>
+
+	{#if isSettingsOpen}
+		<BlurBackground on:click={handleSettingsMenu} />
+		<menu class="flex">
+			<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
+			<li><a href="/users/id/{user.id}/tasks" target="_self">مهامي</a></li>
+			<li use:logout>
+				{data['ar'].logout}
+			</li>
+		</menu>
+	{/if}
 </button>
 
 <style>
@@ -71,9 +73,10 @@
 		cursor: pointer;
 		border-radius: 50%;
 		border: none;
+		transition: box-shadow 0.2s ease-in-out;
 
-		&:hover {
-			transition: box-shadow 0.2s ease-in-out;
+		&:hover,
+		&.menuOpen {
 			box-shadow: 0 0 0 0.25rem var(--button-hover-background-color-2);
 		}
 	}
@@ -87,7 +90,8 @@
 
 	menu {
 		position: absolute;
-		display: none;
+		display: flex;
+		flex-direction: column;
 
 		z-index: 1;
 		right: 120%;
@@ -103,11 +107,6 @@
 		box-shadow: var(--base-box-shadow);
 
 		outline: var(--base-outline);
-
-		&.flex {
-			display: flex;
-			flex-direction: column;
-		}
 	}
 
 	li {

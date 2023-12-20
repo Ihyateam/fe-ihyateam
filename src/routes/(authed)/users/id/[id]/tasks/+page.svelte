@@ -1,34 +1,19 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { NewTaskIcon } from '$lib/components/icons';
+
+	import NewTaskPage from './new/+page.svelte';
+	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import TaskList from '$lib/components/task/task-list.svelte';
-	import { dateFormater } from '$lib/utils/date-formater.js';
+	import { preloadData, pushState } from '$app/navigation';
 
-	export let data;
-
-	function handleNewTaskDialog() {
-		if (dialogEl.open) {
-			dialogEl.close();
-			return;
-		}
-		dialogEl.showModal();
+	async function handleNewTaskDialog(e: MouseEvent) {
+		e.preventDefault();
+		const { href } = e.currentTarget as HTMLAnchorElement;
+		pushState(href, { showPage: !$page.state.showPage });
 	}
 
-	function useDialog(node: HTMLDialogElement) {
-		function handleClickOutSide(e: MouseEvent) {
-			if (e.target instanceof HTMLElement && e.target?.id === 'dialog-container') node.close();
-		}
-		node.addEventListener('click', handleClickOutSide);
-		return {
-			destroy() {
-				node.removeEventListener('click', handleClickOutSide);
-			}
-		};
-	}
-
-	let dialogEl: HTMLDialogElement;
 	const config = {
 		ar: {
 			title: 'مهامي',
@@ -36,6 +21,8 @@
 			new_task: 'مهمة جديدة'
 		}
 	};
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -46,34 +33,23 @@
 	<header slot="header">
 		<span>{data.tasks?.length} {config['ar'].tasks}</span>
 		{#if $page.params.id === data.user.id}
-			<button on:click={handleNewTaskDialog}>
+			<a href="{$page.url.href}/new" on:click={handleNewTaskDialog}>
 				{config['ar'].new_task}
 				<NewTaskIcon width="22px" height="22px" />
-			</button>
+			</a>
 		{/if}
 	</header>
 
 	<div slot="body">
 		<TaskList tasks={data.tasks} />
-
-		<dialog id="dialog-container" bind:this={dialogEl} use:useDialog>
-			<div>
-				<form method="POST" action="?/create" use:enhance>
-					<label><input type="text" name="comment" placeholder="enter a comment" /></label>
-					<label><input name="beneficiary" value={data.user.id} inert /></label>
-					<label
-						><input
-							type="date"
-							name="date_at"
-							max={dateFormater(new Date(), { forInputDate: true })}
-						/></label
-					>
-					<button type="submit" on:click={handleNewTaskDialog}>close</button>
-				</form>
-			</div>
-		</dialog>
 	</div>
 </PageLayout>
+
+{#if $page.state.showPage}
+	<PageDialog on:close={() => history.back()}>
+		<NewTaskPage />
+	</PageDialog>
+{/if}
 
 <style>
 	header {
@@ -83,7 +59,7 @@
 		width: 100%;
 		height: 2rem;
 
-		& > button {
+		& > a {
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -97,43 +73,12 @@
 			text-decoration: none;
 			background-color: var(--secondary-background-color);
 			color: var(--accent-color);
+			transition: background-color 0.2s ease;
 
 			&:hover {
 				background-color: var(--gold-color-1);
+				outline: 2px solid var(--gold-color);
 			}
 		}
-	}
-
-	dialog {
-		top: 0;
-		z-index: 2;
-		left: 0;
-		width: 50svw;
-		height: 90svh;
-		background-color: var(--secondary-background-color);
-		outline: var(--base-outline);
-		box-shadow: var(--full-box-shadow);
-		transform: translate(25svw, 5svh);
-		border: none;
-		border-radius: 10px;
-		overflow: auto;
-
-		& > div {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-			height: 100%;
-		}
-
-		&::backdrop {
-			backdrop-filter: blur(2px);
-		}
-	}
-
-	input[inert] {
-		background-color: var(--secondary-background-color);
-		cursor: not-allowed;
 	}
 </style>
