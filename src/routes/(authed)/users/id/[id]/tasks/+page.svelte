@@ -6,7 +6,7 @@
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import TaskList from '$lib/components/task/task-list.svelte';
-	import { preloadData, pushState } from '$app/navigation';
+	import { pushState } from '$app/navigation';
 
 	async function handleNewTaskDialog(e: MouseEvent) {
 		e.preventDefault();

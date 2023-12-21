@@ -9,15 +9,8 @@
 	const data = {
 		ar: {
 			account: 'الحساب',
+			tasks: 'مهامي',
 			logout: 'تسجيل الخروج'
-		},
-		en: {
-			account: 'Account',
-			logout: 'Logout'
-		},
-		tr: {
-			account: 'Hesap',
-			logout: 'Çıkış Yap'
 		}
 	};
 
@@ -52,7 +45,7 @@
 		<BlurBackground on:click={handleSettingsMenu} />
 		<menu class="flex">
 			<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
-			<li><a href="/users/id/{user.id}/tasks" target="_self">مهامي</a></li>
+			<li><a href="/users/id/{user.id}/tasks" target="_self">{data['ar'].tasks}</a></li>
 			<li use:logout>
 				{data['ar'].logout}
 			</li>
@@ -86,6 +79,7 @@
 		height: 100%;
 		width: 100%;
 		color: transparent;
+		z-index: 2;
 	}
 
 	menu {
@@ -93,7 +87,7 @@
 		display: flex;
 		flex-direction: column;
 
-		z-index: 1;
+		z-index: 2;
 		right: 120%;
 		top: 60%;
 		width: 12ch;

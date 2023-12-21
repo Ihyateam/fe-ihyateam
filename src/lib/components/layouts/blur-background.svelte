@@ -39,6 +39,7 @@
 		width: 100vw;
 		height: 100svh;
 		position: fixed;
+		cursor: default;
 		backdrop-filter: blur(1px);
 	}
 </style>
