@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { NewTaskIcon } from '$lib/components/icons';
-	import { useShallowRouting } from '$lib/utils/useShallowRouting.svelte';
+	import { useShallowRouting } from '$lib/utils/useShallowRouting';
 
 	import NewTaskPage from './new/+page.svelte';
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
@@ -71,7 +71,6 @@
 
 			&:hover {
 				background-color: var(--gold-color-1);
-				outline: 2px solid var(--gold-color);
 			}
 		}
 	}
