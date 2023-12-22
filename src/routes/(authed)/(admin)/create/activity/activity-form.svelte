@@ -7,8 +7,8 @@
 	export let volunteers: UserEntity[] = [];
 	export let user: UserEntity;
 	export let cities: CityEntity[] = [];
-	export let wages;
-	export let status;
+	export let wages: unknown = {};
+	export let status: unknown = {};
 
 	function userParser(item: UserEntity) {
 		return {

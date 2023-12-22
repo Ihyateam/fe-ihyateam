@@ -11,18 +11,27 @@
 	export let activity: ActivityEntity;
 </script>
 
-<span class="activity__status {activity.status}">{data[activity.status]}</span>
+<div>
+	<span class="activity__status {activity.status}">{data[activity.status]}</span>
+</div>
 
 <style>
+	div {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
 	.activity__status {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		justify-self: right;
 
-		width: 75%;
+		width: 80%;
 		height: 1.5rem;
-		padding: 0.1rem 0.6rem 0.1rem 0.6rem;
+		padding: 0.5rem 0.75rem 0.5rem 0.75rem;
 		/* margin-inline-start: 4px; */
 
 		color: var(--font-color);

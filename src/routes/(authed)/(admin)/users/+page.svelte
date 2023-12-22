@@ -1,7 +1,11 @@
 <script lang="ts">
 	import NewUserIcon from '$lib/components/icons/new-user-icon.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
+	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
+	import { page } from '$app/stores';
+	import { useShallowRouting } from '$lib/utils/useShallowRouting';
 	import UserList from '$lib/components/user/user-list.svelte';
+	import NewUserPage from '../create/user/+page.svelte';
 
 	export let data;
 
@@ -21,7 +25,7 @@
 <PageLayout>
 	<header slot="header">
 		<span>{data.volunteers?.length} {config['ar'].volunteers}</span>
-		<a href="/create/user" target="_self">
+		<a href="/create/user" target="_self" use:useShallowRouting>
 			{config['ar'].new_volunteer}
 			<NewUserIcon width="24px" height="24px" />
 		</a>
@@ -30,6 +34,12 @@
 		<UserList users={data.volunteers} />
 	</div>
 </PageLayout>
+
+{#if $page.state.showPage}
+	<PageDialog on:close={() => history.back()}>
+		<NewUserPage />
+	</PageDialog>
+{/if}
 
 <style>
 	header {

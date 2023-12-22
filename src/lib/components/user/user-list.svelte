@@ -30,19 +30,5 @@
 	<td>{row.age}</td>
 	<td>{row.email ?? '-'}</td>
 	<td>{row.created_by}</td>
-	<td class="flex justify-center align-center"><UserStatus user={row} /></td>
+	<td><UserStatus user={row} /></td>
 </Table>
-
-<style>
-	.flex {
-		display: flex;
-	}
-
-	.justify-center {
-		justify-content: center;
-	}
-
-	.align-center {
-		align-items: center;
-	}
-</style>

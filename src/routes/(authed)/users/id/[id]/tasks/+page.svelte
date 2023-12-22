@@ -1,18 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { NewTaskIcon } from '$lib/components/icons';
+	import { useShallowRouting } from '$lib/utils/useShallowRouting.svelte';
 
 	import NewTaskPage from './new/+page.svelte';
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import TaskList from '$lib/components/task/task-list.svelte';
-	import { pushState } from '$app/navigation';
-
-	async function handleNewTaskDialog(e: MouseEvent) {
-		e.preventDefault();
-		const { href } = e.currentTarget as HTMLAnchorElement;
-		pushState(href, { showPage: !$page.state.showPage });
-	}
 
 	const config = {
 		ar: {
@@ -33,7 +27,7 @@
 	<header slot="header">
 		<span>{data.tasks?.length} {config['ar'].tasks}</span>
 		{#if $page.params.id === data.user.id}
-			<a href="{$page.url.href}/new" on:click={handleNewTaskDialog}>
+			<a href="{$page.url.href}/new" use:useShallowRouting>
 				{config['ar'].new_task}
 				<NewTaskIcon width="22px" height="22px" />
 			</a>

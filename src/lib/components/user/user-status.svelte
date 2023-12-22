@@ -11,8 +11,10 @@
 	};
 </script>
 
-<div class="status" class:active={user.isActive}>
-	{config['ar'][user.isActive ? 'true' : 'false']}
+<div class="outer">
+	<div class="status" class:active={user.isActive}>
+		{config['ar'][user.isActive ? 'true' : 'false']}
+	</div>
 </div>
 
 <style>
@@ -23,8 +25,7 @@
 
 		width: 75%;
 		height: 1.5rem;
-		padding-top: 5px;
-		padding-bottom: 5px;
+		padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 		border-radius: 5px;
 
 		background-color: var(--red-color);
@@ -34,5 +35,13 @@
 		&.active {
 			background-color: var(--green-color);
 		}
+	}
+
+	.outer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
 	}
 </style>

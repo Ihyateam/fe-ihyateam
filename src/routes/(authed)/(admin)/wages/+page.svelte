@@ -2,6 +2,10 @@
 	import { NewWageIcon } from '$lib/components/icons';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import WageList from '$lib/components/wage/wage-list.svelte';
+	import { useShallowRouting } from '$lib/utils/useShallowRouting';
+	import { page } from '$app/stores';
+	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
+	import NewWagePage from '../create/wage/+page.svelte';
 
 	export let data;
 	let config = {
@@ -20,7 +24,7 @@
 <PageLayout>
 	<header slot="header">
 		<span>{data.wages?.length} {config['ar'].wages}</span>
-		<a href="/create/wage/" target="_self">
+		<a href="/create/wage/" target="_self" use:useShallowRouting>
 			{config['ar'].new_wage}
 			<NewWageIcon width="24px" height="24px" />
 		</a>
@@ -29,6 +33,12 @@
 		<WageList wages={data.wages} />
 	</div>
 </PageLayout>
+
+{#if $page.state.showPage}
+	<PageDialog on:close={() => history.back()}>
+		<NewWagePage />
+	</PageDialog>
+{/if}
 
 <style>
 	header {

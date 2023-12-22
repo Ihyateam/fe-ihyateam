@@ -8,5 +8,7 @@
 <PageLayout>
 	<h2 slot="header">Create new an activity</h2>
 
-	<svelte:component this={ActivityForm} {...data} slot="body" />
+	<svelte:fragment slot="body">
+		<ActivityForm {...data} />
+	</svelte:fragment>
 </PageLayout>

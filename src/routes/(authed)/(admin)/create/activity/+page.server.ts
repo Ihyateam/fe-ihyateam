@@ -11,7 +11,7 @@ export async function load({ locals }) {
 		postponed: 'postponed'
 	};
 
-	return { volunteers, wages, cities, status };
+	return { volunteers: await volunteers, wages: await wages, cities: await cities, status };
 }
 
 export const actions = {

@@ -15,7 +15,8 @@
 	};
 
 	function logout(node: HTMLElement) {
-		function invokeLogoutForm() {
+		function invokeLogoutForm(e: MouseEvent) {
+			e.preventDefault();
 			const form = document.getElementById('logout-form') as HTMLFormElement;
 			if (form) form.submit();
 		}
@@ -46,8 +47,10 @@
 		<menu class="flex">
 			<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
 			<li><a href="/users/id/{user.id}/tasks" target="_self">{data['ar'].tasks}</a></li>
-			<li use:logout>
-				{data['ar'].logout}
+			<li>
+				<a href="/login" target="_self" use:logout>
+					{data['ar'].logout}
+				</a>
 			</li>
 		</menu>
 	{/if}
@@ -108,9 +111,6 @@
 
 		width: 100%;
 		position: relative;
-		padding: 0.25rem;
-		padding-inline-start: 0.5rem;
-		padding-inline-end: 0.5rem;
 
 		text-align: right;
 
@@ -137,6 +137,12 @@
 			width: 100%;
 			text-decoration: none;
 			color: inherit;
+		}
+
+		& > * {
+			padding: 0.25rem;
+			padding-inline-start: 0.5rem;
+			padding-inline-end: 0.5rem;
 		}
 	}
 

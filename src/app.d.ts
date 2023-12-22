@@ -11,6 +11,9 @@ declare global {
 		interface PageData {
 			user?: UserEntity;
 		}
+		interface PageState {
+			showPage?: boolean;
+		}
 		// interface Platform {}
 	}
 }

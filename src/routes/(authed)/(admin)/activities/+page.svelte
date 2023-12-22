@@ -1,7 +1,17 @@
+<script context="module" lang="ts">
+	import { writable } from 'svelte/store';
+	const showPageData = writable<unknown>();
+</script>
+
 <script>
+	import { page } from '$app/stores';
+	import { useShallowRouting } from '$lib/utils/useShallowRouting';
+
 	import ActivityList from '$lib/components/activity/activity-list.svelte';
 	import NewItemIcon from '$lib/components/icons/new-item-icon.svelte';
+	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
+	import NewActivityPage from '../create/activity/+page.svelte';
 
 	let config = {
 		ar: {
@@ -21,7 +31,7 @@
 <PageLayout>
 	<header slot="header">
 		<span>{data.activites?.length} {config['ar'].activites}</span>
-		<a href="/create/activity" target="_self">
+		<a href="/create/activity" target="_self" use:useShallowRouting={{ data: showPageData }}>
 			{config['ar'].new_activity}
 			<NewItemIcon width="24px" height="24px" />
 		</a>
@@ -30,6 +40,11 @@
 		<ActivityList activities={data.activites} />
 	</div>
 </PageLayout>
+{#if $page.state.showPage}
+	<PageDialog on:close={() => history.back()}>
+		<NewActivityPage data={$showPageData} />
+	</PageDialog>
+{/if}
 
 <style>
 	header {
