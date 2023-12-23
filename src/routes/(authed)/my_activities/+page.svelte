@@ -42,13 +42,13 @@
 	$: {
 		if (selection === 'oldest') {
 			data.activities = sort_by(data.activities, 'start_date', {
-				op: (p: any) => new Date(p).getTime(),
+				op: (p) => new Date(p).getTime(),
 				descending: false
 			});
 		}
 		if (selection === 'newest') {
 			data.activities = sort_by(data.activities, 'start_date', {
-				op: (p: any) => new Date(p).getTime()
+				op: (p) => new Date(p).getTime()
 			});
 		}
 		if (selection === 'most') {
@@ -57,6 +57,7 @@
 		if (selection === 'less') {
 			data.activities = sort_by(data.activities, 'students', { descending: false });
 		}
+		console.log(data.activities);
 	}
 
 	export let data;
