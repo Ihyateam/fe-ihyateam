@@ -19,12 +19,12 @@ export const actions = {
 		const data = await request.formData();
 		const res = {
 			...Object.fromEntries(data),
-			volunteers: data.getAll('volunteers'),
-			city_id: data.getAll('city_id')
+			created_by: 'yz16vdmpybxnzdx',
+			volunteers: data.getAll('volunteers')
 		};
-		console.log(res);
 		try {
-			const record = await locals.pb?.collection('activities').create(data);
+			console.log({ res });
+			const record = await locals.pb?.collection('activities').create(res);
 			return {
 				msg: 'entity created',
 				record

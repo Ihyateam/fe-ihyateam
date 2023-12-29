@@ -2,7 +2,8 @@
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
 	import MultipleSelect from '$lib/components/form/multiple-select.svelte';
-	import type { UserEntity, CityEntity } from '$lib/types';
+	import type { UserEntity, CityEntity, WageEntity } from '$lib/types';
+	import SingularSelect from '$lib/components/form/singular-select.svelte';
 
 	export let volunteers: UserEntity[] = [];
 	export let user: UserEntity;
@@ -25,7 +26,7 @@
 		};
 	}
 
-	function parseWage(item) {
+	function parseWage(item: WageEntity) {
 		return {
 			id: item?.id,
 			commuting_hour_rate: item?.commuting_hour_rate,
@@ -48,7 +49,7 @@
 		</div>
 	</MultipleSelect>
 
-	<MultipleSelect fieldset_name="cities-list" arr={cities} let:entity>
+	<SingularSelect fieldset_name="cities-list" arr={cities} let:entity>
 		{@const item = parseCity(entity)}
 		<div>
 			<input id={item.id} name="city_id" type="radio" value={item.id} />
@@ -56,7 +57,7 @@
 				{item.name} - {item.country}
 			</label>
 		</div>
-	</MultipleSelect>
+	</SingularSelect>
 
 	<MultipleSelect fieldset_name="wages-list" arr={wages} let:entity>
 		{@const item = parseWage(entity)}
