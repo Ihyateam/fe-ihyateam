@@ -6,7 +6,6 @@
 	import ActivityStatus from './activity-status.svelte';
 
 	export let activity: ActivityEntity;
-	console.log(activity);
 </script>
 
 <a class="activity activity__card" href="/activities/{activity.id}">

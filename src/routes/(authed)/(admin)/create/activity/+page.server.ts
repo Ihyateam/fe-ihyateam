@@ -23,14 +23,13 @@ export const actions = {
 			volunteers: data.getAll('volunteers')
 		};
 		try {
-			console.log({ res });
 			const record = await locals.pb?.collection('activities').create(res);
 			return {
 				msg: 'entity created',
 				record
 			};
 		} catch (e) {
-			console.log("entity wasn't created", e);
+			console.error("entity wasn't created", e);
 		}
 		return {
 			msg: 'entity not created'

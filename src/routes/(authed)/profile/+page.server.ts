@@ -17,6 +17,6 @@ export async function load({ locals }): Promise<{
 	return {
 		user: locals.pb?.authStore?.model as UserEntity,
 		activities,
-		tasks: await locals.pb?.collection('cummute').getFullList()
+		tasks: (await locals.pb?.collection('commute').getFullList()) as any[]
 	};
 }

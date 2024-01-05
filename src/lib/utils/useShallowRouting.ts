@@ -9,7 +9,6 @@ export function useShallowRouting(
 	async function handleShallowRouting(e: MouseEvent) {
 		e.preventDefault();
 		const { href } = node;
-		console.log(href);
 		const res = await preloadData(href).then((response) => response['data']);
 		if (data) data.set(res);
 		pushState(href, { showPage: !get(page).state.showPage });

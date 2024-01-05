@@ -2,16 +2,27 @@
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
+	import NewItemIcon from '../icons/new-item-icon.svelte';
 
 	export let user: UserEntity;
 	let isSettingsOpen = false;
 
 	const data = {
-		ar: {
-			account: 'الحساب',
-			tasks: 'مهامي',
-			logout: 'تسجيل الخروج'
-		}
+		menu: [
+			{
+				name: 'الحساب',
+				href: '/profile'
+			},
+			{
+				name: 'المهام',
+				href: '/works'
+			},
+			{
+				name: 'تسجيل الخروج',
+				href: '/login',
+				action: logout
+			}
+		]
 	};
 
 	function logout(node: HTMLElement) {
@@ -45,13 +56,13 @@
 	{#if isSettingsOpen}
 		<BlurBackground on:click={handleSettingsMenu} />
 		<menu class="flex">
-			<li><a href="/profile" target="_self">{data['ar'].account}</a></li>
-			<li><a href="/tasks" target="_self">{data['ar'].tasks}</a></li>
-			<li>
-				<a href="/login" target="_self" use:logout>
-					{data['ar'].logout}
-				</a>
-			</li>
+			{#each data.menu as { action, ...item }}
+				{#if action}
+					<li use:action><a href={item.href} target="_self">{item.name}</a></li>
+				{:else}
+					<li><a href={item.href} target="_self">{item.name}</a></li>
+				{/if}
+			{/each}
 		</menu>
 	{/if}
 </button>

@@ -1,15 +1,14 @@
-<script lang="ts">
+<script>
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import UserTable from '$lib/components/user/user-list.svelte';
+	import UserList from '$lib/components/user/user-list.svelte';
 
 	export let data;
-	const { users } = data;
 </script>
 
 <PageLayout>
-	<h1 slot="header">المتطوعين</h1>
+	<h2 slot="header">users</h2>
 
 	<svelte:fragment slot="body">
-		<UserTable {users} />
+		<UserList users={data.users} />
 	</svelte:fragment>
 </PageLayout>

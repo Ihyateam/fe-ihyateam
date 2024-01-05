@@ -9,13 +9,12 @@
 	const config = {
 		ar: {
 			img: 'الصورة',
-			// id: 'معرف المستخدم',
+			id: 'معرف المستخدم',
 			first_name: 'الاسم الأول',
 			last_name: 'الاسم الأخير',
 			username: 'اسم المستخدم',
 			age: 'العمر',
 			email: 'البريد الإلكتروني',
-			created_by: 'المسؤول',
 			status: 'الحالة'
 		}
 	};
@@ -23,12 +22,11 @@
 
 <Table baseUrl="/users/id" headerObj={config['ar']} arr={users} let:row>
 	<td><img src={getURL(row)} alt={row.username} /></td>
-	<!-- <td>{row.id}</td> -->
+	<td>{row.id}</td>
 	<td>{row.first_name}</td>
 	<td>{row.last_name}</td>
 	<td>{row.username}</td>
 	<td>{row.age}</td>
-	<td>{row.email ?? '-'}</td>
-	<td>{row.created_by}</td>
+	<td>{row.email || '-'}</td>
 	<td><UserStatus user={row} /></td>
 </Table>

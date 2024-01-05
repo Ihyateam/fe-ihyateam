@@ -33,7 +33,7 @@
 				}
 			},
 			props: {
-				href: '/users',
+				href: '/admin/users',
 				target: '_self'
 			},
 			adminRoleOnly: true,
@@ -48,7 +48,7 @@
 				}
 			},
 			props: {
-				href: '/wages',
+				href: '/admin/wages',
 				target: '_self'
 			},
 			adminRoleOnly: true,

@@ -18,7 +18,6 @@
 			}
 		}
 	};
-	console.log({ activities, user });
 </script>
 
 <svelte:head>

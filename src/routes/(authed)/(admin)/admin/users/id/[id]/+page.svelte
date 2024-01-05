@@ -25,32 +25,28 @@
 	</title>
 </svelte:head>
 
-{#if data.current_user}
-	<PageLayout>
-		<UserProfileHeader user={data.current_user} slot="header" />
-		<div slot="body">
-			<UserProfileCard user={data.current_user} />
-			<Table
-				baseUrl="/activities/id"
-				headerObj={{
-					image: 'الصورة',
-					start_date: 'تاريخ البدء',
-					status: 'الحالة'
-				}}
-				arr={data.activities}
-				let:row
-			>
-				<td><img src={getURL(row.photo)} alt={row.id} /></td>
-				<td>{dateFormater(new Date(row.start_date))}</td>
-				<td><ActivityStatus activity={row} /></td>
-			</Table>
-			<TaskList tasks={data?.tasks} />
-		</div>
-		<pre>{JSON.stringify(data?.url, null, 2)}</pre>
-	</PageLayout>
-{:else}
-	<h2>wrong page</h2>
-{/if}
+<PageLayout>
+	<UserProfileHeader user={data.current_user} slot="header" />
+	<div slot="body">
+		<UserProfileCard user={data.current_user} />
+		<Table
+			baseUrl="/activities/id"
+			headerObj={{
+				image: 'الصورة',
+				start_date: 'تاريخ البدء',
+				status: 'الحالة'
+			}}
+			arr={data.activities}
+			let:row
+		>
+			<td><img src={getURL(row.photo)} alt={row.id} /></td>
+			<td>{dateFormater(new Date(row.start_date))}</td>
+			<td><ActivityStatus activity={row} /></td>
+		</Table>
+		<TaskList tasks={data?.tasks} />
+	</div>
+	<pre>{JSON.stringify(data?.url, null, 2)}</pre>
+</PageLayout>
 
 <style>
 	div[slot='body'] {

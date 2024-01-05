@@ -1,7 +1,5 @@
 <script lang="ts">
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-
-	import { sort_by } from '$lib/utils';
 	import ActivityCard from '$lib/components/activity/activity-card.svelte';
 
 	const config = {
