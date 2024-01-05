@@ -22,6 +22,7 @@ export const actions = {
 		const { id: user_id } = locals.pb?.authStore.model as UserEntity;
 		const i = await request.formData();
 		const data = { ...Object.fromEntries(i), is_paid: false, user_id };
-		await locals.pb?.collection('effort').create(data);
+		console.log(data);
+		await locals.pb?.collection('commute').create(data);
 	}
 };

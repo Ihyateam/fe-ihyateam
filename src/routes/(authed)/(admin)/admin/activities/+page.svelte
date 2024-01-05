@@ -11,7 +11,7 @@
 	import NewItemIcon from '$lib/components/icons/new-item-icon.svelte';
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import NewActivityPage from '../create/activity/+page.svelte';
+	import NewActivityPage from '../../create/activity/+page.svelte';
 
 	let config = {
 		ar: {

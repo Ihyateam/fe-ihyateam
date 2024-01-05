@@ -10,12 +10,10 @@
 			img: 'الصورة',
 			id: 'معرف النشاط',
 			title: 'العنوان',
-			created_by: 'المسؤول',
-			volunteers: 'المتطوعين',
-			students: 'عدد الطلاب',
+			start_at: 'تاريخ البدء',
+			end_at: 'تاريخ الانتهاء',
 			wage_id: 'معرف البدل',
 			city_id: 'معرف المدينة',
-			start_date: 'تاريخ البدء',
 			status: 'الحالة'
 		}
 	};
@@ -27,11 +25,9 @@
 	<td><img src={getURL(row)} alt={row.title} /></td>
 	<td>{row.id}</td>
 	<td>{row.title}</td>
-	<td>{row.created_by}</td>
-	<td>{row.volunteers.length}</td>
-	<td>{row.students}</td>
+	<td>{dateFormater(new Date(row.start_at))}</td>
+	<td>{dateFormater(new Date(row.end_at))}</td>
 	<td>{row.wage_id}</td>
 	<td>{row.city_id}</td>
-	<td>{dateFormater(new Date(row.start_date))}</td>
 	<td><ActivityStatus activity={row} /></td>
 </Table>

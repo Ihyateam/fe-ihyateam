@@ -26,7 +26,7 @@
 			<label>
 				<input name="comment" />
 			</label>
-			<button type="submit">submit</button>
+			<button type="submit" on:click={() => history.back()}>submit</button>
 		</form>
 	</svelte:fragment>
 </PageLayout>

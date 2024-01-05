@@ -20,7 +20,7 @@
 	};
 </script>
 
-<Table baseUrl="/users/id" headerObj={config['ar']} arr={users} let:row>
+<Table baseUrl="/admin/users/id" headerObj={config['ar']} arr={users} let:row>
 	<td><img src={getURL(row)} alt={row.username} /></td>
 	<td>{row.id}</td>
 	<td>{row.first_name}</td>

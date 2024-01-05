@@ -6,11 +6,11 @@
 </script>
 
 <PageLayout>
-	<h2 slot="header">create new task</h2>
+	<h2 slot="header">create new commute</h2>
 	<svelte:fragment slot="body">
 		<form method="POST" use:enhance>
 			<label>
-				date: <input type="date" name="effort_date" />
+				date: <input type="date" name="commute_date" />
 			</label>
 			<label>
 				hours: <input type="number" name="hours" />
@@ -26,7 +26,12 @@
 			<label>
 				<input name="comment" />
 			</label>
-			<button type="submit">submit</button>
+			<button
+				type="submit"
+				on:click={() => {
+					history.back();
+				}}>submit</button
+			>
 		</form>
 	</svelte:fragment>
 </PageLayout>

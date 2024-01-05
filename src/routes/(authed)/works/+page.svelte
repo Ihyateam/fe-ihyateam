@@ -19,6 +19,10 @@
 			commute: 'تنقل',
 			new_task: 'مهمة جديدة',
 			new_commute: 'تنقل جديد'
+		},
+		pages: {
+			commute: CommuteTaskPage,
+			task: NewTaskPage
 		}
 	};
 
@@ -63,8 +67,7 @@
 
 {#if $page.state.showPage}
 	<PageDialog on:close={() => history.back()}>
-		<svelte:component this={NewTaskPage} data={$pageData} />
-		<!-- <NewTaskPage data={$pageData} /> -->
+		<svelte:component this={config.pages[$pageData.path]} data={$pageData} />
 	</PageDialog>
 {/if}
 

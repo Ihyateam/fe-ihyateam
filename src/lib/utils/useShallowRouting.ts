@@ -10,7 +10,7 @@ export function useShallowRouting(
 		e.preventDefault();
 		const { href } = node;
 		const res = await preloadData(href).then((response) => response['data']);
-		if (data) data.set(res);
+		if (data) data.set({ ...res, path: href.split('/').pop() });
 		pushState(href, { showPage: !get(page).state.showPage });
 	}
 
