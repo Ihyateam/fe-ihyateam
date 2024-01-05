@@ -16,46 +16,42 @@ export type CityEntity = {
 };
 
 export type UserEntity = {
-	address_id: string;
 	age: number;
+	id: string;
 	collectionId: string;
 	collectionName: string;
-	created: string;
-	created_by: string;
+	first_name: string;
+	last_name: string;
+	username: string;
 	email: string;
 	emailVisibility: boolean;
-	first_name: string;
-	id: string;
-	isActive: boolean;
 	isAdmin: boolean;
-	last_name: string;
-	photo: string;
-	updated: Date;
-	username: string;
 	verified: boolean;
-};
+	photo_id: string;
+	address_id: string;
+	created_at: Date;
+	updated: Date;
+} & ExpandedEntity;
 
-export type ActivityStatus = 'done' | 'scheduled' | 'ongoing' | 'postponed';
+export type ActivityStatus = '0' | '1' | '2' | '3';
 
 export type ActivityEntity = {
-	name: string;
-	city_id: string[];
+	city_id: string;
 	collectionId: string;
 	collectionName: string;
 	created: Date;
 	created_by: string;
-	description: StringConstructor;
-	end_date: Date;
+	description: string;
+	end_at: Date;
 	id: string;
-	photo: string;
-	start_date: Date;
+	photo_id: string;
+	start_at: Date;
 	status: ActivityStatus;
 	students: number;
 	title: string;
 	updated: Date;
-	volunteers: string[];
 	wage_id: string;
-};
+} & ExpandedEntity;
 
 export type SidebarComponentConfig = {
 	id: string;
@@ -74,6 +70,16 @@ export type SidebarComponentConfig = {
 
 export type ExpandedActivityEntity = ActivityEntity & { expand: { volunteers?: UserEntity[] } };
 
+export type TaskEntity = {
+	user_id: string;
+	activity_id: string;
+	hours: number;
+	is_paid: true;
+	effort_date: Date;
+	created_data: Date;
+	payment_data: Date;
+};
+
 export type WageEntity = {
 	id: string;
 	collectionId: string;
@@ -83,4 +89,19 @@ export type WageEntity = {
 	currency: string;
 	updated: Date;
 	created: Date;
+};
+
+type PhotoEntity = {
+	collectionId: string;
+	id: string;
+	photo: string;
+	created: Date;
+	updated: Date;
+	last_update: Date;
+};
+
+export type ExpandedEntity = {
+	expand?: {
+		photo_id?: PhotoEntity;
+	};
 };

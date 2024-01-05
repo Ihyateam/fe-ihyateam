@@ -3,7 +3,7 @@
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
-	import TaskList from '$lib/components/task/task-list.svelte';
+	import TaskList from '$lib/components/task/effort-list.svelte';
 	import ActivityStatus from '$lib/components/activity/activity-status.svelte';
 	import { getURL } from '$lib/utils/backend-utils';
 	import { dateFormater } from '$lib/utils';

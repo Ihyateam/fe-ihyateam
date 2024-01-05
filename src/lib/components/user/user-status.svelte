@@ -12,8 +12,8 @@
 </script>
 
 <div class="outer">
-	<div class="status" class:active={user.isActive}>
-		{config['ar'][user.isActive ? 'true' : 'false']}
+	<div class="status" class:active={user.verified}>
+		{config['ar'][`${user.verified}`]}
 	</div>
 </div>
 

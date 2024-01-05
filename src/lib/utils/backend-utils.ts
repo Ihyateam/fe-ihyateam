@@ -1,18 +1,11 @@
 import { env } from '$env/dynamic/public';
+import type { ExpandedEntity } from '$lib/types';
 
-type GET_URL_OPTIONS = {
-	collectionId: string;
-	id: string;
-	photo: string;
-};
+export function getURL({ expand }: ExpandedEntity, options: { thumb?: string } = {}) {
+	if (!expand?.photo_id) return '/no-image.png';
 
-export function getURL(
-	{ collectionId, id, photo }: GET_URL_OPTIONS,
-	options: { thumb?: string } = {}
-) {
-	if (!photo) {
-		return '/no-image.png';
-	}
+	const { collectionId, id, photo } = expand.photo_id;
+
 	const params = Object.entries(options);
 	const url = new URL(`api/files/${collectionId}/${id}/${photo}`, env.PUBLIC_POCKETBASE_HOST);
 	params.forEach(([key, value]) => url.searchParams.append(key, value));

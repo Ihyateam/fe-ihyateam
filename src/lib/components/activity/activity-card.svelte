@@ -6,14 +6,15 @@
 	import ActivityStatus from './activity-status.svelte';
 
 	export let activity: ActivityEntity;
+	console.log(activity);
 </script>
 
-<a class="activity activity__card" href="/my_activities/{activity.id}">
-	<img src={getURL(activity)} alt={activity.name} />
+<a class="activity activity__card" href="/activities/{activity.id}">
+	<img src={getURL(activity)} alt={activity.title} />
 	<div class="activity__details">
 		<div class="activity__info">
 			<span class="activity__date">
-				{dateFormater(new Date(activity.start_date))}
+				{dateFormater(new Date(activity.start_at))}
 				<CalenderIcon width="1rem" height="1rem" style="margin-bottom: 4px;" />
 			</span>
 			<ActivityStatus {activity} />
@@ -23,7 +24,7 @@
 		<footer>
 			<div class="footer__div">
 				<PupilsIcon height="1.4rem" width="1.4rem" />
-				<p style="align-self: end;">{activity.students} طالب</p>
+				<p style="align-self: end;">{Math.floor(Math.random() * 100)} طالب</p>
 			</div>
 		</footer>
 	</div>

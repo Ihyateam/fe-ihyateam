@@ -2,27 +2,25 @@
 	import type { ActivityEntity } from '$lib/types';
 
 	const data = {
-		done: 'انتهت',
-		postponed: 'مؤجلة',
-		scheduled: 'لم تبدأ',
-		ongoing: 'مستمرة'
+		0: 'انتهت',
+		1: 'مؤجلة',
+		2: 'لم تبدأ',
+		3: 'مستمرة'
+	};
+
+	const _class = {
+		0: 'done',
+		1: 'postponed',
+		2: 'scheduled',
+		3: 'ongoing'
 	};
 
 	export let activity: ActivityEntity;
 </script>
 
-<div>
-	<span class="activity__status {activity.status}">{data[activity.status]}</span>
-</div>
+<span class="activity__status {_class[activity.status]}">{data[activity.status]}</span>
 
 <style>
-	div {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-	}
 	.activity__status {
 		display: flex;
 		justify-content: center;

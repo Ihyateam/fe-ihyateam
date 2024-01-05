@@ -9,8 +9,6 @@
 		MoneyIcon
 	} from '$lib/components/icons';
 
-	export let data;
-
 	const adminConfig = [
 		{
 			id: 'activities',
@@ -20,7 +18,7 @@
 				}
 			},
 			props: {
-				href: '/activities',
+				href: '/admin/activities',
 				target: '_self'
 			},
 			adminRoleOnly: true,
@@ -80,12 +78,14 @@
 				}
 			},
 			props: {
-				href: '/my_activities',
+				href: '/activities',
 				target: '_self'
 			},
 			Icon: ActivityIcon
 		}
 	];
+
+	export let data;
 </script>
 
 <div class="upper">

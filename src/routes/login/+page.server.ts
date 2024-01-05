@@ -22,6 +22,7 @@ export const actions = {
 
 		try {
 			await locals.pb?.collection('users').authWithPassword(loginData.username, loginData.password);
+
 			redirect(303, targetUrl);
 		} catch ({ originalError }) {
 			res['err'] =

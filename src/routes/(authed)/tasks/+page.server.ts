@@ -1,6 +1,10 @@
 export async function load({ locals }) {
+	const efforts = (await locals.pb?.collection('effort').getFullList()) as any[];
+	const commutes = (await locals.pb?.collection('commute').getFullList()) as any[];
+	console.log({ efforts, commutes });
 	return {
-		tasks: await locals.pb?.collection('tasks').getFullList()
+		efforts,
+		commutes
 	};
 }
 

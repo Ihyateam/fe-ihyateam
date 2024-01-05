@@ -45,8 +45,8 @@
 	{#if isSettingsOpen}
 		<BlurBackground on:click={handleSettingsMenu} />
 		<menu class="flex">
-			<li><a href="/users/id/{user.id}" target="_self">{data['ar'].account}</a></li>
-			<li><a href="/users/id/{user.id}/tasks" target="_self">{data['ar'].tasks}</a></li>
+			<li><a href="/profile" target="_self">{data['ar'].account}</a></li>
+			<li><a href="/tasks" target="_self">{data['ar'].tasks}</a></li>
 			<li>
 				<a href="/login" target="_self" use:logout>
 					{data['ar'].logout}
