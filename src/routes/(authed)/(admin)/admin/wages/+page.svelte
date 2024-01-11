@@ -5,7 +5,7 @@
 	import { useShallowRouting } from '$lib/utils/useShallowRouting';
 	import { page } from '$app/stores';
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
-	import NewWagePage from '../create/wage/+page.svelte';
+	import NewWagePage from '../../create/wage/+page.svelte';
 
 	export let data;
 	let config = {
@@ -15,6 +15,7 @@
 			new_wage: 'عنصر جديد'
 		}
 	};
+	console.log(data);
 </script>
 
 <svelte:head>

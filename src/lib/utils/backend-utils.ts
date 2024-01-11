@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/public';
-import type { ExpandedEntity } from '$lib/types';
+import type { ExpandPhotoEntity } from '$lib/types';
 
-export function getURL({ expand }: ExpandedEntity, options: { thumb?: string } = {}) {
+export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
 	if (!expand?.photo_id) return '/no-image.png';
 
 	const { collectionId, id, photo } = expand.photo_id;

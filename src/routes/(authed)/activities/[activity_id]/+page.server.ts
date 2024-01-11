@@ -1,6 +1,6 @@
-import type { ExpandedActivityEntity } from '$lib/types.js';
+import type { UserEntity } from '$lib/types.js';
 
-export async function load({ params, locals }): Promise<{ activity: ExpandedActivityEntity }> {
+export async function load({ params, locals }): Promise<{ users?: UserEntity[] }> {
 	const activity = await locals.pb
 		?.collection('activity_users')
 		.getFullList({ filter: `activity_id ~ '${params.activity_id}'` });
@@ -10,10 +10,7 @@ export async function load({ params, locals }): Promise<{ activity: ExpandedActi
 		({ id }) => users_id?.includes(id)
 	);
 
-	console.log({ activity, users_id, users });
-
 	return {
-		activity,
 		users
 	};
 }

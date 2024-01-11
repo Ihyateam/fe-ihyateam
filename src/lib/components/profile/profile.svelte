@@ -2,7 +2,6 @@
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
-	import NewItemIcon from '../icons/new-item-icon.svelte';
 
 	export let user: UserEntity;
 	let isSettingsOpen = false;
@@ -15,7 +14,7 @@
 			},
 			{
 				name: 'المهام',
-				href: '/works'
+				href: '/maham'
 			},
 			{
 				name: 'تسجيل الخروج',

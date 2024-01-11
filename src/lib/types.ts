@@ -1,25 +1,28 @@
 import type { ComponentType } from 'svelte';
 
-export type UserAdminEntity = {
+type BaseEntity = {
 	id: string;
+	collectionId: string;
+	collectionName: string;
+	updated: Date;
+	created: Date;
+};
+
+export type UserAdminEntity = {
 	first_name: string;
 	last_name: string;
 	age: number;
 	username: string;
 	created_by_admin: string;
-};
+} & BaseEntity;
 
 export type CityEntity = {
-	id: string;
 	city_name: string;
 	country_id: string;
-};
+} & BaseEntity;
 
 export type UserEntity = {
 	age: number;
-	id: string;
-	collectionId: string;
-	collectionName: string;
 	first_name: string;
 	last_name: string;
 	username: string;
@@ -30,16 +33,13 @@ export type UserEntity = {
 	photo_id: string;
 	address_id: string;
 	created_at: Date;
-	updated: Date;
-} & ExpandedEntity;
+} & ExpandPhotoEntity &
+	BaseEntity;
 
 export type ActivityStatus = '0' | '1' | '2' | '3';
 
 export type ActivityEntity = {
 	city_id: string;
-	collectionId: string;
-	collectionName: string;
-	created: Date;
 	created_by: string;
 	description: string;
 	end_at: Date;
@@ -49,9 +49,10 @@ export type ActivityEntity = {
 	status: ActivityStatus;
 	students: number;
 	title: string;
-	updated: Date;
 	wage_id: string;
-} & ExpandedEntity;
+} & ExpandPhotoEntity &
+	BaseEntity &
+	ExpandVolunteersList;
 
 export type SidebarComponentConfig = {
 	id: string;
@@ -68,8 +69,6 @@ export type SidebarComponentConfig = {
 	Icon: ComponentType;
 };
 
-export type ExpandedActivityEntity = ActivityEntity & { expand: { volunteers?: UserEntity[] } };
-
 export type TaskEntity = {
 	user_id: string;
 	activity_id: string;
@@ -78,30 +77,40 @@ export type TaskEntity = {
 	effort_date: Date;
 	created_data: Date;
 	payment_data: Date;
-};
+} & BaseEntity;
+
+type Currency = {
+	currency_name: string;
+	currency_country: string;
+	symbol: string;
+} & BaseEntity;
 
 export type WageEntity = {
-	id: string;
-	collectionId: string;
-	collectionName: string;
 	commuting_hour_rate: number;
 	working_hour_rate: number;
-	currency: string;
-	updated: Date;
-	created: Date;
-};
+	currency_id: string;
+} & ExpandCurrencyEntity &
+	BaseEntity;
 
 type PhotoEntity = {
-	collectionId: string;
-	id: string;
 	photo: string;
-	created: Date;
-	updated: Date;
 	last_update: Date;
-};
+} & BaseEntity;
 
-export type ExpandedEntity = {
+export type ExpandPhotoEntity = {
 	expand?: {
 		photo_id?: PhotoEntity;
+	};
+};
+
+type ExpandCurrencyEntity = {
+	expand?: {
+		currency_id?: Currency;
+	};
+};
+
+type ExpandVolunteersList = {
+	expand: {
+		volunteers?: UserEntity[];
 	};
 };

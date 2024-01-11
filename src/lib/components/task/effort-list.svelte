@@ -5,6 +5,7 @@
 	import PaymentStatus from './payment-status.svelte';
 
 	export let arr: TaskEntity[] = [];
+
 	const config = {
 		ar: {
 			hours: 'ساعة عمل',

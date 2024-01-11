@@ -1,9 +1,7 @@
-import type { ExpandedActivityEntity } from '$lib/types.js';
+import type { ActivityEntity } from '$lib/types.js';
 
-export async function load({ params, locals }): Promise<{ activity: ExpandedActivityEntity }> {
+export async function load({ params, locals }): Promise<{ activity?: ActivityEntity }> {
 	return {
-		activity: (await locals.pb
-			?.collection('activities')
-			.getOne(params.id, { expand: 'volunteers' })) as ExpandedActivityEntity
+		activity: await locals.pb?.collection('activity').getOne(params.id, { expand: 'volunteers' })
 	};
 }

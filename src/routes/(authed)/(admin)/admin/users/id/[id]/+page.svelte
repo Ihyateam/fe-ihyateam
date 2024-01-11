@@ -2,6 +2,9 @@
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import UserProfileHeader from '$lib/components/user/user-profile-header.svelte';
 
+	import TaskList from '$lib/components/task/effort-list.svelte';
+	import CommuteList from '$lib/components/task/commute-list.svelte';
+
 	export let data;
 	const config = {
 		ar: {
@@ -22,12 +25,22 @@
 <PageLayout>
 	<UserProfileHeader user={data.current_user} slot="header" />
 	<div slot="body">
-		<p>some content</p>
+		<div>
+			<h2>المهام المنجزة</h2>
+			<TaskList arr={data?.efforts} />
+		</div>
+		<div>
+			<h2>المواصلات</h2>
+			<CommuteList arr={data?.commutes} />
+		</div>
 	</div>
 </PageLayout>
 
 <style>
-	[slot='body'] {
-		display: none;
+	div[slot='body'] {
+		margin-top: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 </style>

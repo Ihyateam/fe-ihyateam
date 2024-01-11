@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { NewTaskIcon } from '$lib/components/icons';
+	import { NewTaskIcon, CommuteIcon } from '$lib/components/icons';
 	import { useShallowRouting } from '$lib/utils/useShallowRouting';
 
 	import NewTaskPage from './new/task/+page.svelte';
@@ -9,16 +9,16 @@
 	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import TaskList from '$lib/components/task/effort-list.svelte';
-	import { writable } from 'svelte/store';
 	import CommuteList from '$lib/components/task/commute-list.svelte';
+	import { writable } from 'svelte/store';
 
 	const config = {
 		ar: {
 			title: 'مهامي',
 			tasks: 'مهمة',
 			commute: 'تنقل',
-			new_task: 'مهمة جديدة',
-			new_commute: 'تنقل جديد'
+			new_task: 'أدخل مهمة',
+			new_commute: 'أدخل تنقل'
 		},
 		pages: {
 			commute: CommuteTaskPage,
@@ -57,7 +57,7 @@
 				<span>{data.commutes?.length} {config['ar'].commute}</span>
 				<a href="{$page.url.href}/new/commute" use:useShallowRouting={{ data: pageData }}>
 					{config['ar'].new_commute}
-					<NewTaskIcon width="22px" height="22px" />
+					<CommuteIcon width="28px" height="28px" />
 				</a>
 			</div>
 			<CommuteList arr={commutes} />
