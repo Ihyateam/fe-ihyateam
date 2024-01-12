@@ -17,7 +17,7 @@
 	export let wages: WageEntity[] = [];
 </script>
 
-<Table baseUrl="/wages/id" headerObj={config['ar']} arr={wages} let:row>
+<Table baseUrl="/admin/wages/id" headerObj={config['ar']} arr={wages} let:row>
 	<td>{row.id}</td>
 	<td>{row.expand.currency_id.symbol}</td>
 	<td>{row.commuting_hour_rate}</td>
