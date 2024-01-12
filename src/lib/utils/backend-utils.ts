@@ -11,3 +11,18 @@ export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string 
 	params.forEach(([key, value]) => url.searchParams.append(key, value));
 	return url.toString();
 }
+
+export function groupBy(arr: any[], callbackFn: () => any): any[] {
+	const temp = [];
+
+	for (const i of arr) {
+		const key = callbackFn(i);
+		if (temp[key]) {
+			temp[key].push(i);
+		} else {
+			temp[key] = [i];
+		}
+	}
+
+	return temp;
+}

@@ -30,17 +30,6 @@
 </script>
 
 <div class="activity__div">
-	<!-- <menu>
-		{#each tabs as tab}
-			<button
-				type="button"
-				class="tab"
-				data-id={tab.attr['data-id']}
-				class:active={$page.url.href.includes(tab.attr['data-id'])}
-				data-tooltip={tab.attr['data-tooltip']}>{tab.props.id}</button
-			>
-		{/each}
-	</menu> -->
 	<slot />
 </div>
 

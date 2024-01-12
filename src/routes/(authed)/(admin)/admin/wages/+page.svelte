@@ -15,7 +15,6 @@
 			new_wage: 'عنصر جديد'
 		}
 	};
-	console.log(data);
 </script>
 
 <svelte:head>
