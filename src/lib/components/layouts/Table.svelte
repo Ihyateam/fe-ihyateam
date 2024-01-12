@@ -102,7 +102,6 @@
 		& > td {
 			height: 4rem;
 			padding: 0.5rem;
-			white-space: nowrap;
 		}
 
 		&:last-child {
@@ -117,6 +116,5 @@
 	th {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
-		white-space: nowrap;
 	}
 </style>

@@ -22,9 +22,9 @@
 		justify-self: right;
 
 		width: 70%;
+		min-width: 2rem;
 		height: 1.5rem;
 		padding: 0.5rem 0.25rem 0.5rem 0.25rem;
-		/* margin-inline-start: 4px; */
 
 		color: var(--font-color);
 		border-radius: 6px;
