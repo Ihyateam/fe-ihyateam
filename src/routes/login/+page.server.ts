@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 
 export async function load({ locals, url }) {
 	if (locals.pb?.authStore.isValid) {
@@ -14,31 +14,22 @@ export const actions = {
 			password: string;
 		};
 
-		const res: {
-			failed?: boolean;
-			error?: boolean;
-			err?: { message: string; reference_code: number };
-		} = {};
-
 		try {
-			await locals.pb?.collection('users').authWithPassword(loginData.username, loginData.password);
-
-			redirect(303, targetUrl);
-		} catch ({ originalError }) {
-			res['err'] = {
-				reference_code: 404,
-				message: 'You were not autherized please try again!'
-			};
-			if (originalError instanceof TypeError) {
-				res['err'] = {
-					reference_code: 500,
-					message:
-						'Oops! something has gone wrong in the server please contact the administrator of the page'
-				};
+			if (!locals.pb?.authStore.isValid) {
+				await locals.pb
+					?.collection('users')
+					.authWithPassword(loginData.username, loginData.password);
 			}
-			res['error'] = originalError instanceof TypeError;
-			res['failed'] = true;
+		} catch (err) {
+			let status = 401;
+			const res = { message: 'The password or username you entered is incorrect' };
+			if (err?.status === 0) {
+				res['message'] = 'An error occurred, please contact the administrator to solve the problem';
+				status = 500;
+			}
+			return fail(status, res);
 		}
-		return res;
+
+		redirect(301, targetUrl);
 	}
 };
