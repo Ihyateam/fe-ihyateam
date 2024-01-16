@@ -24,5 +24,14 @@
 
 			box-shadow: var(--input-box-shadow);
 		}
+
+		&:not(:placeholder-shown):invalid {
+			color: red;
+			outline-color: red;
+		}
+
+		&[type='number'] {
+			-moz-appearance: textfield;
+		}
 	}
 </style>

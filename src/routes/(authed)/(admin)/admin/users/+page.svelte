@@ -3,7 +3,9 @@
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import UserList from '$lib/components/user/user-list.svelte';
 	import { useShallowRouting } from '$lib/utils/useShallowRouting';
-	import { writable } from 'svelte/store';
+	import { page } from '$app/stores';
+	import PageDialog from '$lib/components/layouts/page-dialog.svelte';
+	import NewUserPage from '../../create/user/+page.svelte';
 
 	const config = {
 		ar: {
@@ -12,14 +14,13 @@
 			new_user: 'مستخدم جديد'
 		}
 	};
-	const showPageData = writable();
 	export let data;
 </script>
 
 <PageLayout>
 	<header slot="header">
 		<span>{data.users?.length} {config['ar'].users}</span>
-		<a href="/create/user" target="_self" use:useShallowRouting={{ data: showPageData }}>
+		<a href="/create/user" target="_self" use:useShallowRouting>
 			{config['ar'].new_user}
 			<NewItemIcon width="24px" height="24px" />
 		</a>
@@ -29,6 +30,12 @@
 		<UserList users={data.users} />
 	</svelte:fragment>
 </PageLayout>
+
+{#if $page.state.showPage}
+	<PageDialog on:close={() => history.back()}>
+		<NewUserPage />
+	</PageDialog>
+{/if}
 
 <style>
 	header {
