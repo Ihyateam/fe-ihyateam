@@ -4,6 +4,7 @@
 
 	import TaskList from '$lib/components/task/effort-list.svelte';
 	import CommuteList from '$lib/components/task/commute-list.svelte';
+	import UserProfileCard from '$lib/components/user/user-profile-card.svelte';
 
 	export let data;
 	const config = {
@@ -25,6 +26,7 @@
 <PageLayout>
 	<UserProfileHeader user={data.current_user} slot="header" />
 	<div slot="body">
+		<UserProfileCard user={data.current_user} />
 		<div>
 			<h2>المهام المنجزة</h2>
 			<TaskList arr={data?.efforts} />

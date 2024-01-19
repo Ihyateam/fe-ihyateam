@@ -21,6 +21,6 @@
 	<td>{row.hours}</td>
 	<td>{row.activity_id}</td>
 	<td>{dateFormater(new Date(row.effort_date))}</td>
-	<td>{row.payment_date ?? '-'}</td>
+	<td>{row.payment_date || '-'}</td>
 	<td><PaymentStatus is_paid={row.is_paid} /></td>
 </TableDialog>

@@ -20,9 +20,12 @@
 				role: 'العضوية',
 				tel: 'رقم الهاتف',
 				mail: 'البريد الإلكتروني'
-			}
+			},
+			msg: 'فريق إحياء الشباب'
 		}
 	};
+
+	console.log(user);
 </script>
 
 <div class="card">
@@ -30,7 +33,7 @@
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 	</div>
 	<div class="card__info">
-		<a href={`https://api.whatsapp.com/send/?phone=+905375259965&text=merhaba`}
+		<a href={`https://api.whatsapp.com/send/?phone=${user.telphone.replaceAll(' ','')}&text=${config['ar'].msg}`}
 			>{config['ar'].info['tel']}: +50382348234</a
 		>
 		<span>{config['ar'].info['mail']}: sadaki.abdulhadi@ihyateam.org</span>
@@ -45,7 +48,7 @@
 <style>
 	div.card {
 		display: grid;
-		grid-template-columns: 2fr 4fr;
+		grid-template-columns: 1fr 4fr;
 
 		/* lately added */
 		background-color: aqua;
@@ -53,17 +56,15 @@
 		border-radius: 0.25rem;
 		/* must be deleted */
 
+		height: 20rem;
+
 		overflow: hidden;
 		& > .card__img {
 			display: flex;
-			width: 100%;
-			height: 100%;
 			padding: 0.5rem;
 			overflow: hidden;
 
 			& > img {
-				width: 100%;
-				height: 100%;
 				object-fit: cover;
 				border-radius: 0.5rem;
 				box-shadow: var(--full-box-shadow);

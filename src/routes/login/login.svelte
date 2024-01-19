@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
+	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
 
@@ -66,7 +67,8 @@
 			<Input name="password" type="password" placeholder={data['ar'].password} />
 		</Label>
 		<button type="submit" title={data['ar'].login} disabled={submitting}>
-			{data['ar'].login}
+			<span>{data['ar'].login}</span>
+			<LoadIndicator bind:isLoading={submitting} />
 		</button>
 		<p class="error" class:visible={backendError}>{data['ar'].errorAdm}</p>
 		<p class="error" class:visible>{data['ar'].errorMsg}</p>
@@ -150,10 +152,13 @@
 	}
 
 	[type='submit'] {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		border: none;
 		height: 2.5rem;
 		border-radius: 5px;
-		width: 40%;
+		width: 15ch;
 		cursor: pointer;
 		font-weight: 600;
 		margin-left: auto;

@@ -26,9 +26,9 @@
 		</a>
 	</header>
 
-	<svelte:fragment slot="body">
+	<div slot="body">
 		<UserList users={data.users} />
-	</svelte:fragment>
+	</div>
 </PageLayout>
 
 {#if $page.state.showPage}
@@ -44,7 +44,6 @@
 		align-items: center;
 		width: 100%;
 		height: 2rem;
-		margin-bottom: 0.75rem;
 
 		& > a {
 			display: flex;
@@ -62,5 +61,9 @@
 				background-color: var(--gold-color-1);
 			}
 		}
+	}
+
+	div[slot='body'] {
+		margin-block-start: 1.5rem;
 	}
 </style>

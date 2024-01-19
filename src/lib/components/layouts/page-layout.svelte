@@ -21,9 +21,5 @@
 		& > * {
 			width: 100%;
 		}
-
-		& > [slot='body'] {
-			margin-top: 0.75rem;
-		}
 	}
 </style>

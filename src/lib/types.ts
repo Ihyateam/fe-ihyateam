@@ -25,6 +25,7 @@ export type UserEntity = {
 	age: number;
 	first_name: string;
 	last_name: string;
+	telphone: string;
 	username: string;
 	email: string;
 	emailVisibility: boolean;
@@ -77,6 +78,17 @@ export type TaskEntity = {
 	effort_date: Date;
 	created_data: Date;
 	payment_data: Date;
+} & BaseEntity;
+
+export type CommuteEntity = {
+	user_id: string;
+	activity_id: string;
+	hours: number;
+	is_paid: true;
+	commute_date: Date;
+	created_data: Date;
+	payment_data: Date;
+	comment: string;
 } & BaseEntity;
 
 type Currency = {
