@@ -10,7 +10,7 @@
 	const config = {
 		ar: {
 			title: {
-				role: data.current_user?.isAdmin ? 'المدير' : 'المتطوع'
+				role: data.current_user?.isAdmin ? 'مسؤول' : 'متطوع'
 			}
 		}
 	};
