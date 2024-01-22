@@ -2,7 +2,7 @@
 	import type { ActivityEntity } from '$lib/types';
 	import { dateFormater } from '$lib/utils';
 	import { getURL } from '$lib/utils/backend-utils';
-	import Table from '../layouts/table.svelte';
+	import Table from '$lib/components/layouts/table.svelte';
 	import ActivityStatus from './activity-status.svelte';
 
 	const config = {

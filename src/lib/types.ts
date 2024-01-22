@@ -37,8 +37,6 @@ export type UserEntity = {
 } & ExpandPhotoEntity &
 	BaseEntity;
 
-export type ActivityStatus = '0' | '1' | '2' | '3';
-
 export type ActivityEntity = {
 	city_id: string;
 	created_by: string;
@@ -47,7 +45,6 @@ export type ActivityEntity = {
 	id: string;
 	photo_id: string;
 	start_at: Date;
-	status: ActivityStatus;
 	students: number;
 	title: string;
 	wage_id: string;

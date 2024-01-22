@@ -24,8 +24,6 @@
 			msg: 'فريق إحياء الشباب'
 		}
 	};
-
-	console.log(user);
 </script>
 
 <div class="card">
@@ -33,8 +31,10 @@
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 	</div>
 	<div class="card__info">
-		<a href={`https://api.whatsapp.com/send/?phone=${user.telphone.replaceAll(' ','')}&text=${config['ar'].msg}`}
-			>{config['ar'].info['tel']}: +50382348234</a
+		<a
+			href={`https://api.whatsapp.com/send/?phone=${user.telphone
+				.replaceAll(' ', '')
+				.trim()}&text=${config['ar'].msg}`}>{config['ar'].info['tel']}: +50382348234</a
 		>
 		<span>{config['ar'].info['mail']}: sadaki.abdulhadi@ihyateam.org</span>
 		<span>{config['ar'].info['activities']}: {Math.floor(Math.random() * 100)}</span>

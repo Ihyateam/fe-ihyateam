@@ -1,62 +1,37 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
-	import ActivityItem from './activity-item.svelte';
+	import { EditIcon } from '../icons';
+	import ActivityEdit from './activity-edit.svelte';
 
-	export let activities: ActivityEntity[] = [];
-
-	const config = {
-		ar: {
-			header: 'فعالياتي'
-		}
-	};
+	export let activity: ActivityEntity;
 </script>
 
-<div>
-	<header>{config['ar'].header}</header>
-	<ul>
-		{#each activities as activity}
-			<li>
-				<ActivityItem {activity} />
-			</li>
-		{/each}
-	</ul>
+<div class="container">
+	{activity.title}
+	<div class="edit-icon">
+		<ActivityEdit legend={true} />
+	</div>
 </div>
 
 <style>
-	div {
-		height: 300px;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-
-		/* lately added */
-		background-color: aqua;
+	.container {
+		position: relative;
+		background-color: var(--secondary-background-color);
 		outline: var(--base-outline);
-		border-radius: 0.25rem;
-		/* must be deleted */
+		box-shadow: var(--base-box-shadow);
+		padding: 1rem;
+		height: 300px;
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
 
-		& > header {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 2rem;
-			border-bottom: var(--base-outline);
-		}
-
-		& > ul {
-			background-color: white;
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			overflow: auto;
-
-			& > li {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				outline: 1px solid salmon;
-				height: max-content;
-			}
-		}
+	div.edit-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		inset-block-start: 0.5rem;
+		inset-inline-end: 0.5rem;
+		cursor: pointer;
 	}
 </style>
