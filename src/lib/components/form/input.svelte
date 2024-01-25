@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let name: string;
-	export let placeholder: string;
-	export let type: string;
-	export let autocomplete = name;
-	export let required = true;
+	export let name: string = 'input';
+	export let placeholder: string = '';
+	export let type: string = 'text';
+	export let autocomplete = '';
+	export let required = false;
 </script>
 
 <input {name} {type} {placeholder} {autocomplete} {...$$props} {required} />
@@ -31,7 +31,12 @@
 		}
 
 		&[type='number'] {
+			appearance: textfield;
 			-moz-appearance: textfield;
+		}
+
+		&[type='date'] {
+			padding-inline: 0.5rem;
 		}
 	}
 </style>

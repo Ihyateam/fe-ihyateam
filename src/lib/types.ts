@@ -37,6 +37,12 @@ export type UserEntity = {
 } & ExpandPhotoEntity &
 	BaseEntity;
 
+type ExpandUseryEntityAsCreatedBy = {
+	expand: {
+		created_by?: UserAdminEntity;
+	};
+};
+
 export type ActivityEntity = {
 	city_id: string;
 	created_by: string;
@@ -50,7 +56,8 @@ export type ActivityEntity = {
 	wage_id: string;
 } & ExpandPhotoEntity &
 	BaseEntity &
-	ExpandVolunteersList;
+	ExpandVolunteersList &
+	ExpandUseryEntityAsCreatedBy;
 
 export type SidebarComponentConfig = {
 	id: string;

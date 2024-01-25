@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/public';
-import type { ExpandPhotoEntity } from '$lib/types';
+import type { ActivityEntity, ExpandPhotoEntity } from '$lib/types';
 
 export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
 	if (!expand?.photo_id) return '/no-image.png';
@@ -25,4 +25,15 @@ export function groupBy(arr: any[], callbackFn: () => any): any[] {
 	}
 
 	return temp;
+}
+
+export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' {
+	const today = new Date().getTime();
+	const startTime = new Date(activity.start_at).getTime();
+	const endTime = new Date(activity.end_at).getTime();
+
+	if (today > endTime) return 'done';
+	if (today < startTime) return 'scheduled';
+
+	return 'ongoing';
 }

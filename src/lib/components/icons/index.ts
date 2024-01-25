@@ -18,6 +18,7 @@ import NewWageIcon from './new-wage-icon.svelte';
 import NewActivityIcon from './new-activity-icon.svelte';
 import NewTaskIcon from './new-task-icon.svelte';
 import EditIcon from './edit-icon.svelte';
+import SaveIcon from './save-icon.svelte';
 
 export {
 	EarthIcon,
@@ -39,5 +40,6 @@ export {
 	NewActivityIcon,
 	MoneyIcon,
 	NewTaskIcon,
-	EditIcon
+	EditIcon,
+	SaveIcon
 };

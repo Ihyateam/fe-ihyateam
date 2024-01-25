@@ -19,7 +19,20 @@
 </div>
 
 <style>
+	.activity__header::after {
+		content: '';
+		position: absolute;
+		background-color: white;
+		width: 105%;
+		height: 1.5rem;
+		top: -0.75rem;
+		transform: translateZ(-1px);
+	}
+
 	div.activity__header {
+		transform-style: preserve-3d;
+		position: sticky;
+		top: 0.5rem;
 		background-color: var(--secondary-background-color);
 		outline: var(--base-outline);
 		box-shadow: var(--base-box-shadow);
@@ -30,6 +43,7 @@
 		align-items: center;
 		height: 5rem;
 		border-radius: 0.5rem;
+		z-index: 1;
 
 		& > img {
 			width: 3.5rem;
@@ -56,8 +70,5 @@
 	.demphasize {
 		letter-spacing: 1px;
 		color: var(--demphasized-font-color-2);
-		&::before {
-			content: 'test';
-		}
 	}
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
+	import { getActivityStatus } from '$lib/utils/backend-utils';
 
 	const data = {
 		done: 'انتهت',
@@ -8,15 +9,8 @@
 	};
 
 	export let activity: ActivityEntity;
-	const today = new Date().getTime();
-	const startTime = new Date(activity.start_at).getTime();
-	const endTime = new Date(activity.end_at).getTime();
 
-	let status: 'done' | 'ongoing' | 'scheduled' = 'ongoing';
-
-	if (today > endTime) status = 'done';
-	if (today < startTime) status = 'scheduled';
-	if (today > startTime && today < endTime) status = 'ongoing';
+	let status = getActivityStatus(activity);
 </script>
 
 <span class="activity__status {status}">{data[status]}</span>
