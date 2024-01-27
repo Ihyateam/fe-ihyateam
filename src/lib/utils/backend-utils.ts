@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/public';
-import type { ExpandPhotoEntity } from '$lib/types';
+import type { ActivityEntity, ExpandPhotoEntity } from '$lib/types';
 
 export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
 	if (!expand?.photo_id) return '/no-image.png';
@@ -13,7 +13,7 @@ export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string 
 }
 
 export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) => K) {
-	const result: Record<K, T[]> = {};
+	const result: { [k in keyof T]: T[] } = {};
 
 	for (const item of list) {
 		const val = keySelector(item);
@@ -26,4 +26,15 @@ export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) 
 	}
 
 	return result;
+}
+
+export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' {
+	const today = new Date().getTime();
+	const startTime = new Date(activity.start_at).getTime();
+	const endTime = new Date(activity.end_at).getTime();
+
+	if (today > endTime) return 'done';
+	if (today < startTime) return 'scheduled';
+
+	return 'ongoing';
 }
