@@ -12,17 +12,11 @@ export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string 
 	return url.toString();
 }
 
-export function groupBy(list, keySelector) {
-	if (!Array.isArray(list)) {
-		throw new Error('Value is not an array.');
-	}
+export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) => K) {
+	const result: Record<K, T[]> = {};
 
-	const result = {};
-	const count = list.length;
-	let val = null;
-
-	for (let i = 0; i < count; i++) {
-		val = keySelector(list[i]);
+	for (const item of list) {
+		const val = keySelector(item);
 
 		if (val?.constructor?.name !== 'String' && val?.constructor?.name !== 'Number') {
 			throw new Error('Key must be string or number.');
@@ -32,7 +26,7 @@ export function groupBy(list, keySelector) {
 			result[val] = [];
 		}
 
-		result[val].push(list[i]);
+		result[val].push(item);
 	}
 
 	return result;

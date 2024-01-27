@@ -17,11 +17,12 @@ export async function load({ locals }): Promise<{
 		...((await locals.pb?.collection('commute').getFullList()) ?? [])
 	].reduce((acc, item) => acc + item.hours, 0);
 
-	const top_volunteers_commute = await locals.pb
-		?.collection('top_volunteers_commute')
-		.getFullList();
+	const top_volunteers_commute =
+		(await locals.pb?.collection('top_volunteers_commute').getFullList()) ?? [];
 
-	const top_volunteers_effort = await locals.pb?.collection('top_volunteers_effort').getFullList();
+	const top_volunteers_effort =
+		(await locals.pb?.collection('top_volunteers_effort').getFullList()) ?? [];
+
 	const group_arr = groupBy([...top_volunteers_commute, ...top_volunteers_effort], (x) => x.id);
 
 	const top_volunteers = Object.entries(group_arr)
