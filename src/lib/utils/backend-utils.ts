@@ -18,10 +18,6 @@ export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) 
 	for (const item of list) {
 		const val = keySelector(item);
 
-		if (val?.constructor?.name !== 'String' && val?.constructor?.name !== 'Number') {
-			throw new Error('Key must be string or number.');
-		}
-
 		if (result[val] === undefined) {
 			result[val] = [];
 		}
