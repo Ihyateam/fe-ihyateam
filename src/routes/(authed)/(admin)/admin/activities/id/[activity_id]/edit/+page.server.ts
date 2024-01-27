@@ -1,6 +1,6 @@
 import type { ActivityEntity, CityEntity, UserEntity, WageEntity } from '$lib/types.js';
 import type { ServerLoadEvent } from '@sveltejs/kit';
-import { load as activitiesLoader } from '../../../../../activities/[activity_id]/+page.server.js';
+import { load as activitiesLoader } from '../../../../../../activities/[activity_id]/+page.server.js';
 
 export async function load(request: ServerLoadEvent): Promise<{
 	users?: UserEntity[];

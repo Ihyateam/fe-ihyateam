@@ -43,6 +43,18 @@ type ExpandUseryEntityAsCreatedBy = {
 	};
 };
 
+type ExpandCityEntityAsCreatedBy = {
+	expand: {
+		city_id?: CityEntity;
+	};
+};
+
+type ExpandWageEntityAsCreatedBy = {
+	expand: {
+		wage_id?: WageEntity;
+	};
+};
+
 export type ActivityEntity = {
 	city_id: string;
 	created_by: string;
@@ -57,7 +69,9 @@ export type ActivityEntity = {
 } & ExpandPhotoEntity &
 	BaseEntity &
 	ExpandVolunteersList &
-	ExpandUseryEntityAsCreatedBy;
+	ExpandUseryEntityAsCreatedBy &
+	ExpandCityEntityAsCreatedBy &
+	ExpandWageEntityAsCreatedBy;
 
 export type SidebarComponentConfig = {
 	id: string;

@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/public';
-import type { ActivityEntity, ExpandPhotoEntity } from '$lib/types';
+import type { ExpandPhotoEntity } from '$lib/types';
 
 export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
 	if (!expand?.photo_id) return '/no-image.png';
@@ -12,28 +12,28 @@ export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string 
 	return url.toString();
 }
 
-export function groupBy(arr: any[], callbackFn: () => any): any[] {
-	const temp = [];
-
-	for (const i of arr) {
-		const key = callbackFn(i);
-		if (temp[key]) {
-			temp[key].push(i);
-		} else {
-			temp[key] = [i];
-		}
+export function groupBy(list, keySelector) {
+	if (!Array.isArray(list)) {
+		throw new Error('Value is not an array.');
 	}
 
-	return temp;
-}
+	const result = {};
+	const count = list.length;
+	let val = null;
 
-export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' {
-	const today = new Date().getTime();
-	const startTime = new Date(activity.start_at).getTime();
-	const endTime = new Date(activity.end_at).getTime();
+	for (let i = 0; i < count; i++) {
+		val = keySelector(list[i]);
 
-	if (today > endTime) return 'done';
-	if (today < startTime) return 'scheduled';
+		if (val?.constructor?.name !== 'String' && val?.constructor?.name !== 'Number') {
+			throw new Error('Key must be string or number.');
+		}
 
-	return 'ongoing';
+		if (result[val] === undefined) {
+			result[val] = [];
+		}
+
+		result[val].push(list[i]);
+	}
+
+	return result;
 }

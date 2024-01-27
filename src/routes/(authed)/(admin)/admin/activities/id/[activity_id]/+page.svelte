@@ -17,18 +17,10 @@
 		<div class="edit-icon">
 			<ActivityEdit legend={true} />
 		</div>
-		<div dir="ltr">
-			<pre>{JSON.stringify(data, null, 2)}</pre>
-		</div>
 	</div>
 </PageLayout>
 
 <style>
-	.flex {
-		display: flex;
-		flex-direction: column;
-	}
-
 	[slot='body'] {
 		margin-block-start: 2rem;
 		display: flex;
