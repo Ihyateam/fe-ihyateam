@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
-	import { dateFormater } from '$lib/utils/date-formater';
+	import { dateFormater } from '$lib/utils/formaters';
 	import { CalenderIcon, PupilsIcon } from '../icons';
 	import ActivityStatus from './activity-status.svelte';
 

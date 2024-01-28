@@ -23,11 +23,11 @@
 
 <Table baseUrl="activities/id" headerObj={config['ar']} arr={activities} let:row>
 	<td><img src={getURL(row)} alt={row.title} /></td>
-	<td>{row.id}</td>
-	<td>{row.title}</td>
-	<td>{dateFormater(new Date(row.start_at))}</td>
-	<td>{dateFormater(new Date(row.end_at))}</td>
-	<td>{row.wage_id}</td>
-	<td>{row.city_id}</td>
+	<td data-cell="id">{row.id}</td>
+	<td data-cell="title">{row.title}</td>
+	<td data-cell="start">{dateFormater(new Date(row.start_at))}</td>
+	<td data-cell="end">{dateFormater(new Date(row.end_at))}</td>
+	<td data-cell="wage">{row.wage_id}</td>
+	<td data-cell="city">{row.city_id}</td>
 	<td><ActivityStatus activity={row} /></td>
 </Table>

@@ -23,3 +23,10 @@ export const dateFormater = (date: Date, options: { forInputDate?: boolean } = {
 	}
 	return dateTimeFormater.format(date);
 };
+
+const numberFormat = new Intl.NumberFormat('tr-TR', {
+	style: 'currency',
+	currency: 'TRY'
+});
+
+export const moneyFormater = (num: number | bigint) => numberFormat.format(num);

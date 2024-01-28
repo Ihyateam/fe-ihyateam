@@ -9,7 +9,7 @@
 			currency: 'العملة',
 			work_hour_rate: 'بدل التطوع',
 			commute_hour_rate: 'بدل المواصلات',
-			used: 'عدد الاستخدامات',
+			used: 'تم الاستخدام',
 			created_date: 'تاريخ الإنشاء'
 		}
 	};
@@ -18,10 +18,10 @@
 </script>
 
 <Table baseUrl="/admin/wages/id" headerObj={config['ar']} arr={wages} let:row>
-	<td>{row.id}</td>
-	<td>{row.expand.currency_id.symbol}</td>
-	<td>{row.commuting_hour_rate}</td>
-	<td>{row.working_hour_rate}</td>
-	<td>{Math.floor(Math.random() * 20)}</td>
-	<td>{dateFormater(new Date(row.created))}</td>
+	<td data-cell="id">{row.id}</td>
+	<td data-cell="symbol">{row.expand.currency_id.symbol}</td>
+	<td data-cell="commute">{row.commuting_hour_rate}</td>
+	<td data-cell="working">{row.working_hour_rate}</td>
+	<td data-cell="used">{Math.floor(Math.random() * 20)}</td>
+	<td data-cell="created">{dateFormater(new Date(row.created))}</td>
 </Table>

@@ -18,24 +18,24 @@ export async function load({ locals }): Promise<{
 	].reduce((acc, item) => acc + item.hours, 0);
 
 	const top_volunteers_commute =
-		(await locals.pb?.collection('top_volunteers_commute').getFullList()) ?? [];
+		(await locals.pb?.collection('top_volunteers_commute').getFullList({ expand: 'photo_id' })) ??
+		[];
 
 	const top_volunteers_effort =
-		(await locals.pb?.collection('top_volunteers_effort').getFullList()) ?? [];
+		(await locals.pb?.collection('top_volunteers_effort').getFullList({ expand: 'photo_id' })) ??
+		[];
 
-	const group_arr = groupBy([...top_volunteers_commute, ...top_volunteers_effort], (x) => x.id);
-
-	const top_volunteers = Object.entries(group_arr)
-		.map(([key, values]) => ({
-			[key]: values.reduce(
-				(acc, currentValue) => ({ ...currentValue, ehours: acc.ehours + currentValue.ehours }),
-				{
-					ehours: 0
-				}
-			)
-		}))
-		.sort((a, b) => Object.values(b)[0].ehours - Object.values(a)[0].ehours)
-		.slice(0, 5);
+	const top_volunteers = [...top_volunteers_commute, ...top_volunteers_effort].reduce(
+		(acc, item) => {
+			if (acc[item.id]) {
+				acc[item.id].hours += item.hours;
+				return acc;
+			}
+			acc[item.id] = item;
+			return acc;
+		},
+		{}
+	);
 
 	return {
 		metrics: {

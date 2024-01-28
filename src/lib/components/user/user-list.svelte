@@ -22,11 +22,11 @@
 
 <Table baseUrl="/admin/users/id" headerObj={config['ar']} arr={users} let:row>
 	<td><img src={getURL(row)} alt={row.username} /></td>
-	<td>{row.id}</td>
-	<td>{row.first_name}</td>
-	<td>{row.last_name}</td>
-	<td>{row.username}</td>
-	<td>{row.age}</td>
-	<td>{row.email || '-'}</td>
+	<td data-cell={config['ar'].id}>{row.id}</td>
+	<td data-cell={config['ar'].first_name}>{row.first_name}</td>
+	<td data-cell={config['ar'].last_name}>{row.last_name}</td>
+	<td data-cell={config['ar'].username}>{row.username}</td>
+	<td data-cell={config['ar'].age}>{row.age}</td>
+	<td data-cell={config['ar'].email}>{row.email || '-'}</td>
 	<td><UserStatus user={row} /></td>
 </Table>

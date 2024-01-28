@@ -46,6 +46,7 @@
 
 <style>
 	div {
+		container: table / inline-size;
 		width: 100%;
 		max-height: calc(4rem * 8);
 		height: auto;
@@ -116,5 +117,48 @@
 	th {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
+	}
+	tr {
+		& > td[data-cell]::before {
+			display: none;
+			content: attr(data-cell);
+			font-weight: bold;
+		}
+	}
+
+	@container table (width < 600px) {
+		thead {
+			display: none;
+		}
+
+		:global(tr > td:has(img)) {
+			height: 10rem !important;
+		}
+
+		:global(tr > td > img) {
+			height: 9rem !important;
+			width: 9rem !important;
+		}
+
+		tr[data-id] > td:first-of-type {
+			display: none;
+		}
+
+		tr {
+			display: flex;
+			flex-direction: column;
+		}
+
+		tr {
+			& td[data-cell] {
+				height: max-content;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			& td[data-cell]::before {
+				display: block !important;
+			}
+		}
 	}
 </style>

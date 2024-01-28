@@ -2,7 +2,11 @@
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import ActivityWidget from '$lib/components/ui/activity-widget.svelte';
 	import BudgetContainer from '$lib/components/ui/widget-container.svelte';
-	import BudgetWidget from '$lib/components/ui/budget-widget.svelte';
+	import MetricsWidget from '$lib/components/ui/metrics-widget.svelte';
+	import TopUsersWidget from '$lib/components/ui/top-users-widget.svelte';
+
+	export let data;
+	const { user } = data;
 
 	const config = {
 		ar: {
@@ -10,7 +14,14 @@
 		}
 	};
 
-	export let data;
+	const widgets: any[] = [{ Widget: MetricsWidget, props: { ...data.metrics } }];
+
+	const privateWidgets = [
+		{ Widget: ActivityWidget, props: undefined },
+		{ Widget: TopUsersWidget, props: { ...data.metrics } }
+	];
+
+	user.isAdmin && widgets.push(...privateWidgets);
 </script>
 
 <svelte:head>
@@ -21,12 +32,11 @@
 	<h1 slot="header">{config['ar'].title}</h1>
 
 	<div slot="body">
-		{#if data.user.isAdmin}
-			<BudgetContainer>
-				<BudgetWidget />
-				<ActivityWidget />
-			</BudgetContainer>
-		{/if}
+		<BudgetContainer>
+			{#each widgets as { Widget, props } (props)}
+				<Widget {props} />
+			{/each}
+		</BudgetContainer>
 
 		<div dir="ltr">
 			<pre>{JSON.stringify(data, null, 2)}</pre>

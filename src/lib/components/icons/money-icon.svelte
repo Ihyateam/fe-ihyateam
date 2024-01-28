@@ -1,12 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...$$props}
-	><g
-		fill="none"
-		stroke="currentColor"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-width="1.5"
-		><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" /><path
-			d="M14.8 9A2 2 0 0 0 13 8h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1-1.8-1M12 7v10"
-		/></g
-	></svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1280" {...$$props}
+	><path
+		fill="currentColor"
+		d="M768 896h384v-96h-128V352H910L762 489l77 80q42-37 55-57h2v288H768zm512-256q0 70-21 142t-59.5 134t-101.5 101t-138 39t-138-39t-101.5-101T661 782t-21-142t21-142t59.5-134T822 263t138-39t138 39t101.5 101t59.5 134t21 142m512 256V384q-106 0-181-75t-75-181H384q0 106-75 181t-181 75v512q106 0 181 75t75 181h1152q0-106 75-181t181-75m128-832v1152q0 26-19 45t-45 19H64q-26 0-45-19t-19-45V64q0-26 19-45T64 0h1792q26 0 45 19t19 45"
+	/></svg
 >

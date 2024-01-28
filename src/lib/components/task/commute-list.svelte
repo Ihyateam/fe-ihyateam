@@ -17,9 +17,9 @@
 </script>
 
 <TableDialog headerObj={config['ar']} {arr} let:row>
-	<td>{row.hours}</td>
-	<td>{row.activity_id}</td>
-	<td>{dateFormater(new Date(row.commute_date))}</td>
-	<td>{row.payment_date || '-'}</td>
+	<td data-cell="hours">{row.hours}</td>
+	<td data-cell="activity">{row.activity_id}</td>
+	<td data-cell="date">{dateFormater(new Date(row.commute_date))}</td>
+	<td data-cell="payment_date">{row.payment_date || '-'}</td>
 	<td><PaymentStatus is_paid={row.is_paid} /></td>
 </TableDialog>

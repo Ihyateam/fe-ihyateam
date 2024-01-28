@@ -144,3 +144,11 @@ type ExpandVolunteersList = {
 		volunteers?: UserEntity[];
 	};
 };
+
+export type Metrics = {
+	users: number;
+	activities: number;
+	hours: number;
+	balance: number;
+	top_volunteers?: any[];
+};

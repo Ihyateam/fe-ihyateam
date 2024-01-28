@@ -19,6 +19,7 @@ import NewActivityIcon from './new-activity-icon.svelte';
 import NewTaskIcon from './new-task-icon.svelte';
 import EditIcon from './edit-icon.svelte';
 import SaveIcon from './save-icon.svelte';
+import ClockIcon from './clock-icon.svelte';
 
 export {
 	EarthIcon,
@@ -41,5 +42,6 @@ export {
 	MoneyIcon,
 	NewTaskIcon,
 	EditIcon,
-	SaveIcon
+	SaveIcon,
+	ClockIcon
 };

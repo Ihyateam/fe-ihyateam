@@ -13,16 +13,16 @@ export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string 
 }
 
 export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) => K) {
-	const result: { [k in keyof T]: T[] } = {};
+	const result: { [k in any]: T[] } = {};
 
 	for (const item of list) {
 		const val = keySelector(item);
 
-		if (result[val] === undefined) {
-			result[val] = [];
+		if (result[val]) {
+			result[val].push(item);
+		} else {
+			result[val] = [item];
 		}
-
-		result[val].push(item);
 	}
 
 	return result;
