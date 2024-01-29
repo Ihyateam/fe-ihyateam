@@ -16,7 +16,7 @@
 			<li>
 				<img src={getURL(user)} alt="{user.last_name},{user.first_name}" />
 				<h4>{user.first_name} {user.last_name}</h4>
-				<span>{user.hours} ساعة عمل</span>
+				<span class="hours">{user.hours} ساعة عمل</span>
 			</li>
 		{/each}
 	</ul>
@@ -28,6 +28,7 @@
 	}
 
 	ul {
+		position: relative;
 		outline: var(--base-outline);
 		grid-column: 1 / 3;
 
@@ -35,6 +36,20 @@
 		grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
 		gap: 1rem;
 		padding: 1rem;
+		overflow: hidden;
+	}
+
+	ul::after {
+		content: ' ';
+		background-color: hsla(0, 10%, 80%, 0.4);
+		filter: blur(20px);
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		backdrop-filter: blur(20px);
+		z-index: -1;
 	}
 
 	li {
@@ -42,9 +57,13 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 0.25rem;
-		outline: 1px solid salmon;
 		height: 8rem;
 		gap: 0.5rem;
+		border-radius: 10px;
+		background-color: hsla(0, 10%, 100%, 1);
+		outline: var(--base-outline-nocolor) hsla(0, 10%, 80%, 1);
+		position: relative;
+		overflow: hidden;
 	}
 
 	li > img {
@@ -61,6 +80,10 @@
 			gap: 0.25rem;
 			height: 4rem;
 			justify-content: space-between;
+		}
+
+		.hours {
+			display: none;
 		}
 
 		li > img {
