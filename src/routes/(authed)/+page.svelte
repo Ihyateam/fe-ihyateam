@@ -1,9 +1,8 @@
 <script lang="ts">
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import ActivityWidget from '$lib/components/ui/activity-widget.svelte';
-	import BudgetContainer from '$lib/components/ui/widget-container.svelte';
-	import MetricsWidget from '$lib/components/ui/metrics-widget.svelte';
-	import TopUsersWidget from '$lib/components/ui/top-users-widget.svelte';
+	import BudgetContainer from '$lib/components/widgets/widget-container.svelte';
+	import MetricsWidget from '$lib/components/widgets/metrics-widget.svelte';
+	import TopUsersWidget from '$lib/components/widgets/top-users-widget.svelte';
 
 	export let data;
 	const { user } = data;
@@ -16,10 +15,7 @@
 
 	const widgets: any[] = [{ Widget: MetricsWidget, props: { ...data.metrics } }];
 
-	const privateWidgets = [
-		{ Widget: ActivityWidget, props: undefined },
-		{ Widget: TopUsersWidget, props: { ...data.metrics } }
-	];
+	const privateWidgets = [{ Widget: TopUsersWidget, props: { ...data.metrics } }];
 
 	user.isAdmin && widgets.push(...privateWidgets);
 </script>

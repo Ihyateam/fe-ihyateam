@@ -3,7 +3,7 @@
 
 	import { ActivityIcon, VolunteersIcon, ClockIcon, MoneyIcon } from '$lib/components/icons';
 	import { moneyFormater } from '$lib/utils/formaters';
-	import ResponsiveContainer from './responsive-container.svelte';
+	import ResponsiveContainer from '$lib/components/ui/responsive-container.svelte';
 
 	export let props: Metrics;
 
@@ -19,7 +19,7 @@
 	let iconProps = { width: '2rem', height: '2rem' };
 </script>
 
-<ResponsiveContainer style="container-name: balance; grid-column: 1 / -1;">
+<ResponsiveContainer style="grid-column: 1 / -1;" --container-name="balance">
 	<ul class="flex">
 		<li>
 			<span class="value">

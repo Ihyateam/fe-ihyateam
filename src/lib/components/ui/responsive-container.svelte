@@ -9,5 +9,6 @@
 <style>
 	.responsive-container {
 		container-type: inline-size;
+		container-name: var(--container-name);
 	}
 </style>
