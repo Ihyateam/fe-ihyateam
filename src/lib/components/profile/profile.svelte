@@ -14,7 +14,7 @@
 			},
 			{
 				name: 'المهام',
-				href: '/maham'
+				href: '/profile/tasks'
 			},
 			{
 				name: 'تسجيل الخروج',

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	export let headerObj: {};
 	export let arr: any[] = [];
 
@@ -9,7 +11,7 @@
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
-			console.log(node.dataset.id);
+			goto(`/profile/tasks/${node.dataset.id}`);
 		}
 
 		node.addEventListener('click', handleClick);

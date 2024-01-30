@@ -59,11 +59,9 @@
 		padding: 0.25rem;
 		height: 8rem;
 		gap: 0.5rem;
-		border-radius: 10px;
+		border-radius: 5px;
 		background-color: hsla(0, 10%, 100%, 1);
 		outline: var(--base-outline-nocolor) hsla(0, 10%, 80%, 1);
-		position: relative;
-		overflow: hidden;
 	}
 
 	li > img {
@@ -80,6 +78,7 @@
 			gap: 0.25rem;
 			height: 4rem;
 			justify-content: space-between;
+			padding-inline: 0.5rem;
 		}
 
 		.hours {
