@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
+	import ActivityEdit from '../activity/activity-edit.svelte';
 
 	export let user: UserEntity;
 
@@ -43,10 +44,20 @@
 		<span>{config['ar'].info['enroll_date']}: {user.created}</span>
 		<span>{config['ar'].info['role']}: {config['ar'].role[user.isAdmin ? 'true' : 'false']}</span>
 	</div>
+	<div class="edit-btn">
+		<ActivityEdit legend={true} />
+	</div>
 </div>
 
 <style>
+	div.edit-btn {
+		position: absolute;
+		inset-block-end: 1rem;
+		inset-inline-end: 1rem;
+	}
+
 	div.card {
+		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 4fr;
 

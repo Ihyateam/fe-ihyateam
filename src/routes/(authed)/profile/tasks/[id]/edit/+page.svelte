@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/stores';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import ACtivityEdit from '$lib/components/activity/activity-edit.svelte';
 
 	export let data;
 </script>
@@ -12,14 +11,9 @@
 	</div>
 
 	<div slot="body" class="container">
-		<div class="info">
-			<div dir="ltr">
-				<pre>{JSON.stringify(data.task, null, 2)}</pre>
-			</div>
-		</div>
-		<div class="edit-icon">
-			<ACtivityEdit legend={true} />
-		</div>
+		<form>
+			<label><input type="text" inputmode="numeric" name="hours" value={data.task?.id} /></label>
+		</form>
 	</div>
 </PageLayout>
 

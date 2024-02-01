@@ -14,7 +14,7 @@
 
 <a class="edit__container" title={config[`ar`].content} href="{$page.url}/edit">
 	<span class="edit-icon">
-		<EditIcon width="70%" height="70%" />
+		<EditIcon width="1.5rem" height="1.5rem" />
 	</span>
 	{#if legend}
 		<span class="edit">{config[`ar`].content}</span>

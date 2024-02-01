@@ -89,5 +89,9 @@
 			margin-block-start: 0;
 			border-radius: 10px;
 		}
+
+		ul {
+			padding: 0.5rem;
+		}
 	}
 </style>
