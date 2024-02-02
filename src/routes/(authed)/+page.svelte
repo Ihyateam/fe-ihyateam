@@ -34,9 +34,11 @@
 			{/each}
 		</BudgetContainer>
 
-		<div dir="ltr">
-			<pre>{JSON.stringify(data, null, 2)}</pre>
-		</div>
+		{#if user.isAdmin}
+			<div dir="ltr">
+				<pre>{JSON.stringify(data, null, 2)}</pre>
+			</div>
+		{/if}
 	</div>
 </PageLayout>
 

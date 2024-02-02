@@ -8,9 +8,18 @@
 	top_volunteers = Object.values(top_volunteers)
 		.sort((a, b) => b.hours - a.hours)
 		.slice(0, 5);
+
+	const config = {
+		ar: {
+			header: 'الأكثر نشاطاً'
+		}
+	};
 </script>
 
 <ResponsiveContainer --container-name="topuser" style="display: grid; grid-column: span 2;">
+	<header>
+		<h3>{config['ar'].header}</h3>
+	</header>
 	<ul>
 		{#each top_volunteers as user}
 			<li>
@@ -23,13 +32,29 @@
 </ResponsiveContainer>
 
 <style>
+	header {
+		display: flex;
+		justify-content: center;
+		background-color: transparent;
+		grid-column: span 2;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+
+		border: var(--base-outline);
+		padding-block: 0.25rem;
+	}
+
 	ul > * {
 		border-radius: 0;
 	}
 
 	ul {
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+
 		position: relative;
-		outline: var(--base-outline);
+		border: var(--base-outline);
+		border-block-start: none;
 		grid-column: 1 / 3;
 
 		display: grid;
