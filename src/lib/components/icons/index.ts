@@ -20,6 +20,8 @@ import NewTaskIcon from './new-task-icon.svelte';
 import EditIcon from './edit-icon.svelte';
 import SaveIcon from './save-icon.svelte';
 import ClockIcon from './clock-icon.svelte';
+import TelphoneIcon from './telphone-icon.svelte';
+import NoTelephoneIcon from './no-telephone-icon.svelte';
 
 export {
 	EarthIcon,
@@ -43,5 +45,7 @@ export {
 	NewTaskIcon,
 	EditIcon,
 	SaveIcon,
-	ClockIcon
+	ClockIcon,
+	TelphoneIcon,
+	NoTelephoneIcon
 };

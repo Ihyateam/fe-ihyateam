@@ -12,6 +12,8 @@
 </li>
 
 <style>
+	/* if user can't hover, the hoving text should be shown below its correspending icon. */
+	/* @media (hover) */
 	a {
 		display: flex;
 		align-items: center;

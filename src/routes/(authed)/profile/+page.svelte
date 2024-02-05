@@ -13,6 +13,14 @@
 			title: 'حساب'
 		}
 	};
+
+	const hours = [...data.efforts, ...data.commutes].reduce((acc, curr) => (acc += curr.hours), 0);
+
+	const metrics = {
+		activity: data.activities?.length ?? 0,
+		hours,
+		stocks: 0
+	};
 </script>
 
 <svelte:head>
@@ -25,7 +33,7 @@
 <PageLayout>
 	<UserProfileHeader {user} slot="header" />
 	<div slot="body">
-		<UserProfileCard user={data.current_user} />
+		<UserProfileCard user={data.current_user} {metrics} />
 		<div>
 			<h2>المهام المنجزة</h2>
 			<TaskList arr={data?.efforts} />

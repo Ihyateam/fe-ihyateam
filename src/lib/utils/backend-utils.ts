@@ -1,7 +1,8 @@
 import { env } from '$env/dynamic/public';
 import type { ActivityEntity, ExpandPhotoEntity } from '$lib/types';
 
-export function getURL({ expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
+export function getURL({ username, expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
+	if (!!username && !expand?.photo_id) return `/profile.svg`;
 	if (!expand?.photo_id) return '/no-image.png';
 
 	const { collectionId, id, photo } = expand.photo_id;

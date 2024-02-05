@@ -1,9 +1,16 @@
 <script lang="ts">
 	import type { UserEntity } from '$lib/types';
+	import { dateFormater } from '$lib/utils';
 	import { getURL } from '$lib/utils/backend-utils';
 	import ActivityEdit from '../activity/activity-edit.svelte';
+	import UserContactInfo from './user-contact-info.svelte';
 
 	export let user: UserEntity;
+	export let metrics: {
+		activity: number;
+		hours: number;
+		stocks: number;
+	} = { stocks: 0, hours: 0, activity: 0 };
 
 	const config = {
 		ar: {
@@ -19,10 +26,9 @@
 				stocks: 'الأسهم',
 				enroll_date: 'تاريخ الانضمام',
 				role: 'العضوية',
-				tel: 'رقم الهاتف',
+
 				mail: 'البريد الإلكتروني'
-			},
-			msg: 'فريق إحياء الشباب'
+			}
 		}
 	};
 </script>
@@ -31,68 +37,98 @@
 	<div class="card__img">
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 	</div>
-	<div class="card__info">
-		<a
-			href={`https://api.whatsapp.com/send/?phone=${user.telphone
-				.replaceAll(' ', '')
-				.trim()}&text=${config['ar'].msg}`}>{config['ar'].info['tel']}: +50382348234</a
-		>
-		<span>{config['ar'].info['mail']}: sadaki.abdulhadi@ihyateam.org</span>
-		<span>{config['ar'].info['activities']}: {Math.floor(Math.random() * 100)}</span>
-		<span>{config['ar'].info['hours']}: {Math.floor(Math.random() * 100)}</span>
-		<span>{config['ar'].info['stocks']}: {Math.floor(Math.random() * 100)}</span>
-		<span>{config['ar'].info['enroll_date']}: {user.created}</span>
-		<span>{config['ar'].info['role']}: {config['ar'].role[user.isAdmin ? 'true' : 'false']}</span>
+	<div class="card__header">
+		<h2>{user.first_name} {user.last_name}</h2>
+		<div>
+			<span>{config['ar'].role[`${user.isAdmin}`]}</span> &bullet;
+			<UserContactInfo {user} />
+		</div>
 	</div>
-	<div class="edit-btn">
-		<ActivityEdit legend={true} />
+	<div class="card__info">
+		<div>
+			<span>{config['ar'].info['mail']}: {user.email ? user.email : '-'}</span>
+		</div>
+		<div>
+			<span>{config['ar'].info['activities']}: {metrics.activity}</span>
+		</div>
+		<div>
+			<span>{config['ar'].info['hours']}: {metrics.hours}</span>
+		</div>
+		<div>
+			<span>{config['ar'].info['stocks']}: {metrics.stocks}</span>
+		</div>
+		<div>
+			<span>{config['ar'].info['enroll_date']}: {dateFormater(new Date(user.created))}</span>
+		</div>
+		<div class="edit-btn">
+			<ActivityEdit legend={true} />
+		</div>
 	</div>
 </div>
 
 <style>
-	div.edit-btn {
-		position: absolute;
-		inset-block-end: 1rem;
-		inset-inline-end: 1rem;
-	}
-
 	div.card {
 		position: relative;
-		display: grid;
-		grid-template-columns: 1fr 4fr;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-block-start: 0.5rem;
 
 		/* lately added */
-		background-color: aqua;
+		background-color: var(--secondary-background-color);
 		outline: var(--base-outline);
 		border-radius: 0.25rem;
-		/* must be deleted */
-
-		height: 20rem;
+		font-size: 1.25rem;
 
 		overflow: hidden;
-		& > .card__img {
-			display: flex;
-			padding: 0.5rem;
-			overflow: hidden;
+	}
 
-			& > img {
-				object-fit: cover;
-				border-radius: 0.5rem;
-				box-shadow: var(--full-box-shadow);
-			}
-		}
+	.card__img {
+		display: flex;
+		justify-content: center;
+		height: 15rem;
+		width: 15rem;
+		border-radius: 50%;
+		overflow: hidden;
+		outline: var(--base-outline);
+		box-shadow: 0px 2px 8px 0px hsl(188, 100%, 38%, 0.5);
+	}
 
-		& > .card__info {
-			display: flex;
-			flex-direction: column;
-			margin: 0.5rem 0 0.5rem 0.5rem;
-			padding-inline-start: 0.5rem;
+	.card__img > img {
+		width: 100%;
+		object-fit: cover;
+	}
 
-			& > span {
-				display: flex;
-				align-items: center;
-				height: 100%;
-			}
-		}
+	.card__info {
+		display: grid;
+		grid-auto-columns: 1fr 1fr;
+		gap: 1rem;
+
+		width: 100%;
+		padding-inline: 1rem;
+
+		margin-block: 2rem;
+	}
+
+	.edit-btn {
+		justify-self: end;
+	}
+
+	.card__header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.card__header > h2 {
+		margin-block-start: 1rem;
+	}
+
+	.card__header > div {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		color: var(--demphasized-font-color);
 	}
 </style>

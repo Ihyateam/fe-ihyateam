@@ -35,7 +35,7 @@
 	header {
 		display: flex;
 		justify-content: center;
-		background-color: transparent;
+		background-color: hsla(0, 10%, 80%, 0.4);
 		grid-column: span 2;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
