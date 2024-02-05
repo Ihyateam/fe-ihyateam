@@ -1,12 +1,11 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import type { UserEntity } from '$lib/types';
-	import { dateFormater } from '$lib/utils';
 	import { getURL } from '$lib/utils/backend-utils';
 	import ActivitySave from '../activity/activity-save.svelte';
 	import Input from '../form/input.svelte';
 	import Label from '../form/label.svelte';
 	import { EditIcon } from '../icons';
-	import UserContactInfo from './user-contact-info.svelte';
 
 	export let user: UserEntity;
 
@@ -27,7 +26,7 @@
 	};
 </script>
 
-<form id="update-profile-form" class="card">
+<form id="update-profile-form" class="card" method="POST" use:enhance>
 	<div class="card__img">
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 		<div>
@@ -53,7 +52,7 @@
 			<Input type="tel" inputmode="numeric" value={user.telphone} />
 		</Label>
 		<div class="edit-btn">
-			<ActivitySave legend={true} />
+			<ActivitySave legend={true} type="submit" />
 		</div>
 	</div>
 </form>

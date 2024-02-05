@@ -11,7 +11,7 @@
 	};
 </script>
 
-<button class="edit__container" form="update-profile-form" title={config[`ar`].content}>
+<button class="edit__container" title={config[`ar`].content} {...$$restProps}>
 	<span class="edit-icon">
 		<SaveIcon width="1.5rem" height="1.5rem" />
 	</span>
