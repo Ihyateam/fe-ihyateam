@@ -3,6 +3,8 @@
 	import { dateFormater } from '$lib/utils';
 	import { getURL } from '$lib/utils/backend-utils';
 	import ActivitySave from '../activity/activity-save.svelte';
+	import Input from '../form/input.svelte';
+	import Label from '../form/label.svelte';
 	import { EditIcon } from '../icons';
 	import UserContactInfo from './user-contact-info.svelte';
 
@@ -25,7 +27,7 @@
 	};
 </script>
 
-<form class="card">
+<form id="update-profile-form" class="card">
 	<div class="card__img">
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 		<div>
@@ -37,23 +39,19 @@
 			</button>
 		</div>
 	</div>
-	<div class="card__header">
-		<h2>{user.first_name} {user.last_name}</h2>
-		<div>
-			<span>{config['ar'].role[`${user.isAdmin}`]}</span> &bullet;
-			<UserContactInfo {user} />
-		</div>
-	</div>
 	<div class="card__info">
-		<div>
-			<span>{config['ar'].info['mail']}: {user.email ? user.email : '-'}</span>
-		</div>
-		<div>
-			<span>{config['ar'].info['enroll_date']}: {dateFormater(new Date(user.created))}</span>
-		</div>
-		<div>
-			<span>{config['ar'].info['updated']}: {dateFormater(new Date(user.updated))}</span>
-		</div>
+		<Label label="الاسم">
+			<Input type="text" value={user.first_name} />
+		</Label>
+		<Label label="اللقب">
+			<Input type="text" value={user.first_name} />
+		</Label>
+		<Label label={config['ar'].info['mail']}>
+			<Input type="email" value={user.email} />
+		</Label>
+		<Label label="الهاتف">
+			<Input type="tel" inputmode="numeric" value={user.telphone} />
+		</Label>
 		<div class="edit-btn">
 			<ActivitySave legend={true} />
 		</div>
