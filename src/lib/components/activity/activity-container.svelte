@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
 	import { dateFormater } from '$lib/utils';
+	import LinkIcon from '../icons/link-icon.svelte';
 
 	export let activity: ActivityEntity;
 	const config = {
@@ -28,7 +29,11 @@
 		</section>
 		<section>
 			<span>{config['ar'].created_by}:</span>
-			<span>{activity.expand.created_by?.first_name}</span>
+			<a href="/admin/users/id/{activity.expand.created_by?.id}">
+				<span>{activity.expand.created_by?.first_name} {activity.expand.created_by?.last_name}</span
+				>
+				<LinkIcon width="1.5rem" height="1.5rem" />
+			</a>
 		</section>
 		<section>
 			<span>{config['ar'].city}:</span>
@@ -49,6 +54,17 @@
 </div>
 
 <style>
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		cursor: alias;
+		padding-inline: 0.5rem;
+		padding-block: 0.1rem;
+		border-radius: 10px;
+		background-color: white;
+	}
+
 	.container {
 		container-name: balance;
 		container-type: inline-size;

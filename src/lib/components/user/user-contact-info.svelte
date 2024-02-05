@@ -7,7 +7,10 @@
 
 <div>
 	{#if user.telphone}
-		<a href={`https://wa.me/${user.telphone.replaceAll(' ', '').trim().replace('+', '')}`}>
+		<a
+			href={`https://wa.me/${user.telphone.replaceAll(' ', '').trim().replace('+', '')}`}
+			target="_blank"
+		>
 			<span dir="ltr">{user.telphone}</span>
 			<TelphoneIcon width="1.5rem" height="100%" />
 		</a>
