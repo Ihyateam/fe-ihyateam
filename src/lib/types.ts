@@ -109,7 +109,7 @@ export type CommuteEntity = {
 	comment: string;
 } & BaseEntity;
 
-type Currency = {
+export type CurrencyEntity = {
 	currency_name: string;
 	currency_country: string;
 	symbol: string;
@@ -135,7 +135,7 @@ export type ExpandPhotoEntity = {
 
 type ExpandCurrencyEntity = {
 	expand?: {
-		currency_id?: Currency;
+		currency_id?: CurrencyEntity;
 	};
 };
 

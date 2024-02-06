@@ -3,7 +3,6 @@
 	import ResponsiveContainer from '../ui/responsive-container.svelte';
 
 	export let props;
-	console.log(props);
 	let { top_volunteers } = props;
 	top_volunteers = Object.values(top_volunteers)
 		.sort((a, b) => b.hours - a.hours)

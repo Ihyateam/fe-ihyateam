@@ -34,11 +34,11 @@
 			{/each}
 		</BudgetContainer>
 
-		{#if user.isAdmin}
+		<!-- {#if user.isAdmin}
 			<div dir="ltr">
 				<pre>{JSON.stringify(data, null, 2)}</pre>
 			</div>
-		{/if}
+		{/if} -->
 	</div>
 </PageLayout>
 

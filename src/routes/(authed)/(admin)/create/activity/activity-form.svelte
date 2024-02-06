@@ -106,7 +106,7 @@
 	<button type="submit">submit</button>
 </form>
 
-<pre>{JSON.stringify($page.form, null, 2)}</pre>
+<!-- <pre>{JSON.stringify($page.form, null, 2)}</pre> -->
 
 <style>
 	form {

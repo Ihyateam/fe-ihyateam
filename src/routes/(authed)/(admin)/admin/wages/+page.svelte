@@ -1,3 +1,8 @@
+<script context="module" lang="ts">
+	import { writable } from 'svelte/store';
+	const showPageData = writable<unknown>();
+</script>
+
 <script>
 	import { NewWageIcon } from '$lib/components/icons';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
@@ -24,7 +29,7 @@
 <PageLayout>
 	<header slot="header">
 		<span>{data.wages?.length} {config['ar'].wages}</span>
-		<a href="/create/wage/" target="_self" use:useShallowRouting>
+		<a href="/create/wage/" target="_self" use:useShallowRouting={{ data: showPageData }}>
 			{config['ar'].new_wage}
 			<NewWageIcon width="24px" height="24px" />
 		</a>
@@ -36,7 +41,7 @@
 
 {#if $page.state.showPage}
 	<PageDialog on:close={() => history.back()}>
-		<NewWagePage />
+		<NewWagePage data={$showPageData} />
 	</PageDialog>
 {/if}
 
