@@ -17,20 +17,51 @@ export async function load({ locals }) {
 export const actions = {
 	createActivity: async ({ request, locals }) => {
 		const data = await request.formData();
-		const res = {
-			...Object.fromEntries(data),
-			created_by: 'yz16vdmpybxnzdx',
-			volunteers: data.getAll('volunteers')
-		};
+		data.append('created_by', locals.pb?.authStore.model?.id);
+		data.append('created_at', new Date().toISOString());
+		const photo = data.get('photo_id');
+		const volunteerIDs = data.getAll('volunteers');
+
+		if (data.has('volunteers')) {
+			data.delete('volunteers');
+		}
+
+		if (data.has('photo_id')) {
+			data.delete('photo_id');
+		}
+
+		console.log({
+			...Object.fromEntries(data)
+		});
+
 		try {
-			const record = await locals.pb?.collection('activity').create(res);
+			const photo_record = await locals.pb?.collection('photo').create({ photo });
+
+			const activity_record = await locals.pb?.collection('activity').create({
+				...Object.fromEntries(data),
+				photo_id: photo_record?.id,
+				created_at: new Date().toISOString()
+			});
+
+			locals.pb?.autoCancellation(false);
+
+			await Promise.all(
+				volunteerIDs.map(
+					async (vol) =>
+						await locals.pb?.collection('activity_users').create({
+							user_id: vol,
+							activity_id: activity_record?.id
+						})
+				)
+			);
+
 			return {
-				msg: 'entity created',
-				record
+				msg: 'entity created'
 			};
 		} catch (e) {
 			console.error("entity wasn't created", e);
 		}
+
 		return {
 			msg: 'entity not created'
 		};

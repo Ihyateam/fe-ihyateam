@@ -4,6 +4,7 @@
 
 	export let data;
 	const { users } = data;
+	console.log(data);
 </script>
 
 <PageLayout>
@@ -11,5 +12,16 @@
 
 	<svelte:fragment slot="body">
 		<UserTable {users} />
+
+		<div dir="ltr">
+			<pre>{JSON.stringify(data, null, 2)}</pre>
+		</div>
 	</svelte:fragment>
 </PageLayout>
+
+<style>
+	[dir='ltr'] {
+		margin-block-start: 2rem;
+		outline: 1px solid salmon;
+	}
+</style>
