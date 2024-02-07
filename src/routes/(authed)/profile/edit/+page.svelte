@@ -4,6 +4,7 @@
 	import EditUserProfileCard from '$lib/components/user/edit-user-profile-card.svelte';
 
 	export let data;
+	const { isAdmin } = data;
 
 	const config = {
 		ar: {
@@ -22,7 +23,7 @@
 <PageLayout>
 	<UserProfileHeader user={data.current_user} slot="header" />
 	<div slot="body">
-		<EditUserProfileCard user={data.current_user} />
+		<EditUserProfileCard user={data.current_user} isCurrentUserAdmin={isAdmin} />
 	</div>
 </PageLayout>
 

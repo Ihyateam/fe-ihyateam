@@ -8,6 +8,7 @@
 	import { EditIcon } from '../icons';
 
 	export let user: UserEntity;
+	export let isCurrentUserAdmin: boolean = false;
 
 	const config = {
 		ar: {
@@ -57,6 +58,11 @@
 				pattern={`\\+\\d{10,}`}
 			/>
 		</Label>
+		{#if isCurrentUserAdmin}
+			<Label label="مسؤول">
+				<Input name="isAdmin" checked={user.isAdmin} type="checkbox" />
+			</Label>
+		{/if}
 		<div class="edit-btn">
 			<ActivitySave legend={true} type="submit" />
 		</div>
