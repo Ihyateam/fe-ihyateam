@@ -40,16 +40,22 @@
 	</div>
 	<div class="card__info">
 		<Label label="الاسم">
-			<Input type="text" value={user.first_name} />
+			<Input name="first_name" type="text" value={user.first_name} />
 		</Label>
 		<Label label="اللقب">
-			<Input type="text" value={user.first_name} />
+			<Input name="last_name" type="text" value={user.last_name} />
 		</Label>
 		<Label label={config['ar'].info['mail']}>
-			<Input type="email" value={user.email} />
+			<Input name="email" type="email" value={user.email} />
 		</Label>
 		<Label label="الهاتف">
-			<Input type="tel" inputmode="numeric" value={user.telphone} />
+			<Input
+				name="telphone"
+				type="tel"
+				inputmode="numeric"
+				value={user.telphone}
+				pattern={`\\+\\d{10,}`}
+			/>
 		</Label>
 		<div class="edit-btn">
 			<ActivitySave legend={true} type="submit" />
