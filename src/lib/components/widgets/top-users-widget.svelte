@@ -81,7 +81,8 @@
 		flex-direction: column;
 		align-items: center;
 		padding: 0.25rem;
-		height: 8rem;
+		height: 9rem;
+
 		gap: 0.5rem;
 		border-radius: 5px;
 		background-color: hsla(0, 10%, 100%, 1);
@@ -90,7 +91,7 @@
 
 	li > img {
 		margin-block-start: 0.5rem;
-		height: 75%;
+		height: 50%;
 		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		border-radius: 50%;
@@ -110,6 +111,7 @@
 		}
 
 		li > img {
+			height: 75%;
 			margin-block-start: 0;
 			border-radius: 10px;
 		}

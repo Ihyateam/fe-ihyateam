@@ -19,7 +19,13 @@ export const actions = {
 		const data = await request.formData().then((formData) => Object.fromEntries(formData));
 		const toUpdateUser = params.id;
 		const user = await locals.pb?.collection('users').getOne(toUpdateUser);
-		const payload = { ...user, ...data, isAdmin: data.isAdmin === 'on', emailVisibility: true };
+		const payload = {
+			...user,
+			...data,
+			isAdmin: data.isAdmin === 'on',
+			verified: data.verified === 'on',
+			emailVisibility: true
+		};
 		await locals.pb?.collection('users').update(toUpdateUser, payload);
 		throw redirect(304, `/admin/users/id/${params.id}`);
 	}

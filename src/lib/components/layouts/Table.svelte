@@ -56,7 +56,8 @@
 		outline: var(--base-outline);
 		background-color: var(--base-background-color);
 
-		scrollbar-width: none;
+		/* scrollbar-width: none; */
+		overscroll-behavior: contain;
 	}
 
 	table {
