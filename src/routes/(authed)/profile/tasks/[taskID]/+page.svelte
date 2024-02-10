@@ -1,5 +1,4 @@
 <script>
-	import { page } from '$app/stores';
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import ACtivityEdit from '$lib/components/activity/activity-edit.svelte';
 
@@ -8,7 +7,7 @@
 
 <PageLayout>
 	<div slot="header">
-		<h2>{$page.params.id}</h2>
+		<h2>{data.task?.id}</h2>
 	</div>
 
 	<div slot="body" class="container">

@@ -7,7 +7,7 @@
 
 <PageLayout>
 	<div slot="header">
-		<h2>{$page.params.id}</h2>
+		<h2>{data.task?.id}</h2>
 	</div>
 
 	<div slot="body" class="container">
