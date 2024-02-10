@@ -48,6 +48,9 @@
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
 
+		backdrop-filter: blur(2px);
+		z-index: 1;
+
 		content: attr(data-tooltip);
 		border: 0.5px solid var(--button-hover-background-color-2);
 		background-color: var(--button-secondary-hover-background-color);

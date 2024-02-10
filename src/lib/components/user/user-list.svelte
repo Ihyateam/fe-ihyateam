@@ -40,6 +40,6 @@
 
 <style>
 	img.admin {
-		box-shadow: 0px 0px 5px 0px oklch(80% 0.3 50);
+		box-shadow: 0px 0px 6px 0px oklch(80% 0.31 70);
 	}
 </style>
