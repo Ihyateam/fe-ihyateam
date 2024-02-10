@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 	import Table from '../layouts/table.svelte';
@@ -21,7 +22,13 @@
 </script>
 
 <Table baseUrl="/admin/users/id" headerObj={config['ar']} arr={users} let:row>
-	<td><img src={getURL(row)} alt={row.username} /></td>
+	<td>
+		<img
+			class:admin={$page.data.user?.isAdmin && row.isAdmin}
+			src={getURL(row)}
+			alt={row.username}
+		/>
+	</td>
 	<td data-cell={config['ar'].id}>{row.id}</td>
 	<td data-cell={config['ar'].first_name}>{row.first_name}</td>
 	<td data-cell={config['ar'].last_name}>{row.last_name}</td>
@@ -30,3 +37,9 @@
 	<td data-cell={config['ar'].email}>{row.email || '-'}</td>
 	<td><UserStatus user={row} /></td>
 </Table>
+
+<style>
+	img.admin {
+		box-shadow: 0px 0px 5px 0px oklch(80% 0.3 50);
+	}
+</style>

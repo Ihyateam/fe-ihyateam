@@ -62,7 +62,7 @@
 			<Label label="مسؤول">
 				<Input name="isAdmin" checked={user.isAdmin} type="checkbox" />
 			</Label>
-			<Label label="مفعل؟">
+			<Label label="مفعل">
 				<Input name="verified" checked={user.verified} type="checkbox" />
 			</Label>
 		{/if}
