@@ -4,6 +4,7 @@
 
 	export let headerObj: {};
 	export let arr: any[] = [];
+	export let type: 'tasks' | 'commutes';
 
 	let xCoord: number | string = 0;
 	let yCoord: number | string = 0;
@@ -12,7 +13,7 @@
 
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
-			goto(`${$page.url}/tasks/${node.dataset.id}`);
+			goto(`${$page.url}/${type}/${node.dataset.id}`);
 		}
 
 		node.addEventListener('click', handleClick);

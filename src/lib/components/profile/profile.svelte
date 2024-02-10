@@ -14,7 +14,7 @@
 			},
 			{
 				name: 'المهام',
-				href: '/profile/tasks'
+				href: '/hours'
 			},
 			{
 				name: 'تسجيل الخروج',

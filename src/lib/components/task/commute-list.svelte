@@ -16,7 +16,7 @@
 	};
 </script>
 
-<TableDialog headerObj={config['ar']} {arr} let:row>
+<TableDialog headerObj={config['ar']} type="commutes" {arr} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity">{row.activity_id}</td>
 	<td data-cell="date">{dateFormater(new Date(row.commute_date))}</td>

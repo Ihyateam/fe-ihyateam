@@ -17,7 +17,7 @@
 	};
 </script>
 
-<TableDialog headerObj={config['ar']} {arr} let:row>
+<TableDialog headerObj={config['ar']} type="tasks" {arr} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity_id">{row.activity_id}</td>
 	<td data-cell="date">{dateFormater(new Date(row.effort_date))}</td>
