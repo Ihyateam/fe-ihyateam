@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
-	import Table from '../layouts/table.svelte';
+	import Table from '$lib/components/layouts/table.svelte';
 	import UserStatus from './user-status.svelte';
 
 	export let users: UserEntity[] = [];
