@@ -45,6 +45,10 @@
 </div>
 
 <style>
+	:global(tbody > tr:not(:has(.active))) {
+		background: oklch(from blue calc(l - 20%) c h) !important;
+	}
+
 	div {
 		container: table / inline-size;
 		width: 100%;

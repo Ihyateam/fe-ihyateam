@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 	import ResponsiveContainer from '../ui/responsive-container.svelte';
 
@@ -13,6 +15,20 @@
 			header: 'الأكثر نشاطاً'
 		}
 	};
+
+	function applyAnchorBehavior(node: HTMLElement, { id }: UserEntity) {
+		function handleClick() {
+			goto(`admin/users/id/${id}`);
+		}
+
+		node.addEventListener('click', handleClick);
+
+		return {
+			destroy() {
+				node.removeEventListener('click', handleClick);
+			}
+		};
+	}
 </script>
 
 <ResponsiveContainer --container-name="topuser" style="display: grid; grid-column: span 2;">
@@ -21,7 +37,7 @@
 	</header>
 	<ul>
 		{#each top_volunteers as user}
-			<li>
+			<li use:applyAnchorBehavior={user}>
 				<img src={getURL(user)} alt="{user.last_name},{user.first_name}" />
 				<h4>{user.first_name} {user.last_name}</h4>
 				<span class="hours">{user.hours} ساعة عمل</span>
@@ -82,6 +98,7 @@
 		align-items: center;
 		padding: 0.25rem;
 		height: 9rem;
+		cursor: pointer;
 
 		gap: 0.5rem;
 		border-radius: 5px;
@@ -95,6 +112,10 @@
 		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		border-radius: 50%;
+	}
+
+	li:is(:hover, :focus, :focus-visible) {
+		background-color: hsla(35, 100%, 80%, 0.258);
 	}
 
 	@container topuser (width < 300px) {
