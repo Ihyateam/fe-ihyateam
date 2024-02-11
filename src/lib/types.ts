@@ -93,7 +93,7 @@ export type TaskEntity = {
 	activity_id: string;
 	hours: number;
 	is_paid: true;
-	effort_date: Date;
+	at_date: Date;
 	created_data: Date;
 	payment_data: Date;
 } & BaseEntity;
@@ -103,7 +103,7 @@ export type CommuteEntity = {
 	activity_id: string;
 	hours: number;
 	is_paid: true;
-	commute_date: Date;
+	at_date: Date;
 	created_data: Date;
 	payment_data: Date;
 	comment: string;

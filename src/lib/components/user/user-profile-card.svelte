@@ -76,6 +76,7 @@
 
 		/* lately added */
 		background-color: var(--secondary-background-color);
+		box-shadow: var(--base-box-shadow);
 		outline: var(--base-outline);
 		border-radius: 0.25rem;
 		font-size: 1.25rem;

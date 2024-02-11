@@ -10,7 +10,7 @@
 		ar: {
 			hours: 'ساعة عمل',
 			activity_id: 'معرف النشاط',
-			effort_date: 'التاريخ',
+			at_date: 'التاريخ',
 			payment_date: 'تاريخ الدفع',
 			is_paid: 'تم الدفع'
 		}
@@ -20,7 +20,7 @@
 <TableDialog headerObj={config['ar']} type="tasks" {arr} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity_id">{row.activity_id}</td>
-	<td data-cell="date">{dateFormater(new Date(row.effort_date))}</td>
+	<td data-cell="date">{dateFormater(new Date(row.at_date))}</td>
 	<td data-cell="payment_date">{row.payment_date || '-'}</td>
 	<td><PaymentStatus is_paid={row.is_paid} /></td>
 </TableDialog>

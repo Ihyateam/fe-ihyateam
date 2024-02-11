@@ -9,7 +9,7 @@
 		ar: {
 			hours: 'ساعة مواصلات',
 			activity_id: 'معرف النشاط',
-			commute_date: 'التاريخ',
+			at_date: 'التاريخ',
 			payment_date: 'تاريخ الدفع',
 			is_paid: 'تم الدفع'
 		}
@@ -19,7 +19,7 @@
 <TableDialog headerObj={config['ar']} type="commutes" {arr} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity">{row.activity_id}</td>
-	<td data-cell="date">{dateFormater(new Date(row.commute_date))}</td>
+	<td data-cell="date">{dateFormater(new Date(row.at_date))}</td>
 	<td data-cell="payment_date">{row.payment_date || '-'}</td>
 	<td><PaymentStatus is_paid={row.is_paid} /></td>
 </TableDialog>
