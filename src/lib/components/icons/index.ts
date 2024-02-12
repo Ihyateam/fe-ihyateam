@@ -23,6 +23,7 @@ import ClockIcon from './clock-icon.svelte';
 import TelphoneIcon from './telphone-icon.svelte';
 import NoTelephoneIcon from './no-telephone-icon.svelte';
 import LinkIcon from './link-icon.svelte';
+import InfoIcon from './info-icon.svelte';
 
 export {
 	EarthIcon,
@@ -49,5 +50,6 @@ export {
 	ClockIcon,
 	TelphoneIcon,
 	NoTelephoneIcon,
-	LinkIcon
+	LinkIcon,
+	InfoIcon
 };
