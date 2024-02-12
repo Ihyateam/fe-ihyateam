@@ -36,11 +36,11 @@
 		<UserProfileCard user={data.current_user} {metrics} />
 		<div>
 			<h2>المهام المنجزة</h2>
-			<TaskList arr={data?.efforts} />
+			<TaskList baseURL="hours" arr={data?.efforts} />
 		</div>
 		<div>
 			<h2>المواصلات</h2>
-			<CommuteList arr={data?.commutes} />
+			<CommuteList baseURL="hours" arr={data?.commutes} />
 		</div>
 	</div>
 </PageLayout>

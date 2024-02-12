@@ -5,6 +5,8 @@
 	import PaymentStatus from './payment-status.svelte';
 
 	export let arr: CommuteEntity[] = [];
+	export let baseURL: string | undefined = undefined;
+
 	const config = {
 		ar: {
 			hours: 'ساعة مواصلات',
@@ -16,7 +18,7 @@
 	};
 </script>
 
-<TableDialog headerObj={config['ar']} type="commutes" {arr} let:row>
+<TableDialog headerObj={config['ar']} {baseURL} type="commutes" {arr} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity">{row.activity_id}</td>
 	<td data-cell="date">{dateFormater(new Date(row.at_date))}</td>

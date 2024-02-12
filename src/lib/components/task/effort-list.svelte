@@ -5,6 +5,7 @@
 	import PaymentStatus from './payment-status.svelte';
 
 	export let arr: TaskEntity[] = [];
+	export let baseURL: string | undefined = undefined;
 
 	const config = {
 		ar: {
@@ -17,7 +18,7 @@
 	};
 </script>
 
-<TableDialog headerObj={config['ar']} type="tasks" {arr} let:row>
+<TableDialog headerObj={config['ar']} type="tasks" {arr} {baseURL} let:row>
 	<td data-cell="hours">{row.hours}</td>
 	<td data-cell="activity_id">{row.activity_id}</td>
 	<td data-cell="date">{dateFormater(new Date(row.at_date))}</td>

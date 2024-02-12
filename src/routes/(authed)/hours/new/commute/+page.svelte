@@ -10,7 +10,7 @@
 	<svelte:fragment slot="body">
 		<form method="POST" use:enhance>
 			<label>
-				date: <input type="date" name="commute_date" />
+				date: <input type="date" name="at_date" />
 			</label>
 			<label>
 				hours: <input type="number" name="hours" />
