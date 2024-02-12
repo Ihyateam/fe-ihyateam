@@ -7,14 +7,16 @@
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
 
-	const data = {
+	const config = {
 		ar: {
 			username: 'اسم المستخدم',
 			password: 'كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
 			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
-			login: 'تسجيل الدخول'
+			login: 'تسجيل الدخول',
+			cautionMsg:
+				'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء/الأخطاء. استخدم بيانات التسجيل التالية لتجربة المنصة:'
 		},
 		en: {
 			username: 'Username',
@@ -22,7 +24,8 @@
 			forgetPassword: 'Forget Password',
 			errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
 			errorMsg: 'The password or username you entered is incorrect',
-			login: 'Login'
+			login: 'Login',
+			cautionMsg: 'The platform is still under development, expect some errors'
 		}
 	};
 
@@ -30,7 +33,7 @@
 	let backendError: boolean = false;
 	let visible: boolean = false;
 
-	const extandEnhance: SubmitFunction = async () => {
+	const extandEnhance: SubmitFunction = async ({ formElement, formData }) => {
 		submitting = true;
 		visible = false;
 		backendError = false;
@@ -53,29 +56,92 @@
 			}
 
 			submitting = false;
+			password = '';
 		};
 	};
+
+	let username: string;
+	let password: string;
 </script>
+
+<div dir="rtl" class="caution">
+	<div>
+		<p>{config['ar'].cautionMsg}</p>
+	</div>
+	<div dir="ltr">
+		<p>username: test</p>
+		<p>password: admin123</p>
+	</div>
+</div>
 
 <section dir="rtl">
 	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extandEnhance}>
-		<Label label={data['ar'].username}>
-			<Input name="username" type="username" placeholder={data['ar'].username} />
+		<Label label={config['ar'].username}>
+			<Input
+				name="username"
+				type="username"
+				placeholder={config['ar'].username}
+				bind:value={username}
+				required
+			/>
 		</Label>
-		<Label label={data['ar'].password}>
-			<Input name="password" type="password" placeholder={data['ar'].password} />
+		<Label label={config['ar'].password}>
+			<Input
+				name="password"
+				type="password"
+				placeholder={config['ar'].password}
+				bind:value={password}
+				required
+			/>
 		</Label>
-		<button type="submit" title={data['ar'].login} disabled={submitting}>
-			<span>{data['ar'].login}</span>
+		<button type="submit" title={config['ar'].login} disabled={submitting}>
+			<span>{config['ar'].login}</span>
 			<LoadIndicator bind:isLoading={submitting} />
 		</button>
-		<p class="error" class:visible={backendError}>{data['ar'].errorAdm}</p>
-		<p class="error" class:visible>{data['ar'].errorMsg}</p>
+		<p class="error" class:visible={backendError}>{config['ar'].errorAdm}</p>
+		<p class="error" class:visible>{config['ar'].errorMsg}</p>
 	</form>
 </section>
 
 <style>
+	.caution > div:first-of-type::before {
+		display: block;
+		content: ' ';
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='%23000' d='M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 2rem;
+		aspect-ratio: 1 / 1;
+	}
+
+	.caution > div:first-of-type {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.caution p {
+		color: oklch(10% 0 0 / 80%);
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+
+	.caution {
+		width: 30rem;
+		max-width: 80%;
+		outline: 2px solid oklch(95% 0.3 250);
+		border-radius: 3px;
+		font-size: 14px;
+		background-color: oklch(90% 0.2 250 / 40%);
+		padding: 0.5rem 0.75rem;
+		z-index: 1;
+		position: absolute;
+		left: 50%;
+		top: 10%;
+		transform: translateX(-50%);
+	}
+
 	button:disabled {
 		color: #969090e5;
 		background-color: hsla(35.8, 100%, 64.5%, 0.6);

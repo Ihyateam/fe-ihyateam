@@ -1,8 +1,8 @@
 import { fail, redirect } from '@sveltejs/kit';
 
-export async function load({ locals, url }) {
+export async function load({ locals }) {
 	if (locals.pb?.authStore.isValid) {
-		redirect(300, url.searchParams.get('redirect') || '/');
+		redirect(307, '/');
 	}
 }
 
