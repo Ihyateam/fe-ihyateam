@@ -15,8 +15,7 @@
 			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول',
-			cautionMsg:
-				'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء/الأخطاء. استخدم بيانات التسجيل التالية لتجربة المنصة:'
+			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء/الأخطاء.'
 		},
 		en: {
 			username: 'Username',
@@ -69,8 +68,8 @@
 		<p>{config['ar'].cautionMsg}</p>
 	</div>
 	<div dir="ltr">
-		<p>username: test</p>
-		<p>password: admin123</p>
+		<p><b>username</b>: test</p>
+		<p><b>password</b>: admin123</p>
 	</div>
 </div>
 
@@ -108,10 +107,10 @@
 	.caution > div:first-of-type::before {
 		display: block;
 		content: ' ';
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='%23000' d='M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22'/%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'  viewBox='0 0 24 24' %3E%3Cpath fill='%23000' d='M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22'/%3E%3C/svg%3E");
 		background-repeat: no-repeat;
 		background-size: cover;
-		width: 2rem;
+		min-width: 1.5rem;
 		aspect-ratio: 1 / 1;
 	}
 
