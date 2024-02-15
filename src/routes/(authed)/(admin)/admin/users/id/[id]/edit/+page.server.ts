@@ -26,6 +26,7 @@ export const actions = {
 			verified: data.verified === 'on',
 			emailVisibility: true
 		};
+		console.log(payload);
 		await locals.pb?.collection('users').update(toUpdateUser, payload);
 		throw redirect(304, `/admin/users/id/${params.id}`);
 	}

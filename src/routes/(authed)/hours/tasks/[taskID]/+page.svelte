@@ -1,14 +1,13 @@
 <script>
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import ACtivityEdit from '$lib/components/activity/activity-edit.svelte';
+	import TaskHeader from '$lib/components/task/task-header.svelte';
 
 	export let data;
 </script>
 
 <PageLayout>
-	<div slot="header">
-		<h2>{data.task?.id}</h2>
-	</div>
+	<TaskHeader slot="header" task={data.task} />
 
 	<div slot="body" class="container">
 		<div class="info">
@@ -54,6 +53,10 @@
 		flex-grow: 200px;
 		inset-block-end: 1rem;
 		inset-inline-end: 1rem;
+	}
+
+	[slot='body'] {
+		margin-block-start: 1.5rem;
 	}
 
 	@container balance (width < 550px) {

@@ -1,3 +1,4 @@
+import { env } from '$env/dynamic/public';
 import type { ActivityEntity, ExpandPhotoEntity } from '$lib/types';
 
 export function getURL({ username, expand }: ExpandPhotoEntity, options: { thumb?: string } = {}) {
@@ -7,7 +8,7 @@ export function getURL({ username, expand }: ExpandPhotoEntity, options: { thumb
 	const { collectionId, id, photo } = expand.photo_id;
 
 	const params = Object.entries(options);
-	const url = new URL(`/api/files/${collectionId}/${id}/${photo}`, `https://platform.ihyateam.com`);
+	const url = new URL(`/api/files/${collectionId}/${id}/${photo}`, env.PUBLIC_POCKETBASE_HOST);
 	params.forEach(([key, value]) => url.searchParams.append(key, value));
 	return url.toString();
 }
