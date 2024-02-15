@@ -69,8 +69,4 @@
 			}
 		}
 	}
-
-	div[slot='body'] {
-		margin-block-start: 1.5rem;
-	}
 </style>

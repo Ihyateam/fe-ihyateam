@@ -75,6 +75,5 @@
 	[slot='body'] {
 		flex-direction: column;
 		height: min(max-content, 75svh);
-		margin-block-start: 1.5rem;
 	}
 </style>

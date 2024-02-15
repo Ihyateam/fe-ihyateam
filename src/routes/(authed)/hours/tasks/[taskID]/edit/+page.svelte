@@ -1,21 +1,12 @@
 <script>
-	import { page } from '$app/stores';
-	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-
 	export let data;
 </script>
 
-<PageLayout>
-	<div slot="header">
-		<h2>{data.task?.id}</h2>
-	</div>
-
-	<div slot="body" class="container">
-		<form>
-			<label><input type="text" inputmode="numeric" name="hours" value={data.task?.id} /></label>
-		</form>
-	</div>
-</PageLayout>
+<div class="container">
+	<form>
+		<label><input type="text" inputmode="numeric" name="hours" value={data.task?.id} /></label>
+	</form>
+</div>
 
 <style>
 	.container {

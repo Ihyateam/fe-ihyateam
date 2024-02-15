@@ -1,25 +1,19 @@
 <script>
-	import PageLayout from '$lib/components/layouts/page-layout.svelte';
 	import ACtivityEdit from '$lib/components/activity/activity-edit.svelte';
-	import CommuteHeader from '$lib/components/task/commute-header.svelte';
 
 	export let data;
 </script>
 
-<PageLayout>
-	<CommuteHeader slot="header" commute={data.commute} />
-
-	<div slot="body" class="container">
-		<div class="info">
-			<div dir="ltr">
-				<pre>{JSON.stringify(data.commute, null, 2)}</pre>
-			</div>
-		</div>
-		<div class="edit-icon">
-			<ACtivityEdit legend={true} />
+<div class="container">
+	<div class="info">
+		<div dir="ltr">
+			<pre>{JSON.stringify(data.commute, null, 2)}</pre>
 		</div>
 	</div>
-</PageLayout>
+	<div class="edit-icon">
+		<ACtivityEdit legend={true} />
+	</div>
+</div>
 
 <style>
 	.container {
@@ -53,10 +47,6 @@
 		flex-grow: 200px;
 		inset-block-end: 1rem;
 		inset-inline-end: 1rem;
-	}
-
-	[slot='body'] {
-		margin-block-start: 1.5rem;
 	}
 
 	@container balance (width < 550px) {

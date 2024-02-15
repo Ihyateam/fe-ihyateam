@@ -54,6 +54,7 @@
 		grid-template-rows: repeat(auto-fit, 26rem);
 		width: 100%;
 		padding: 1.5rem;
+		padding-block-start: 0;
 		list-style: none;
 		gap: 1.5rem;
 		justify-content: center;

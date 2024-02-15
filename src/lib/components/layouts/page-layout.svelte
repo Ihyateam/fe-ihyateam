@@ -17,6 +17,7 @@
 		min-width: 20rem;
 		padding-top: 1.5rem;
 		margin-bottom: 1.5rem;
+		gap: 1.5rem;
 
 		& > * {
 			width: 100%;

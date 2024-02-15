@@ -29,7 +29,6 @@
 
 <style>
 	div[slot='body'] {
-		margin-top: 1.5rem;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
