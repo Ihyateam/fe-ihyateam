@@ -25,15 +25,17 @@
 			}
 		}
 	};
+
+	let img: File;
 </script>
 
-<form id="update-profile-form" class="card" method="POST" use:enhance>
+<form id="update-profile-form" class="card" method="POST" enctype="multipart/form-data" use:enhance>
 	<div class="card__img">
 		<img class="card__profile" src={getURL(user)} alt={user.username} />
 		<div>
+			<input type="file" bind:value={img} on:change={(e) => console.log(e)} />
 			<button>
 				<div>
-					<span>edit</span>
 					<EditIcon width="1.5rem" height="1.5rem" />
 				</div>
 			</button>
@@ -73,6 +75,10 @@
 </form>
 
 <style>
+	input[type='file'] {
+		appearance: none;
+	}
+
 	form.card {
 		position: relative;
 		display: flex;

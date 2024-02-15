@@ -1,32 +1,29 @@
 import type { ActivityEntity, CommuteEntity, TaskEntity, UserEntity } from '$lib/types.js';
 import { error } from '@sveltejs/kit';
 
-export async function load({ params, locals }): Promise<{
-	current_user: UserEntity;
-	efforts: TaskEntity[];
-	commutes: CommuteEntity[];
-	activities: ActivityEntity[];
-}> {
+export async function load({ params, locals }) {
+	if (params.id.length !== 15) error(404, { message: 'لم يتم العثور على المستخدم' });
+
 	if (locals.pb?.authStore.model?.isAdmin || locals.pb?.authStore.model?.id === params.id) {
-		const efforts = await locals.pb
-			?.collection('effort')
-			.getFullList({ filter: `user_id ~ "${params.id}"` });
+		const current_user = await locals.pb
+			?.collection('users')
+			.getOne<UserEntity>(params.id, { expand: 'photo_id' });
 
-		const commutes = await locals.pb
-			?.collection('commute')
-			.getFullList({ filter: `user_id ~ "${params.id}"` });
-
-		const activities = await locals.pb
-			?.collection('activity_users')
-			.getFullList({ filter: `user_id ~ "${params.id}"` });
+		if (!current_user) error(404, { message: 'User not found' });
 
 		return {
-			current_user: await locals.pb?.collection('users').getOne(params.id, { expand: 'photo_id' }),
-			commutes,
-			efforts,
-			activities
+			current_user,
+			commutes: await locals.pb
+				?.collection('effort')
+				.getFullList<TaskEntity>({ filter: `user_id ~ "${params.id}"` }),
+			efforts: await locals.pb
+				?.collection('commute')
+				.getFullList<CommuteEntity>({ filter: `user_id ~ "${params.id}"` }),
+			activities: await locals.pb
+				?.collection('activity_users')
+				.getFullList<ActivityEntity>({ filter: `user_id ~ "${params.id}"` })
 		};
-	} else {
-		error(402, 'You are not allowed to view this page');
 	}
+
+	error(402, 'You are not allowed to view this page');
 }

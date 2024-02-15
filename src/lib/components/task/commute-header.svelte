@@ -2,14 +2,14 @@
 	import PaymentStatusHeader from './payment-status-header.svelte';
 
 	import type { CommuteEntity } from '$lib/types';
-	import NewTaskIcon from '../icons/new-task-icon.svelte';
+	import { CommuteIcon } from '../icons';
 	import { dateFormater } from '$lib/utils';
 
 	export let commute: CommuteEntity;
 </script>
 
 <div class="task__header">
-	<NewTaskIcon width="2.5rem" height="2.5rem" />
+	<CommuteIcon width="2.5rem" height="2.5rem" />
 	<div class="task__info">
 		<h2>{commute.id}</h2>
 		<span class="demphasize">{dateFormater(new Date(commute.at_date))}</span>

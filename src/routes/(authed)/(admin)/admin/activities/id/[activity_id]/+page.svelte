@@ -22,7 +22,6 @@
 
 <style>
 	[slot='body'] {
-		margin-block-start: 2rem;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
