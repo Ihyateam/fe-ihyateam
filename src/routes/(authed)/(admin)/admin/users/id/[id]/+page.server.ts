@@ -1,8 +1,9 @@
+import validatorId from '$lib/server/validatorId.js';
 import type { ActivityEntity, CommuteEntity, TaskEntity, UserEntity } from '$lib/types.js';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params, locals }) {
-	if (params.id.length !== 15) error(404, { message: 'لم يتم العثور على المستخدم' });
+	if (!validatorId(params)) error(404, { message: 'لم يتم العثور على المستخدم' });
 
 	if (locals.pb?.authStore.model?.isAdmin || locals.pb?.authStore.model?.id === params.id) {
 		const current_user = await locals.pb
@@ -15,10 +16,10 @@ export async function load({ params, locals }) {
 			current_user,
 			commutes: await locals.pb
 				?.collection('effort')
-				.getFullList<TaskEntity>({ filter: `user_id ~ "${params.id}"` }),
+				.getFullList<CommuteEntity>({ filter: `user_id ~ "${params.id}"` }),
 			efforts: await locals.pb
 				?.collection('commute')
-				.getFullList<CommuteEntity>({ filter: `user_id ~ "${params.id}"` }),
+				.getFullList<TaskEntity>({ filter: `user_id ~ "${params.id}"` }),
 			activities: await locals.pb
 				?.collection('activity_users')
 				.getFullList<ActivityEntity>({ filter: `user_id ~ "${params.id}"` })
