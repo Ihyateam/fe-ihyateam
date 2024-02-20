@@ -8,17 +8,34 @@ export async function load({ locals }) {
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const data = await request.formData().then((formData) => Object.fromEntries(formData));
-		const toUpdateUser = locals.pb?.authStore.model?.id;
-		const user = await locals.pb?.collection('users').getOne(toUpdateUser);
+		const data = await request.formData();
+		const res = Object.fromEntries(data);
+		const currentUser = locals.pb?.authStore.model?.id;
+
+		const photo = data.get('photo');
+		if (photo) {
+			data.delete('photo');
+		}
+
 		const payload = {
-			...user,
-			...data,
-			isAdmin: data.isAdmin === 'on',
-			verified: data.verified === 'on',
+			...res,
+			isAdmin: res.isAdmin === 'on',
+			verified: res.verified === 'on',
 			emailVisibility: true
 		};
-		await locals.pb?.collection('users').update(toUpdateUser, payload);
+
+		try {
+			const photo_record = await locals.pb
+				?.collection('photo')
+				.create({ photo, created_by: currentUser });
+
+			await locals.pb
+				?.collection('users')
+				.update(currentUser, { ...payload, photo_id: photo_record?.id });
+		} catch (e) {
+			console.log('something went wrong', e);
+		}
+
 		throw redirect(304, '/profile');
 	}
 };

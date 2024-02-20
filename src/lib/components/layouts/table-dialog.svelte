@@ -49,7 +49,7 @@
 				<th role="rowheader">{key}</th>
 			{/each}
 		</thead>
-		<tbody>
+		<tbody class:hoverable={arr.length !== 0}>
 			{#if arr.length === 0}
 				<tr>
 					<td colspan={Object.keys(headerObj).length + 1}>لا يوجد بيانات</td>
@@ -173,7 +173,6 @@
 
 	tr {
 		color: var(--demphasized-font-color);
-		cursor: pointer;
 
 		&:nth-child(even) {
 			background-color: hsla(0, 0%, 60%, 0.1);
@@ -199,6 +198,10 @@
 		&:last-child {
 			border-bottom: 0.5px dashed var(--base-border-color);
 		}
+	}
+
+	tbody.hoverable tr:hover {
+		cursor: pointer;
 	}
 
 	th:first-child {

@@ -15,10 +15,10 @@ export async function load({ params, locals }) {
 		return {
 			current_user,
 			commutes: await locals.pb
-				?.collection('effort')
+				?.collection('commute')
 				.getFullList<CommuteEntity>({ filter: `user_id ~ "${params.id}"` }),
 			efforts: await locals.pb
-				?.collection('commute')
+				?.collection('effort')
 				.getFullList<TaskEntity>({ filter: `user_id ~ "${params.id}"` }),
 			activities: await locals.pb
 				?.collection('activity_users')

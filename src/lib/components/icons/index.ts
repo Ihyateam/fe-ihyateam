@@ -24,6 +24,7 @@ import TelphoneIcon from './telphone-icon.svelte';
 import NoTelephoneIcon from './no-telephone-icon.svelte';
 import LinkIcon from './link-icon.svelte';
 import InfoIcon from './info-icon.svelte';
+import PhotoIcon from './photo-icon.svelte';
 
 export {
 	EarthIcon,
@@ -51,5 +52,6 @@ export {
 	TelphoneIcon,
 	NoTelephoneIcon,
 	LinkIcon,
-	InfoIcon
+	InfoIcon,
+	PhotoIcon
 };

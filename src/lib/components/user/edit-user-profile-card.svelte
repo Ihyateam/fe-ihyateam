@@ -5,7 +5,7 @@
 	import ActivitySave from '../activity/activity-save.svelte';
 	import Input from '../form/input.svelte';
 	import Label from '../form/label.svelte';
-	import { EditIcon } from '../icons';
+	import { PhotoIcon } from '../icons';
 
 	export let user: UserEntity;
 	export let isCurrentUserAdmin: boolean = false;
@@ -26,20 +26,24 @@
 		}
 	};
 
-	let img: File;
+	const handleImageChange = (e: Event) => {
+		const [file] = (e.target as HTMLInputElement).files as FileList;
+
+		if (file) ProfileImg.src = URL.createObjectURL(file);
+	};
+
+	let ProfileImg: HTMLImageElement;
 </script>
 
 <form id="update-profile-form" class="card" method="POST" enctype="multipart/form-data" use:enhance>
 	<div class="card__img">
-		<img class="card__profile" src={getURL(user)} alt={user.username} />
-		<div>
-			<input type="file" bind:value={img} on:change={(e) => console.log(e)} />
-			<button>
-				<div>
-					<EditIcon width="1.5rem" height="1.5rem" />
-				</div>
-			</button>
-		</div>
+		<img bind:this={ProfileImg} class="card__profile" src={getURL(user)} alt={user.username} />
+		<label>
+			<span>
+				<PhotoIcon height="75%" width="1.5rem" />
+			</span>
+			<input type="file" name="photo" accept=".png, .jpg, .jpeg" on:change={handleImageChange} />
+		</label>
 	</div>
 	<div class="card__info">
 		<Label label="الاسم">
@@ -75,10 +79,6 @@
 </form>
 
 <style>
-	input[type='file'] {
-		appearance: none;
-	}
-
 	form.card {
 		position: relative;
 		display: flex;
@@ -107,38 +107,26 @@
 		position: relative;
 	}
 
-	.card__img > div {
+	input[type='file'] {
+		display: none;
+	}
+
+	.card__img > label {
 		position: absolute;
-		inset-block-end: -10px;
-		background-color: hsla(0, 0%, 100%, 0.8);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		height: 3rem;
-	}
-
-	.card__img > div:hover {
-		background-color: white;
-	}
-
-	.card__img button {
-		border: none;
-		width: 100%;
-		height: 100%;
+		inset-block-end: 0;
+		background-color: hsl(188, 100%, 38%, 0.5);
+		backdrop-filter: blur(5px);
+		color: hsla(0, 0%, 100%);
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
-		gap: 0.5rem;
+		align-items: center;
+		inline-size: 100%;
+		block-size: 2rem;
 		cursor: pointer;
-		background-color: transparent;
 	}
 
-	.card__img button > div {
-		margin-block-start: 0.25rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	.card__img > label:hover {
+		background-color: hsl(188, 100%, 50%, 0.5);
 	}
 
 	.card__img > img {
