@@ -114,7 +114,7 @@
 	.card__img > label {
 		position: absolute;
 		inset-block-end: 0;
-		background-color: hsl(188, 100%, 38%, 0.5);
+		background-color: hsla(190, 2.4%, 48.2%, 0.5);
 		backdrop-filter: blur(5px);
 		color: hsla(0, 0%, 100%);
 		display: flex;
@@ -126,7 +126,7 @@
 	}
 
 	.card__img > label:hover {
-		background-color: hsl(188, 100%, 50%, 0.5);
+		background-color: hsla(190, 10%, 48.2%, 0.8);
 	}
 
 	.card__img > img {
@@ -147,23 +147,5 @@
 
 	.edit-btn {
 		justify-self: end;
-	}
-
-	.card__header {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.25rem;
-	}
-
-	.card__header > h2 {
-		margin-block-start: 1rem;
-	}
-
-	.card__header > div {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.25rem;
-		color: var(--demphasized-font-color);
 	}
 </style>
