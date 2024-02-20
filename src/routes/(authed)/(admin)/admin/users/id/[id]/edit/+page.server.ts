@@ -16,17 +16,38 @@ export async function load({ locals, params }) {
 
 export const actions = {
 	default: async ({ request, locals, params }) => {
-		const data = await request.formData().then((formData) => Object.fromEntries(formData));
-		const toUpdateUser = params.id;
-		const user = await locals.pb?.collection('users').getOne(toUpdateUser);
+		const data = await request.formData();
+		const res = Object.fromEntries(data);
+
+		const currentUser = params.id;
+		const user = locals.pb?.authStore.model?.id;
+
 		const payload = {
-			...user,
-			...data,
-			isAdmin: data.isAdmin === 'on',
-			verified: data.verified === 'on',
+			...res,
+			isAdmin: res.isAdmin === 'on',
+			verified: res.verified === 'on',
 			emailVisibility: true
 		};
-		await locals.pb?.collection('users').update(toUpdateUser, payload);
+
+		try {
+			const photo = data.get('photo') as File;
+
+			if (photo.size) {
+				const photo = data.get('photo');
+				const photo_record = await locals.pb
+					?.collection('photo')
+					.create({ photo, created_by: user });
+
+				await locals.pb
+					?.collection('users')
+					.update(currentUser, { ...payload, photo_id: photo_record?.id });
+			} else {
+				await locals.pb?.collection('users').update(currentUser, payload);
+			}
+		} catch (e) {
+			console.log('something went wrong', e);
+		}
+
 		throw redirect(304, `/admin/users/id/${params.id}`);
 	}
 };
