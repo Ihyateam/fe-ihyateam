@@ -12,11 +12,6 @@ export const actions = {
 		const res = Object.fromEntries(data);
 		const currentUser = locals.pb?.authStore.model?.id;
 
-		const photo = data.get('photo');
-		if (photo) {
-			data.delete('photo');
-		}
-
 		const payload = {
 			...res,
 			isAdmin: res.isAdmin === 'on',
@@ -25,13 +20,19 @@ export const actions = {
 		};
 
 		try {
-			const photo_record = await locals.pb
-				?.collection('photo')
-				.create({ photo, created_by: currentUser });
+			const photo = data.get('photo');
+			if (photo.size) {
+				const photo = data.get('photo');
+				const photo_record = await locals.pb
+					?.collection('photo')
+					.create({ photo, created_by: currentUser });
 
-			await locals.pb
-				?.collection('users')
-				.update(currentUser, { ...payload, photo_id: photo_record?.id });
+				await locals.pb
+					?.collection('users')
+					.update(currentUser, { ...payload, photo_id: photo_record?.id });
+			} else {
+				await locals.pb?.collection('users').update(currentUser, payload);
+			}
 		} catch (e) {
 			console.log('something went wrong', e);
 		}
