@@ -20,7 +20,7 @@ export const actions = {
 		};
 
 		try {
-			const photo = data.get('photo');
+			const photo = data.get('photo') as File;
 			if (photo.size) {
 				const photo = data.get('photo');
 				const photo_record = await locals.pb
