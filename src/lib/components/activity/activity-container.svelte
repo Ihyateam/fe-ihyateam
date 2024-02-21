@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { ActivityEntity } from '$lib/types';
 	import { dateFormater } from '$lib/utils';
-	import LinkIcon from '../icons/link-icon.svelte';
+	import { LinkIcon } from '../icons';
+	import ActivityEdit from './activity-edit.svelte';
 
 	export let activity: ActivityEntity;
 	const config = {
@@ -51,6 +52,9 @@
 			<span>{dateFormater(new Date(activity.updated))}</span>
 		</section>
 	</div>
+	<div class="edit-btn">
+		<ActivityEdit legend={true} />
+	</div>
 </div>
 
 <style>
@@ -96,29 +100,46 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: repeat(auto-fit, minmax(0px, 1fr));
+		margin-block-end: 2rem;
 	}
 
 	section {
 		display: flex;
 		align-items: center;
 		grid-template-columns: 20ch 1fr;
+	}
 
-		& > span:first-of-type {
-			max-width: 20ch;
-		}
+	section > span:first-of-type {
+		width: 20ch;
+		max-width: 20ch;
+	}
 
-		& > span {
-			display: flex;
-			align-items: center;
-			padding-inline-start: 1rem;
-			height: 100%;
-			flex-grow: 1;
-		}
+	section > span {
+		display: flex;
+		align-items: center;
+		padding-inline-start: 1rem;
+		height: 100%;
+		flex-grow: 1;
+	}
+
+	.edit-btn {
+		position: absolute;
+		inset-block-end: 1.5rem;
+		inset-inline-end: 2rem;
 	}
 
 	@container balance (width < 550px) {
 		.info {
 			grid-template-columns: 1fr;
+			margin-block-end: 2rem;
+		}
+
+		.edit-btn {
+			inset-inline-start: 2rem;
+		}
+
+		section > span:first-of-type {
+			max-width: 15ch;
 		}
 	}
 </style>

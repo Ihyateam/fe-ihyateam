@@ -32,7 +32,7 @@
 		height: 2rem;
 		direction: ltr;
 
-		width: fit-content;
+		width: 100%;
 		border-radius: 0.2rem;
 		background-color: hsl(0, 0%, 92.5%);
 		border: 0.2px solid hsl(0, 0%, 70%);

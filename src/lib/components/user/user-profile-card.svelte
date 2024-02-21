@@ -68,6 +68,9 @@
 
 <style>
 	div.card {
+		container-type: inline-size;
+		container-name: profile-card;
+
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -131,5 +134,11 @@
 		align-items: center;
 		gap: 0.25rem;
 		color: var(--demphasized-font-color);
+	}
+
+	@container profile-card (width < 400px) {
+		.edit-btn {
+			justify-self: stretch;
+		}
 	}
 </style>

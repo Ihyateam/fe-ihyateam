@@ -14,9 +14,6 @@
 	<div slot="body">
 		<ActivityContainer activity={data.activity} />
 		<UserTable users={data.users} />
-		<div class="edit-icon">
-			<ActivityEdit legend={true} />
-		</div>
 	</div>
 </PageLayout>
 
@@ -25,14 +22,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	div.edit-icon {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-inline-start: auto;
-		cursor: pointer;
-		flex-grow: 200px;
 	}
 </style>

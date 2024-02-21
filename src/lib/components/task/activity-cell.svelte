@@ -24,11 +24,10 @@
 		cursor: alias;
 		border-radius: 8px;
 		gap: 0.5rem;
-		text-decoration: none;
-		color: currentColor;
 		padding-inline-start: 0.75rem;
 		padding-inline-end: 0.25rem;
 		padding-block: 0.15rem;
+		color: currentColor;
 
 		background-color: hsla(186, 62%, 62%, 0.3);
 	}
@@ -37,5 +36,9 @@
 		background-color: var(--gold-color-1);
 		outline: 2px dashed black;
 		outline-offset: 2px;
+	}
+
+	a:visited {
+		color: currentColor;
 	}
 </style>
