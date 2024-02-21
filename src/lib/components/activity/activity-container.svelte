@@ -55,14 +55,25 @@
 
 <style>
 	a {
+		border-radius: 8px;
+		gap: 0.25rem;
+		text-decoration: none;
+		color: currentColor;
+		padding-inline-start: 0.75rem;
+		padding-inline-end: 0.25rem;
+		padding-block: 0.15rem;
+
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
 		cursor: alias;
-		padding-inline: 0.5rem;
-		padding-block: 0.1rem;
-		border-radius: 10px;
-		background-color: white;
+		color: currentColor;
+		text-decoration: none;
+		font-weight: 500;
+		background-color: hsla(186, 62%, 62%, 0.3);
+	}
+
+	a:hover {
+		background-color: var(--gold-color-1);
 	}
 
 	.container {

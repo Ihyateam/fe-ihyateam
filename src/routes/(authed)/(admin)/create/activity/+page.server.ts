@@ -30,10 +30,6 @@ export const actions = {
 			data.delete('photo_id');
 		}
 
-		console.log({
-			...Object.fromEntries(data)
-		});
-
 		try {
 			const photo_record = await locals.pb?.collection('photo').create({ photo });
 

@@ -4,7 +4,6 @@
 
 	export let data;
 	const { users } = data;
-	console.log(data);
 </script>
 
 <PageLayout>
