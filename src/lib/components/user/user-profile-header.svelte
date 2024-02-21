@@ -19,7 +19,22 @@
 </div>
 
 <style>
+	.profile__header::after {
+		content: '';
+		position: absolute;
+		background-color: white;
+		width: 105%;
+		height: 1.5rem;
+		top: -0.75rem;
+		transform: translateZ(-1px);
+	}
+
 	div.profile__header {
+		transform-style: preserve-3d;
+		position: sticky;
+		top: 0.5rem;
+		z-index: 1;
+
 		background-color: var(--secondary-background-color);
 
 		display: grid;

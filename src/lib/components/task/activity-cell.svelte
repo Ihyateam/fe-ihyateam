@@ -28,14 +28,12 @@
 		padding-inline-end: 0.25rem;
 		padding-block: 0.15rem;
 		color: currentColor;
-
-		background-color: hsla(186, 62%, 62%, 0.3);
+		outline-offset: 2px;
 	}
 
 	a:hover {
-		background-color: var(--gold-color-1);
+		background-color: var(--gold-color-3);
 		outline: 2px dashed black;
-		outline-offset: 2px;
 	}
 
 	a:visited {

@@ -12,7 +12,7 @@
 	<ActivityHeader slot="header" activity={data.activity} />
 
 	<div slot="body">
-		<ActivityContainer activity={data.activity} />
+		<ActivityContainer activity={data.activity} editable={true} />
 		<UserTable users={data.users} />
 	</div>
 </PageLayout>

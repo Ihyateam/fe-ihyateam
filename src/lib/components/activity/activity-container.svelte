@@ -5,6 +5,8 @@
 	import ActivityEdit from './activity-edit.svelte';
 
 	export let activity: ActivityEntity;
+	export let editable: boolean = false;
+
 	const config = {
 		ar: {
 			start_at: 'تاريخ بدأ الفعالية',
@@ -52,9 +54,11 @@
 			<span>{dateFormater(new Date(activity.updated))}</span>
 		</section>
 	</div>
-	<div class="edit-btn">
-		<ActivityEdit legend={true} />
-	</div>
+	{#if editable}
+		<div class="edit-btn">
+			<ActivityEdit legend={true} />
+		</div>
+	{/if}
 </div>
 
 <style>
