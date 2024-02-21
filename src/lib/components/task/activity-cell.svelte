@@ -35,5 +35,7 @@
 
 	a:hover {
 		background-color: var(--gold-color-1);
+		outline: 2px dashed black;
+		outline-offset: 2px;
 	}
 </style>

@@ -37,9 +37,11 @@
 		align-items: center;
 		gap: 0.25rem;
 		cursor: alias;
+		border-radius: 4px;
 	}
 
 	a:hover {
-		outline: 2px dashed var(--base-outline-color);
+		outline: 2px dashed black;
+		outline-offset: 2px;
 	}
 </style>
