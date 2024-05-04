@@ -13,7 +13,7 @@
 		}
 	};
 
-	const widgets: any[] = [{ Widget: MetricsWidget, props: { ...data.metrics } }];
+	const widgets = [{ Widget: MetricsWidget, props: { ...data.metrics } }];
 
 	const privateWidgets = [{ Widget: TopUsersWidget, props: { ...data.metrics } }];
 

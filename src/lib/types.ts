@@ -96,6 +96,7 @@ export type TaskEntity = {
 	at_date: Date;
 	created_data: Date;
 	payment_data: Date;
+	comment: string;
 } & BaseEntity;
 
 export type CommuteEntity = {

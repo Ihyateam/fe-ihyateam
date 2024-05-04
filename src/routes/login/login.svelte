@@ -33,7 +33,7 @@
 	let backendError: boolean = false;
 	let visible: boolean = false;
 
-	const extandEnhance: SubmitFunction = async ({ formElement, formData }) => {
+	const extendEnhance: SubmitFunction = async () => {
 		submitting = true;
 		visible = false;
 		backendError = false;
@@ -41,7 +41,7 @@
 
 		return async ({ result }) => {
 			if (result.type === 'redirect') {
-				goto(result.location);
+				await goto(result.location);
 			}
 
 			if (result.type === 'failure') {
@@ -77,7 +77,7 @@
 
 <section dir="rtl">
 	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
-	<form name="login-form" autocomplete="on" method="POST" use:enhance={extandEnhance}>
+	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label label={config['ar'].username}>
 			<Input
 				name="username"
@@ -97,8 +97,11 @@
 			/>
 		</Label>
 		<button type="submit" title={config['ar'].login} disabled={submitting}>
-			<span>{config['ar'].login}</span>
-			<LoadIndicator bind:isLoading={submitting} />
+			{#if submitting}
+				<LoadIndicator  />
+			{:else}
+				<span>{config['ar'].login}</span>
+			{/if}
 		</button>
 		<p class="error" class:visible={backendError}>{config['ar'].errorAdm}</p>
 		<p class="error" class:visible>{config['ar'].errorMsg}</p>

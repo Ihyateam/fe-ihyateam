@@ -1,29 +1,28 @@
-import type { UserEntity } from '$lib/types.js';
-import { groupBy } from '$lib/utils/backend-utils.js';
+import { fail } from '@sveltejs/kit';
 
-export async function load({ locals }): Promise<{
+export async function load({ locals : { pb }}): Promise<{
 	metrics: {
 		activities: number;
 		users: number;
 		hours: number;
 		balance: number;
-		top_volunteers?: any[];
+		top_volunteers?: unknown[];
 	};
 }> {
-	const users = (await locals.pb?.collection('users').getFullList<UserEntity>())?.length ?? 0;
-	const activities = (await locals.pb?.collection('activity').getFullList())?.length ?? 0;
+	if(!pb) fail(502, {message: 'failed establishing connection to database'});
+
+	const users = await (pb.collection('users').getFullList()).then((res: Array<unknown>) => res.length) ?? 0;
+	const activities = await ( pb.collection('activity').getFullList()).then((res: Array<unknown>) => res.length) ?? 0;
 	const hours = [
-		...((await locals.pb?.collection('effort').getFullList()) ?? []),
-		...((await locals.pb?.collection('commute').getFullList()) ?? [])
+		...((await pb.collection('effort').getFullList()) ?? []),
+		...((await pb.collection('commute').getFullList()) ?? [])
 	].reduce((acc, item) => acc + item.hours, 0);
 
 	const top_volunteers_commute =
-		(await locals.pb?.collection('top_volunteers_commute').getFullList({ expand: 'photo_id' })) ??
-		[];
+		await pb.collection('top_volunteers_commute').getFullList({ expand: 'photo_id' });
 
 	const top_volunteers_effort =
-		(await locals.pb?.collection('top_volunteers_effort').getFullList({ expand: 'photo_id' })) ??
-		[];
+		await pb.collection('top_volunteers_effort').getFullList({ expand: 'photo_id' });
 
 	const top_volunteers = [...top_volunteers_commute, ...top_volunteers_effort].reduce(
 		(acc, item) => {

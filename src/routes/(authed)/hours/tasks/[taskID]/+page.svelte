@@ -1,18 +1,17 @@
 <script>
-	import ACtivityEdit from '$lib/components/activity/activity-edit.svelte';
+	import ActivityEdit from '$lib/components/activity/activity-edit.svelte';
+	import TaskContainer from '$lib/components/task/task-container.svelte';
 
 	export let data;
 </script>
 
 <div class="container">
-	<div class="info">
-		<div dir="ltr">
-			<pre>{JSON.stringify(data.task, null, 2)}</pre>
+	<TaskContainer item={data.task} />
+	{#if !data.task.is_paid}
+		<div class="edit-icon">
+			<ActivityEdit legend={true} />
 		</div>
-	</div>
-	<div class="edit-icon">
-		<ACtivityEdit legend={true} />
-	</div>
+	{/if}
 </div>
 
 <style>

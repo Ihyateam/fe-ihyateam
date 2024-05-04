@@ -7,25 +7,12 @@
 	export let type: 'tasks' | 'commutes';
 	export let baseURL: string | undefined = undefined;
 
-	let xCoord: number | string = 0;
-	let yCoord: number | string = 0;
-	let isMenuOpen = false;
-	let id: number | string = '';
-
 	function applyAnchorBehavior(node: HTMLElement) {
 		function handleClick() {
 			goto(`${baseURL ?? $page.url}/${type}/${node.dataset.id}`);
 		}
 
 		node.addEventListener('click', handleClick);
-
-		node.addEventListener('contextmenu', (e) => {
-			e.preventDefault();
-			isMenuOpen = true;
-			id = node.dataset.id ?? 'no user';
-			xCoord = e.clientX + 'px';
-			yCoord = e.clientY + 'px';
-		});
 
 		return {
 			destroy() {
@@ -36,12 +23,6 @@
 </script>
 
 <div>
-	<menu class:open={isMenuOpen} style:--x-coord={xCoord} style:--y-coord={yCoord}>
-		<li>delete me</li>
-		<li>update me</li>
-		<li>pay it</li>
-	</menu>
-
 	<table>
 		<thead>
 			<th role="rowheader">#</th>
@@ -77,77 +58,6 @@
 		background-color: var(--base-background-color);
 
 		scrollbar-width: none;
-	}
-
-	menu.open {
-		display: flex;
-		flex-direction: column;
-	}
-
-	menu {
-		z-index: 2;
-		right: 120%;
-		top: 60%;
-		width: 12ch;
-		height: max-content;
-		background-color: white;
-
-		list-style-type: none;
-		border-radius: 0.25rem;
-		font-size: 1.25rem;
-		overflow: hidden;
-		box-shadow: var(--base-box-shadow);
-
-		outline: var(--base-outline);
-		list-style-type: none;
-
-		display: none;
-		background-color: white;
-		position: absolute;
-		top: 0;
-		left: 0;
-		transform: translate(var(--x-coord), var(--y-coord));
-		padding: 1rem;
-	}
-
-	menu > li {
-		display: flex;
-
-		width: 100%;
-		position: relative;
-
-		text-align: right;
-
-		direction: rtl;
-
-		&:hover {
-			background-color: var(--hover-background-color);
-			color: black;
-			/* color: ; */
-		}
-
-		&:not(:last-of-type)::after {
-			position: absolute;
-			left: 12.5%;
-			bottom: 0;
-			content: ' ';
-			width: 75%;
-			height: 1px;
-			background-color: var(--third-background-color);
-		}
-
-		& a {
-			height: 100%;
-			width: 100%;
-			text-decoration: none;
-			color: inherit;
-		}
-
-		& > * {
-			padding: 0.25rem;
-			padding-inline-start: 0.5rem;
-			padding-inline-end: 0.5rem;
-		}
 	}
 
 	table {
