@@ -78,3 +78,7 @@ img[src='/no-image.png'] {
 ul {
 	list-style: none;
 }
+
+:visited {
+	color: #0000ee;
+}

@@ -30,7 +30,7 @@
 			login: 'Login',
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forget password?',
-			noAccount: 'Don\'t have an account? ',
+			noAccount: "Don't have an account? ",
 			signUp: 'Signup'
 		}
 	};
@@ -82,9 +82,9 @@
 </div>
 
 <section dir="rtl">
-	<img class="logo" height="5rem" src="/ihya-logo.svg" alt="ihya logo" />
+	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
-		<Label label={config['ar'].username}>
+		<Label type="default" label={config['ar'].username}>
 			<Input
 				name="username"
 				type="username"
@@ -93,7 +93,12 @@
 				required
 			/>
 		</Label>
-		<Label label={config['ar'].password}>
+		<Label
+			label={config['ar'].password}
+			type="with-link"
+			href="/password_reset"
+			text={config['ar'].forgetPassword}
+		>
 			<Input
 				name="password"
 				type="password"
@@ -102,29 +107,59 @@
 				required
 			/>
 		</Label>
-		<a class="align-center" href="/reset/password" target="_self">
-			{config['ar'].forgot}
-		</a>
 		<button type="submit" title={config['ar'].login} disabled={submitting}>
 			{#if submitting}
-				<LoadIndicator  />
+				<LoadIndicator />
 			{:else}
 				<span>{config['ar'].login}</span>
 			{/if}
 		</button>
-		<span class="align-center">
-			{config['ar'].noAccount}
-			<a href="/signup" target="_self">
-				{config['ar'].signUp}
-			</a>
-		</span>
 		<p class="error" class:visible={backendError}>{config['ar'].errorAdm}</p>
 		<p class="error" class:visible>{config['ar'].errorMsg}</p>
+		<div class="footer">
+			<hr />
+			<span class="align-center">
+				{config['ar'].noAccount}
+				<a href="/signup" target="_self">
+					{config['ar'].signUp}
+				</a>
+			</span>
+		</div>
 	</form>
 </section>
 
 <style>
-	.caution > div:first-of-type {
+	.footer {
+		margin-top: auto;
+		padding-bottom: 2.5rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	hr {
+		border: none;
+		border-top: 3px double #333;
+		color: #333;
+		overflow: visible;
+		text-align: center;
+		height: 5px;
+	}
+
+	hr::after {
+		background: var(--secondary-background-color);
+		content: '§';
+		font-family: monospace;
+		padding-inline: 4px;
+		position: relative;
+		top: -12px;
+	}
+
+	.footer > span {
+		margin-top: 8px;
+		align-self: center;
+	}
+
+	.caution > :first-of-type {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -168,8 +203,7 @@
 		color: var(--error-background-color);
 		font-size: 14px;
 		background-color: hsla(0, 100%, 80%, 0.1);
-		padding: 0.2rem 0.4rem;
-		margin-block-start: 1rem;
+		padding: 0.25rem 0;
 	}
 
 	.visible {
@@ -186,7 +220,7 @@
 		gap: 1rem;
 
 		width: 25rem;
-		height: 50vb;
+		min-height: 30rem;
 		padding: 2rem 1rem 1rem 1rem;
 
 		background-color: var(--secondary-background-color);
@@ -216,6 +250,7 @@
 	}
 
 	form {
+		flex-grow: 1;
 		width: 75%;
 		display: flex;
 		flex-direction: column;
@@ -227,19 +262,8 @@
 		min-width: 0;
 	}
 
-	form > .align-center {
-		text-align: center;
-		font-size: 1.20rem;
-	}
-
 	.logo {
-		width: 70%;
-		min-height: 5rem;
 		object-fit: cover;
-	}
-
-	:visited {
-		color: #0000EE;
 	}
 
 	@keyframes shake {

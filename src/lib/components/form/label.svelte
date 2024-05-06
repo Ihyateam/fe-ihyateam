@@ -1,11 +1,22 @@
+<script context="module" lang="ts">
+	type Props = { type: 'default'; label: string };
+	type ExtendProps = { type: 'with-link'; label: string; href: string; text: string };
+</script>
+
 <script lang="ts">
-	export let label: string;
+	type $$Props = Props | ExtendProps;
+	export const props = $$props as $$Props;
 </script>
 
 <label>
-	<span>
-		{label}:
-	</span>
+	<div>
+		<span>
+			{props.label}:
+		</span>
+		{#if props.type === 'with-link'}
+			<a href={props.href} target="_self">{props.text}</a>
+		{/if}
+	</div>
 	<slot />
 </label>
 
@@ -14,9 +25,20 @@
 		gap: 0.3rem;
 		display: flex;
 		flex-direction: column;
-		& span {
-			padding-inline-start: 5px;
-			text-transform: capitalize;
-		}
+	}
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-inline: 0.25rem;
+	}
+
+	span {
+		text-transform: capitalize;
+	}
+
+	a {
+		font-size: smaller;
 	}
 </style>
