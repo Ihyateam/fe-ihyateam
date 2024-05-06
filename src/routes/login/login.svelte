@@ -16,7 +16,10 @@
 			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
 			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول',
-			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء.'
+			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء.',
+			forgot: 'نسيت كلمة السر؟',
+			noAccount: 'ليس لديك حساب؟ ',
+			signUp: 'انشاء حساب'
 		},
 		en: {
 			username: 'Username',
@@ -25,7 +28,10 @@
 			errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
 			errorMsg: 'The password or username you entered is incorrect',
 			login: 'Login',
-			cautionMsg: 'The platform is still under development, expect some errors'
+			cautionMsg: 'The platform is still under development, expect some errors',
+			forgot: 'Forget password?',
+			noAccount: 'Don\'t have an account? ',
+			signUp: 'Signup'
 		}
 	};
 
@@ -76,7 +82,7 @@
 </div>
 
 <section dir="rtl">
-	<img class="logo" src="/ihya-logo.svg" alt="ihya logo" />
+	<img class="logo" height="5rem" src="/ihya-logo.svg" alt="ihya logo" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label label={config['ar'].username}>
 			<Input
@@ -96,6 +102,9 @@
 				required
 			/>
 		</Label>
+		<a class="align-center" href="/reset/password" target="_self">
+			{config['ar'].forgot}
+		</a>
 		<button type="submit" title={config['ar'].login} disabled={submitting}>
 			{#if submitting}
 				<LoadIndicator  />
@@ -103,6 +112,12 @@
 				<span>{config['ar'].login}</span>
 			{/if}
 		</button>
+		<span class="align-center">
+			{config['ar'].noAccount}
+			<a href="/signup" target="_self">
+				{config['ar'].signUp}
+			</a>
+		</span>
 		<p class="error" class:visible={backendError}>{config['ar'].errorAdm}</p>
 		<p class="error" class:visible>{config['ar'].errorMsg}</p>
 	</form>
@@ -162,6 +177,71 @@
 		animation: shake 200ms ease-in-out;
 	}
 
+	section {
+		overflow: auto;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+
+		width: 25rem;
+		height: 50vb;
+		padding: 2rem 1rem 1rem 1rem;
+
+		background-color: var(--secondary-background-color);
+
+		border-radius: 1rem;
+		outline: var(--base-outline);
+		box-shadow: var(--full-box-shadow);
+	}
+
+	[type='submit'] {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
+		height: 2.5rem;
+		border-radius: 5px;
+		width: 100%;
+		cursor: pointer;
+		font-weight: 600;
+
+		background-color: var(--button-background-color);
+	}
+
+	[type='submit']:not(:disabled):hover {
+		color: hsla(0, 0%, 10%, 0.8);
+		background-color: var(--button-hover-background-color);
+	}
+
+	form {
+		width: 75%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 0.8rem;
+	}
+
+	form > * {
+		min-width: 0;
+	}
+
+	form > .align-center {
+		text-align: center;
+		font-size: 1.20rem;
+	}
+
+	.logo {
+		width: 70%;
+		min-height: 5rem;
+		object-fit: cover;
+	}
+
+	:visited {
+		color: #0000EE;
+	}
+
 	@keyframes shake {
 		0% {
 			transform: translateX(0px);
@@ -190,59 +270,5 @@
 		100% {
 			transform: translateX(0px);
 		}
-	}
-
-	section {
-		overflow: auto;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-
-		width: 25rem;
-		height: 29rem;
-		padding: 2rem 1rem 1rem 1rem;
-
-		background-color: var(--secondary-background-color);
-
-		border-radius: 1rem;
-		outline: var(--base-outline);
-		box-shadow: var(--full-box-shadow);
-	}
-
-	[type='submit'] {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: none;
-		height: 2.5rem;
-		border-radius: 5px;
-		width: 15ch;
-		cursor: pointer;
-		font-weight: 600;
-		margin-left: auto;
-		margin-top: 0.5rem;
-
-		background-color: var(--button-background-color);
-	}
-
-	[type='submit']:not(:disabled):hover {
-		color: hsla(0, 0%, 10%, 0.8);
-		background-color: var(--button-hover-background-color);
-	}
-
-	form {
-		width: 75%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 0.8rem;
-	}
-
-	.logo {
-		width: 70%;
-		min-height: 5rem;
-		object-fit: cover;
 	}
 </style>
