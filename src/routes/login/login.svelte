@@ -2,11 +2,13 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import type { AcceptLang } from '$lib/types';
 
 	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
 	import { InfoIcon } from '$lib/components/icons';
+	export let lang: AcceptLang;
 
 	const config = {
 		ar: {
@@ -22,16 +24,30 @@
 			signUp: 'انشاء حساب'
 		},
 		en: {
-			username: 'Username',
-			password: 'Password',
-			forgetPassword: 'Forget Password',
+			username: 'username',
+			password: 'password',
+			forgetPassword: 'Forgot Password',
 			errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
 			errorMsg: 'The password or username you entered is incorrect',
 			login: 'Login',
 			cautionMsg: 'The platform is still under development, expect some errors',
-			forgot: 'Forget password?',
+			forgot: 'Forgot password?',
 			noAccount: "Don't have an account? ",
 			signUp: 'Signup'
+		},
+		de: {
+			username: 'Nutzername',
+			password: 'Kennwort',
+			forgetPassword: 'Kennwort vergaß',
+			errorAdm:
+				'ein Fehler aufgetreten, bitte kontaktieren Sie den Administrator, um das Problem zu lösen.',
+			errorMsg: 'Das Kennwort oder der Benutzername, den Sie eingegeben haben, ist falsch.',
+			login: 'anmelden',
+			cautionMsg:
+				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
+			forgot: 'Kennwort vergessen?',
+			noAccount: 'Sie haben noch kein Konto? ',
+			signUp: 'Registrierung'
 		}
 	};
 
@@ -70,10 +86,10 @@
 	let password: string;
 </script>
 
-<div dir="rtl" class="caution">
+<div class="caution">
 	<div>
 		<InfoIcon width="2rem" height="2rem" color="oklch(45% 0.3 220)" />
-		<p>{config['ar'].cautionMsg}</p>
+		<p>{config[lang].cautionMsg}</p>
 	</div>
 	<div dir="ltr">
 		<p><b>username</b>: test</p>
@@ -81,47 +97,49 @@
 	</div>
 </div>
 
-<section dir="rtl">
+<section>
 	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
-		<Label type="default" label={config['ar'].username}>
+		<Label type="default" label={config[lang].username}>
 			<Input
 				name="username"
 				type="username"
-				placeholder={config['ar'].username}
+				placeholder={config[lang].username}
 				bind:value={username}
 				required
 			/>
 		</Label>
 		<Label
-			label={config['ar'].password}
+			label={config[lang].password}
 			type="with-link"
 			href="/password_reset"
-			text={config['ar'].forgetPassword}
+			text={config[lang].forgetPassword}
 		>
 			<Input
 				name="password"
 				type="password"
-				placeholder={config['ar'].password}
+				placeholder={config[lang].password}
 				bind:value={password}
 				required
 			/>
 		</Label>
-		<button type="submit" title={config['ar'].login} disabled={submitting}>
+		<button type="submit" title={config[lang].login} disabled={submitting}>
 			{#if submitting}
 				<LoadIndicator />
 			{:else}
-				<span>{config['ar'].login}</span>
+				<span>{config[lang].login}</span>
 			{/if}
 		</button>
-		<p class="error" class:visible={backendError}>{config['ar'].errorAdm}</p>
-		<p class="error" class:visible>{config['ar'].errorMsg}</p>
+		<div class="error-div">
+			<p class="error" class:visible={backendError}>{config[lang].errorAdm}</p>
+			<p class="error" class:visible>{config[lang].errorMsg}</p>
+		</div>
 		<div class="footer">
 			<hr />
 			<span class="align-center">
-				{config['ar'].noAccount}
+				{config[lang].noAccount}
 				<a href="/signup" target="_self">
-					{config['ar'].signUp}
+					{config[lang].signUp}
 				</a>
 			</span>
 		</div>
@@ -204,6 +222,7 @@
 		font-size: 14px;
 		background-color: hsla(0, 100%, 80%, 0.1);
 		padding: 0.25rem 0;
+		text-align: center;
 	}
 
 	.visible {
@@ -262,8 +281,36 @@
 		min-width: 0;
 	}
 
+	.error-div {
+		height: 4ch;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.error {
+		flex-grow: 1;
+	}
+
 	.logo {
 		object-fit: cover;
+	}
+
+	@media screen and (max-width: 500px) {
+		section {
+			border-radius: 0;
+			box-shadow: none;
+			width: 100%;
+			height: 100%;
+		}
+
+		.caution {
+			display: none;
+		}
+
+		.error {
+			font-size: small;
+		}
 	}
 
 	@keyframes shake {

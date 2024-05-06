@@ -8,7 +8,7 @@
 	export const props = $$props as $$Props;
 </script>
 
-<label>
+<label dir="auto">
 	<div>
 		<span>
 			{props.label}:
@@ -32,10 +32,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-inline: 0.25rem;
-	}
-
-	span {
-		text-transform: capitalize;
 	}
 
 	a {

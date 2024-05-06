@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Login from './login.svelte';
+	export let data;
 </script>
 
 <main>
-	<Login />
+	<Login {...data} />
 </main>
 
 <style>

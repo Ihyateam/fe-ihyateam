@@ -153,3 +153,5 @@ export type Metrics = {
 	balance: number;
 	top_volunteers?: any[];
 };
+
+export type AcceptLang = 'ar' | 'en' | 'de';
