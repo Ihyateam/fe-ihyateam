@@ -1,0 +1,11 @@
+platform.arch.local {
+	handle /* {
+	  	reverse_proxy localhost:3000
+	}
+}
+
+db.arch.local {
+	handle /* {
+		reverse_proxy localhost:8090
+	}
+}

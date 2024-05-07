@@ -1,3 +1,4 @@
 #!/bin/sh
 /pb/pocketbase serve --http=${POCKETBASE} &
-npm run dev -- --host 0.0.0.0 --port 3000
+/caddy/caddy run --config /bin/script/Caddyfile.dev &
+npm run dev -- --port 3000 --host 0.0.0.0
