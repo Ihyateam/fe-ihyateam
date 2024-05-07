@@ -7,19 +7,18 @@ RUN unzip /tmp/pb.zip -d /pb/
 FROM node:20-alpine AS node-base
 ENV POCKETBASE_DB=http://0.0.0.0:8090
 ENV POCKETBASE=0.0.0.0:8090
-ENV NODE_ENV=production
 ENV ORIGIN=http://arch.local:3002
 
 FROM node-base AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN ls
-RUN npm i
-COPY . .
-RUN npm run build
-RUN npm prune --omit=dev
+RUN npm i 
+COPY ./ ./
+RUN npm run build --loglevel=verbose --omit=dev
 
 FROM node-base
+ENV NODE_ENV=production
 WORKDIR /pb
 COPY --from=db /pb/pocketbase ./
 WORKDIR /app
