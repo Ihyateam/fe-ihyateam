@@ -11,8 +11,8 @@ RUN unzip /tmp/pb.zip -d /pb/ &&\
 FROM node:alpine AS node-base
 ENV POCKETBASE_DB=http://0.0.0.0:8090
 ENV POCKETBASE=0.0.0.0:8090
-ENV PUBLIC_POCKETBASE_HOST=https://db.maxlytica.com
-ENV ORIGIN=https://platform.maxlytica.com
+ENV PUBLIC_POCKETBASE_HOST=https://maxlytica.com/db
+ENV ORIGIN=https://maxlytica.com
 
 FROM node-base AS builder
 WORKDIR /app

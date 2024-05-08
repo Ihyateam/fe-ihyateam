@@ -1,11 +1,9 @@
-platform.maxlytica.com {
-	handle /* {
-	  	reverse_proxy localhost:3000
-	}
+maxlytica.com 
+
+handle /db* {
+	reverse_proxy localhost:8090
 }
 
-db.maxlytica.com {
-	handle /* {
-		reverse_proxy localhost:8090
-	}
+handle /* {
+	reverse_proxy localhost:3000
 }
