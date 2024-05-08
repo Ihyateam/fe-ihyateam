@@ -4,7 +4,7 @@ platform.maxlytica.com {
 	}
 }
 
-db.maxlyrica.com {
+db.maxlytica.com {
 	handle /* {
 		reverse_proxy localhost:8090
 	}
