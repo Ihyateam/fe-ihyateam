@@ -1,10 +1,10 @@
-platform.arch.local {
+platform.maxlytica.com {
 	handle /* {
 	  	reverse_proxy localhost:3000
 	}
 }
 
-db.arch.local {
+db.maxlyrica.com {
 	handle /* {
 		reverse_proxy localhost:8090
 	}
