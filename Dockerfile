@@ -1,3 +1,18 @@
+FROM node:alpine AS node-base
+ENV POCKETBASE_DB=http://0.0.0.0:8090
+ENV POCKETBASE=0.0.0.0:8090
+ENV PUBLIC_POCKETBASE_HOST=https://maxlytica.com/db
+ENV PORT=3000
+ENV ORIGIN=https://maxlytica.com
+
+FROM node-base AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN ls
+RUN npm i
+COPY ./ ./
+RUN npm run build --omit=dev
+
 FROM alpine:latest AS setup
 ARG PB_VERSION=0.22.11
 ARG CADDY_VERSION=2.7.6
@@ -8,20 +23,6 @@ RUN unzip /tmp/pb.zip -d /pb/ &&\
     mkdir -p /caddy &&\
     tar -xvf /tmp/caddy.tar.gz --directory=/caddy/
 
-FROM node:alpine AS node-base
-ENV POCKETBASE_DB=http://0.0.0.0:8090
-ENV POCKETBASE=0.0.0.0:8090
-ENV PUBLIC_POCKETBASE_HOST=https://www.maxlytica.com/db
-ENV ORIGIN=https://www.maxlytica.com
-
-FROM node-base AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN ls
-RUN npm i
-COPY ./ ./
-RUN npm run build --omit=dev
-
 FROM node-base
 ENV NODE_ENV=production
 WORKDIR /pb
@@ -30,8 +31,7 @@ WORKDIR /caddy
 COPY --from=setup /caddy/caddy  ./
 COPY ./script/Caddyfile ./
 WORKDIR /app
-COPY --from=builder /app/build build/
-COPY --from=builder /app/node_modules node_modules/
+COPY --from=builder /app ./
 COPY package.json ./
 WORKDIR /bin
 COPY ./script/script.sh ./script.sh
