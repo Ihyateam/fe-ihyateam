@@ -1,9 +1,9 @@
 maxlytica.com {
-	handle /db/* {
+	handle_path /db/* {
 		reverse_proxy localhost:8090
 	}
 
-	handle {
+	handle /* {
 		reverse_proxy localhost:3000
 	}
 }
