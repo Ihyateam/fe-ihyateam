@@ -1,9 +1,9 @@
 import PocketBase from 'pocketbase';
-import { POCKETBASE_DB } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { parseAcceptLanguageHeader } from '$lib/server';
 
 export async function handle({ event, resolve }) {
-	event.locals.pb = new PocketBase(POCKETBASE_DB);
+	event.locals.pb = new PocketBase(env.PRIVATE_POCKETBASE_HOST);
 	event.locals.lang = parseAcceptLanguageHeader(event.request.headers.get('Accept-Language'));
 
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');

@@ -13,22 +13,6 @@ export function getURL({ username, expand }: ExpandPhotoEntity, options: { thumb
 	return url.toString();
 }
 
-export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) => K) {
-	const result: { [k in any]: T[] } = {};
-
-	for (const item of list) {
-		const val = keySelector(item);
-
-		if (result[val]) {
-			result[val].push(item);
-		} else {
-			result[val] = [item];
-		}
-	}
-
-	return result;
-}
-
 export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' {
 	const today = new Date().getTime();
 	const startTime = new Date(activity.start_at).getTime();

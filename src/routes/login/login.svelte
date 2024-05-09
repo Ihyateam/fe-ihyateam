@@ -204,13 +204,6 @@
 		transform: translateX(-50%);
 	}
 
-	button:disabled {
-		color: #969090e5;
-		background-color: hsla(35.8, 100%, 64.5%, 0.6);
-		pointer-events: not-allowed;
-		cursor: wait;
-	}
-
 	.error {
 		display: none;
 		justify-content: center;
@@ -249,7 +242,7 @@
 		box-shadow: var(--full-box-shadow);
 	}
 
-	[type='submit'] {
+	button {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -261,6 +254,13 @@
 		font-weight: 600;
 
 		background-color: var(--button-background-color);
+	}
+
+	button:disabled {
+		color: #969090e5;
+		background-color: hsla(35.8, 100%, 64.5%, 0.6);
+		pointer-events: not-allowed;
+		cursor: wait;
 	}
 
 	[type='submit']:not(:disabled):hover {
