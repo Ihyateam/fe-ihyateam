@@ -17,8 +17,8 @@ FROM alpine:latest AS setup
 ARG PB_VERSION=0.22.11
 ARG CADDY_VERSION=2.7.6
 RUN apk add --no-cache unzip ca-certificates
-ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
-ADD https://github.com/caddyserver/caddy/releases/download/v${CADDY_VERSION}/caddy_${CADDY_VERSION}_linux_amd64.tar.gz /tmp/caddy.tar.gz
+ADD --checksum=sha256:ff24b18868b803e2a583f69384900823e3c7d8fddb17b0a3317486d08406351c https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
+ADD --checksum=sha256:99587cf77c595f0bf62cc23c9ea101f9879fa016c7b689d498ce054904821f22 https://github.com/caddyserver/caddy/releases/download/v${CADDY_VERSION}/caddy_${CADDY_VERSION}_linux_amd64.tar.gz /tmp/caddy.tar.gz
 RUN unzip /tmp/pb.zip -d /pb/ &&\
     mkdir -p /caddy &&\
     tar -xvf /tmp/caddy.tar.gz --directory=/caddy/
