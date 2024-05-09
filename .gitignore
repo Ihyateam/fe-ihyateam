@@ -8,6 +8,7 @@ node_modules
 .env
 .env.*
 !.env.example
-package-lock.json
+*-lock.json
+*-lock.yaml
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
