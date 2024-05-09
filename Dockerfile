@@ -1,11 +1,4 @@
-FROM node:alpine AS node-base
-ENV POCKETBASE_DB=http://0.0.0.0:8090
-ENV POCKETBASE=0.0.0.0:8090
-ENV PUBLIC_POCKETBASE_HOST=https://maxlytica.com/db
-ENV PORT=3000
-ENV ORIGIN=https://maxlytica.com
-
-FROM node-base AS builder
+FROM node:alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN ls
@@ -23,8 +16,7 @@ RUN unzip /tmp/pb.zip -d /pb/ &&\
     mkdir -p /caddy &&\
     tar -xvf /tmp/caddy.tar.gz --directory=/caddy/
 
-FROM node-base
-ENV NODE_ENV=production
+FROM node:alpine
 WORKDIR /pb
 COPY --from=setup /pb/pocketbase ./
 WORKDIR /caddy
