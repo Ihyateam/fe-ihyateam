@@ -1,11 +1,11 @@
 {$BASE_URL} {
-	handle /* {
+	handle {
 		reverse_proxy localhost:3000
 	}
 }
 
 {$API_URL} {
-	handle /* {
+	handle {
 		reverse_proxy localhost:8090
 	}
 }

@@ -1,7 +1,6 @@
 FROM node:alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN ls
 RUN npm i
 COPY ./ ./
 RUN npm run build --omit=dev
@@ -24,7 +23,6 @@ COPY --from=setup /caddy/caddy  ./
 COPY ./script/Caddyfile ./
 WORKDIR /app
 COPY --from=builder /app ./
-COPY package.json ./
 WORKDIR /bin
 COPY ./script/script.sh ./script.sh
 RUN chmod +x /bin/script.sh
