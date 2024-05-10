@@ -1,4 +1,4 @@
-{$BASE_URL} {
+www.{$BASE_URL}, {$BASE_URL} {
 	handle {
 		reverse_proxy localhost:3000
 	}
