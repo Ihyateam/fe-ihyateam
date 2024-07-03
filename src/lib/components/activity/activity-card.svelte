@@ -56,8 +56,13 @@
 	.activity__details {
 		display: flex;
 		flex-direction: column;
-		padding: 8px 12px 8px 12px;
+		padding: 8px 12px;
 		gap: 4px;
+		& > * {
+			min-width: 0;
+			overflow: hidden;
+			margin: 0;
+		}
 	}
 
 	.activity__date {
@@ -77,6 +82,9 @@
 
 	.activity__title {
 		margin-top: 8px;
+		overflow: hidden;
+		max-width: 16rem;
+		text-overflow: ellipsis;
 	}
 
 	.activity__description {

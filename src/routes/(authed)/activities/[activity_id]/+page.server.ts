@@ -17,7 +17,7 @@ export async function load({ params, locals }) {
 				expand: 'user_id.photo_id'
 			});
 	} catch (e) {
-		console.log(e);
+		console.log('something went wrong', e);
 	}
 
 	if (!validatorId({ id: params.activity_id }) || !activity) {

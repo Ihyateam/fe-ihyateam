@@ -5,7 +5,7 @@
 	import TopUsersWidget from '$lib/components/widgets/top-users-widget.svelte';
 
 	export let data;
-	const { user } = data;
+	// const { user } = data;
 
 	const config = {
 		ar: {
@@ -15,9 +15,10 @@
 
 	const widgets = [{ Widget: MetricsWidget, props: { ...data.metrics } }];
 
-	const privateWidgets = [{ Widget: TopUsersWidget, props: { ...data.metrics } }];
+	// const privateWidgets = [{ Widget: TopUsersWidget, props: { ...data.metrics } }];
+	// && widgets.push(...privateWidgets)
 
-	user.isAdmin && widgets.push(...privateWidgets);
+	// data.user.isAdmin;
 </script>
 
 <svelte:head>

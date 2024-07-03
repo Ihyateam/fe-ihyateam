@@ -2,6 +2,7 @@
 	import type { UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 	import BlurBackground from '$lib/components/layouts/blur-background.svelte';
+	import { page } from '$app/stores';
 
 	export let user: UserEntity;
 	let isSettingsOpen = false;
@@ -44,7 +45,10 @@
 	}
 </script>
 
-<form method="post" action="/logout" id="logout-form" />
+<form method="post" action={`/logout?redirect=${$page.url.pathname}`} id="logout-form" hidden>
+	<input name="redirect" value={$page.url.pathname} />
+</form>
+
 <button class="avater" class:menuOpen={isSettingsOpen} on:click={handleSettingsMenu}>
 	<img
 		class="avater__img profile"

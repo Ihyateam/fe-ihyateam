@@ -4,10 +4,15 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { AcceptLang } from '$lib/types';
 
+	import { createNotificationStore } from '$lib/components/toast/notifications';
 	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
-	import { InfoIcon } from '$lib/components/icons';
+	import Toast from '$lib/components/toast/toast.svelte';
+	import Error from '../(authed)/+error.svelte';
+
+	// import { InfoIcon } from '$lib/components/icons';
+
 	export let lang: AcceptLang;
 
 	const config = {
@@ -15,8 +20,6 @@
 			username: 'اسم المستخدم',
 			password: 'كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
-			errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
-			errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
 			login: 'تسجيل الدخول',
 			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء.',
 			forgot: 'نسيت كلمة السر؟',
@@ -27,8 +30,6 @@
 			username: 'username',
 			password: 'password',
 			forgetPassword: 'Forgot Password',
-			errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
-			errorMsg: 'The password or username you entered is incorrect',
 			login: 'Login',
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forgot password?',
@@ -39,9 +40,6 @@
 			username: 'Nutzername',
 			password: 'Kennwort',
 			forgetPassword: 'Kennwort vergaß',
-			errorAdm:
-				'ein Fehler aufgetreten, bitte kontaktieren Sie den Administrator, um das Problem zu lösen.',
-			errorMsg: 'Das Kennwort oder der Benutzername, den Sie eingegeben haben, ist falsch.',
 			login: 'anmelden',
 			cautionMsg:
 				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
@@ -52,41 +50,38 @@
 	};
 
 	let submitting: boolean = false;
-	let backendError: boolean = false;
 	let visible: boolean = false;
+	let msg: string;
 
 	const extendEnhance: SubmitFunction = async () => {
 		submitting = true;
 		visible = false;
-		backendError = false;
-		visible = false;
 
-		return async ({ result }) => {
-			if (result.type === 'redirect') {
-				await goto(result.location);
-			}
-
-			if (result.type === 'failure') {
-				console.error(result.data);
-				if (result.status === 500) {
-					backendError = true;
-					visible = false;
-				} else {
-					backendError = false;
+		return async ({ result, formElement }) => {
+			switch (result.type) {
+				case 'redirect':
+					return await goto(result.location);
+				case 'error':
+					throw new Error(result.error);
+				case 'failure':
 					visible = true;
-				}
+					msg = result.data?.message;
+				// if (result.status === 5000) notifications.send( 'warning');
+				// else notifications.send(result.data?.message, 'danger');
 			}
-
 			submitting = false;
-			password = '';
+			const input = formElement.querySelector('input[type="password"]') as HTMLInputElement;
+			if (input) {
+				input!.value = '';
+				input.focus();
+			}
 		};
 	};
 
-	let username: string;
-	let password: string;
+	const notifications = createNotificationStore(3000);
 </script>
 
-<div class="caution">
+<!-- <div class="caution">
 	<div>
 		<InfoIcon width="2rem" height="2rem" color="oklch(45% 0.3 220)" />
 		<p>{config[lang].cautionMsg}</p>
@@ -95,17 +90,19 @@
 		<p><b>username</b>: test</p>
 		<p><b>password</b>: admin123</p>
 	</div>
-</div>
+</div> -->
+
+<Toast {notifications} />
 
 <section>
 	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label type="default" label={config[lang].username}>
 			<Input
+				tabindex={1}
 				name="username"
 				type="username"
 				placeholder={config[lang].username}
-				bind:value={username}
 				required
 			/>
 		</Label>
@@ -116,14 +113,14 @@
 			text={config[lang].forgetPassword}
 		>
 			<Input
+				tabindex={1}
 				name="password"
 				type="password"
 				placeholder={config[lang].password}
-				bind:value={password}
 				required
 			/>
 		</Label>
-		<button type="submit" title={config[lang].login} disabled={submitting}>
+		<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
 			{#if submitting}
 				<LoadIndicator />
 			{:else}
@@ -131,8 +128,7 @@
 			{/if}
 		</button>
 		<div class="error-div">
-			<p class="error" class:visible={backendError}>{config[lang].errorAdm}</p>
-			<p class="error" class:visible>{config[lang].errorMsg}</p>
+			<p class="error" class:visible>{msg}</p>
 		</div>
 		<div class="footer">
 			<hr />
@@ -177,7 +173,7 @@
 		align-self: center;
 	}
 
-	.caution > :first-of-type {
+	/* .caution > :first-of-type {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -202,7 +198,7 @@
 		left: 50%;
 		top: 5svh;
 		transform: translateX(-50%);
-	}
+	} */
 
 	button:disabled {
 		color: #969090e5;

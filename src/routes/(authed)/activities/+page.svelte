@@ -30,6 +30,13 @@
 					<ActivityCard {activity} />
 				</li>
 			{/each}
+			{#if data.user.isAdmin}
+				<li class="new-activity">
+					<a href="/create/activity">
+						{config['ar'].new_activity}
+					</a>
+				</li>
+			{/if}
 		</menu>
 	</svelte:fragment>
 </PageLayout>
@@ -72,5 +79,29 @@
 
 	li:is(:hover, :focus, :focus-visible) {
 		background-color: hsla(35, 100%, 80%, 0.258);
+	}
+
+	.new-activity {
+		background-color: hsla(0, 0%, 70%, 0.1);
+		border: 2px dashed hsl(0, 0%, 70%, 0.6);
+		color: hsla(0, 0%, 70%, 0.6);
+	}
+
+	.new-activity > a {
+		display: flex;
+		height: 100%;
+		text-decoration: none;
+		color: inherit;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		font-size: xx-large;
+		font-weight: 700;
+		cursor: copy;
+	}
+
+	.new-activity:hover {
+		border-color: hsl(35, 50%, 80%);
+		color: hsla(35, 50%, 70%, 0.8);
 	}
 </style>

@@ -50,21 +50,28 @@
 			height: 3.5rem;
 			border-radius: 0.5rem;
 		}
+	}
 
-		& > .header__info {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: flex-start;
-			padding-inline-start: 0.5rem;
-			width: 100%;
-			height: 100%;
-		}
+	.header__status {
+		grid-column: -2 / -1;
+		width: 5rem;
+	}
 
-		& > .header__status {
-			grid-column: -2 / -1;
-			width: 5rem;
-		}
+	.header__info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		padding-inline-start: 0.5rem;
+		width: 100%;
+		height: 100%;
+	}
+
+	.header__info > h2 {
+		min-width: 0;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.demphasize {

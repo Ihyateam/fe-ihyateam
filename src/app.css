@@ -6,7 +6,7 @@ html,
 }
 
 * {
-	box-sizing: Border-box;
+	box-sizing: border-box;
 }
 
 body {
@@ -81,4 +81,9 @@ ul {
 
 :visited {
 	color: #0000ee;
+}
+
+:focus-visible,
+:focus {
+	outline-offset: 4px;
 }

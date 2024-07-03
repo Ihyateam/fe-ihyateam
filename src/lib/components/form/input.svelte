@@ -1,12 +1,24 @@
 <script lang="ts">
-	export let name: string = 'input';
-	export let placeholder: string = '';
-	export let type: string = 'text';
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	export let name = 'input';
+	export let placeholder = '';
+	export let type = 'text';
 	export let autocomplete = '';
 	export let required = false;
+	let input: HTMLInputElement;
+
+	type $$Props = HTMLInputAttributes &
+		Partial<{
+			name: string;
+			placeholder: string;
+			type: string;
+			autocomplete: string;
+			required: boolean;
+		}>;
 </script>
 
-<input {name} {type} {placeholder} {autocomplete} {...$$props} {required} />
+<input bind:this={input} {name} {type} {placeholder} {autocomplete} {...$$restProps} {required} />
 
 <style>
 	input {

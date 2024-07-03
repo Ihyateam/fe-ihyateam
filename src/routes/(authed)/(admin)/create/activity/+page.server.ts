@@ -31,10 +31,11 @@ export const actions = {
 		}
 
 		try {
+			const res = Object.fromEntries(data);
 			const photo_record = await locals.pb?.collection('photo').create({ photo });
 
 			const activity_record = await locals.pb?.collection('activity').create({
-				...Object.fromEntries(data),
+				...res,
 				photo_id: photo_record?.id,
 				created_at: new Date().toISOString()
 			});

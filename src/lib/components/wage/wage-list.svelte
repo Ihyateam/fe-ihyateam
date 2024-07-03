@@ -19,7 +19,7 @@
 
 <Table baseUrl="/admin/wages/id" headerObj={config['ar']} arr={wages} let:row>
 	<td data-cell="id">{row.id}</td>
-	<td data-cell="symbol">{row.expand.currency_id.symbol}</td>
+	<td data-cell="symbol">{row.currency_id}</td>
 	<td data-cell="commute">{row.commuting_hour_rate}</td>
 	<td data-cell="working">{row.working_hour_rate}</td>
 	<td data-cell="used">{Math.floor(Math.random() * 20)}</td>

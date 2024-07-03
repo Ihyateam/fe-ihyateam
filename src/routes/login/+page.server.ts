@@ -1,14 +1,36 @@
 import { fail, redirect } from '@sveltejs/kit';
+import { ClientResponseError } from 'pocketbase';
 
-export async function load({ locals: { pb } }) {
-	if (pb?.authStore.isValid) {
-		redirect(307, '/');
+const responses = {
+	de: {
+		errorAdm:
+			'ein Fehler aufgetreten, bitte kontaktieren Sie den Administrator, um das Problem zu lösen.',
+		errorMsg: 'Das Kennwort oder der Benutzername, den Sie eingegeben haben, ist falsch.',
+		errorDis: 'Ihr Konto wurde deaktiviert, bitte kontaktieren Sie den Administrator.'
+	},
+	en: {
+		errorAdm: 'An error occurred, please contact the administrator to solve the problem.',
+		errorMsg: 'The password or username you entered is incorrect',
+		errorDis: 'Your account has been disabled, please contact the administrator.'
+	},
+	ar: {
+		errorAdm: 'حدث خطأ رجاءاً تواصل مع المسؤول لحل المشكلة.',
+		errorMsg: 'كلمة السر أو اسم المستخدم الذي أدخلته غير صحيح',
+		errorDis: 'تم تعطيل حسابك، يرجى التواصل مع المسؤول.'
+	}
+};
+
+export async function load({ locals: { security }, url }) {
+	if (security.isAlreadyAuthenticated()) {
+		redirect(302, url.searchParams.get('redirect') ?? '/');
 	}
 }
 
 export const actions = {
-	default: async ({ request, locals: { pb }, url }) => {
+	default: async ({ request, locals, url }) => {
+		const { pb, lang } = locals;
 		const targetUrl = url.searchParams.get('redirect') || '/';
+
 		const loginData = Object.fromEntries(await request.formData()) as {
 			username: string;
 			password: string;
@@ -16,17 +38,22 @@ export const actions = {
 
 		try {
 			if (!pb?.authStore.isValid) {
-				await pb?.collection('users').authWithPassword(loginData.username, loginData.password);
+				await pb
+					?.collection('users')
+					.authWithPassword(loginData.username, loginData.password, { expand: 'photo_id' });
 			}
 		} catch (err) {
-			console.error(err);
-			let status = 401;
-			const res = { message: 'The password or username you entered is incorrect' };
-			if (err?.status === 0) {
-				res['message'] = 'An error occurred, please contact the administrator to solve the problem';
-				status = 500;
+			if (err instanceof ClientResponseError) {
+				if (!err.status) {
+					return fail(500, {
+						message: responses[lang].errorAdm
+					});
+				}
+				if (err.status === 403) {
+					return fail(err.status, { ...err.data, message: responses[lang].errorDis });
+				}
+				return fail(401, { message: responses[lang].errorMsg });
 			}
-			return fail(status, res);
 		}
 
 		redirect(301, targetUrl);

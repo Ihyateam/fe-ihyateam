@@ -38,17 +38,17 @@
 		>Description: <input name="description" placeholder="activity description" required /></label
 	>
 
-	<MultipleSelect fieldset_name="volutneers-list" arr={volunteers} let:entity>
+	<MultipleSelect name="volutneers-list" arr={volunteers} let:entity>
 		{@const item = userParser(entity)}
 		<div>
-			<input id={item.id} name="volunteers" type="checkbox" value={item.id} required />
+			<input id={item.id} name="volunteers" type="checkbox" value={item.id} />
 			<label for={item.id}>
 				{item.name}
 			</label>
 		</div>
 	</MultipleSelect>
 
-	<SingularSelect fieldset_name="cities-list" arr={cities} let:entity>
+	<SingularSelect name="cities-list" arr={cities} let:entity>
 		{@const item = parseCity(entity)}
 		<div>
 			<input id={item.id} name="city_id" type="radio" value={item.id} required />
@@ -58,7 +58,7 @@
 		</div>
 	</SingularSelect>
 
-	<MultipleSelect fieldset_name="wages-list" arr={wages} let:entity>
+	<MultipleSelect name="wages-list" arr={wages} let:entity>
 		{@const item = parseWage(entity)}
 		<div>
 			<input id={item.id} name="wage_id" type="radio" value={item.id} required />
@@ -84,8 +84,6 @@
 
 	<button type="submit">submit</button>
 </form>
-
-<!-- <pre>{JSON.stringify($page.form, null, 2)}</pre> -->
 
 <style>
 	form {

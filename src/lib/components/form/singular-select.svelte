@@ -1,9 +1,14 @@
 <script lang="ts">
+	import type { HTMLFieldsetAttributes } from 'svelte/elements';
+
 	export let arr: any[] = [];
-	export let fieldset_name: string;
+
+	type $$Props = HTMLFieldsetAttributes & {
+		arr: any[];
+	};
 </script>
 
-<fieldset name={fieldset_name}>
+<fieldset {...$$props}>
 	<slot name="label">
 		<legend><b>label</b>: (singular choose)</legend>
 	</slot>

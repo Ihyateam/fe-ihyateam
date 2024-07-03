@@ -1,6 +1,8 @@
 import type { CommuteEntity, TaskEntity } from '$lib/types.js';
 
 export async function load({ locals, parent }) {
+	locals.security.isAuthenticated();
+
 	const { user } = await parent();
 
 	return {
