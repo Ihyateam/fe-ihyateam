@@ -9,6 +9,12 @@ export const actions = {
 			fail(500, { message: 'unknonwn error has occurred.' });
 		}
 
-		redirect(303, `/login?${url.searchParams.toString()}`);
+		let redirectURL = '/login';
+
+		if (url.searchParams.get('redirect') !== '/') {
+			redirectURL += `?${decodeURIComponent(url.searchParams.toString())}`;
+		}
+
+		redirect(303, redirectURL);
 	}
 };

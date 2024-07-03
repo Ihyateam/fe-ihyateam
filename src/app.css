@@ -82,8 +82,3 @@ ul {
 :visited {
 	color: #0000ee;
 }
-
-:focus-visible,
-:focus {
-	outline-offset: 4px;
-}

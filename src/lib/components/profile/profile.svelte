@@ -45,9 +45,7 @@
 	}
 </script>
 
-<form method="post" action={`/logout?redirect=${$page.url.pathname}`} id="logout-form" hidden>
-	<input name="redirect" value={$page.url.pathname} />
-</form>
+<form method="post" action={`/logout?redirect=${$page.url.pathname}`} id="logout-form" hidden />
 
 <button class="avater" class:menuOpen={isSettingsOpen} on:click={handleSettingsMenu}>
 	<img
