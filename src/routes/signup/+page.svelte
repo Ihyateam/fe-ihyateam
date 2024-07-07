@@ -12,7 +12,7 @@
 	main {
 		background-color: var(--secondary-background-color);
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr minmax(32rem, 35%);
 		grid-template-rows: 1fr;
 		height: 100dvh;
 	}

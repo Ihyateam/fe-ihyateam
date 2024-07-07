@@ -1,6 +1,18 @@
 <script context="module" lang="ts">
 	import { writable } from 'svelte/store';
-	let passwordVisible = writable<Boolean>(false);
+	const isPasswordVisible = writable(false);
+
+	function passwordOnClickPreventDefault(node: HTMLDivElement) {
+		function updatePasswordVisibility() {
+			isPasswordVisible.update((value) => !value);
+		}
+
+		node.addEventListener('click', updatePasswordVisibility);
+
+		return {
+			destroy: () => node.removeEventListener('click', updatePasswordVisibility)
+		};
+	}
 </script>
 
 <script lang="ts">
@@ -8,42 +20,57 @@
 	import ShowIcon from '../icons/show-icon.svelte';
 	import HideIcon from '../icons/hide-icon.svelte';
 
-	export let name = 'input';
+	export let type;
+	export let name;
 	export let placeholder = '';
-	export let type = 'text';
 	export let autocomplete = '';
 	export let required = false;
 	let input: HTMLInputElement;
 
 	type $$Props = HTMLInputAttributes &
-		Partial<{
-			name: string;
-			placeholder: string;
-			type: string;
-			autocomplete: string;
-			required: boolean;
-		}>;
+		(
+			| {
+					name: string;
+					type: Exclude<string, 'password'>;
+					placeholder?: string;
+					autocomplete?: string;
+					required?: boolean;
+			  }
+			| {
+					name: string;
+					type: 'password';
+					autocomplete?: string;
+					required?: boolean;
+					placeholder?: string;
+			  }
+		);
 </script>
 
-<input bind:this={input} {name} {type} {placeholder} {autocomplete} {...$$restProps} {required} />
+{#if type === 'password'}
+	<input
+		bind:this={input}
+		{name}
+		type={$isPasswordVisible ? 'text' : 'password'}
+		{placeholder}
+		{autocomplete}
+		{required}
+	/>
+{:else}
+	<input bind:this={input} {name} {type} {placeholder} {autocomplete} {required} />
+{/if}
 
 {#if type === 'password'}
-	<button
-		id="reveal-password"
-		type="button"
-		class="reveal-password"
-		on:click={() => ($passwordVisible = !$passwordVisible)}
-	>
-		{#if $passwordVisible}
-			<HideIcon width="50%" />
-		{:else}
+	<div id="reveal-password" tabindex="-1" use:passwordOnClickPreventDefault>
+		{#if $isPasswordVisible}
 			<ShowIcon width="50%" />
+		{:else}
+			<HideIcon width="50%" />
 		{/if}
-	</button>
+	</div>
 {/if}
 
 <style>
-	button#reveal-password {
+	div#reveal-password {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -59,6 +86,7 @@
 		width: 2.5rem;
 		border-inline-start: 0.25px dashed gray;
 		padding-inline-end: 0.25px;
+		z-index: 1;
 	}
 
 	input,

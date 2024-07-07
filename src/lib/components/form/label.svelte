@@ -14,7 +14,7 @@
 			{props.label}:
 		</span>
 		{#if props.type === 'with-link'}
-			<a href={props.href} target="_self">{props.text}</a>
+			<a href={props.href} target="_self" tabindex="-1">{props.text}</a>
 		{/if}
 	</div>
 	<slot />

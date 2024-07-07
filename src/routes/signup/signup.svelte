@@ -114,20 +114,38 @@
 		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 			<div class="two__inputs-flex">
 				<Label type="default" label={config[lang].firstname}>
-					<Input tabindex={1} name="firstname" placeholder={config[lang].firstname} required />
+					<Input
+						type="text"
+						tabindex={1}
+						name="firstname"
+						placeholder={config[lang].firstname}
+						required
+					/>
 				</Label>
 
 				<Label label={config[lang].lastname} type="default">
-					<Input tabindex={1} name="lastname" placeholder={config[lang].lastname} required />
+					<Input
+						type="text"
+						tabindex={1}
+						name="lastname"
+						placeholder={config[lang].lastname}
+						required
+					/>
 				</Label>
 			</div>
 
 			<Label type="default" label={config[lang].email}>
-				<Input tabindex={1} name="email" placeholder={config[lang].email} required />
+				<Input type="text" tabindex={1} name="email" placeholder={config[lang].email} required />
 			</Label>
 
 			<Label type="default" label={config[lang].username}>
-				<Input tabindex={1} name="username" placeholder={config[lang].username} required />
+				<Input
+					tabindex={1}
+					type="text"
+					name="username"
+					placeholder={config[lang].username}
+					required
+				/>
 			</Label>
 
 			<div class="two__inputs-flex" dir={lang.includes('ar') ? 'rtl' : 'ltr'}>

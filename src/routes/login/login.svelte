@@ -92,13 +92,7 @@
 	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label type="default" label={config[lang].username}>
-			<Input
-				tabindex={1}
-				name="username"
-				type="username"
-				placeholder={config[lang].username}
-				required
-			/>
+			<Input name="username" type="username" placeholder={config[lang].username} required />
 		</Label>
 		<Label
 			label={config[lang].password}
@@ -106,15 +100,9 @@
 			href="/password_reset"
 			text={config[lang].forgetPassword}
 		>
-			<Input
-				tabindex={1}
-				name="password"
-				type="password"
-				placeholder={config[lang].password}
-				required
-			/>
+			<Input name="password" type="password" placeholder={config[lang].password} required />
 		</Label>
-		<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
+		<button type="submit" title={config[lang].login} disabled={submitting}>
 			{#if submitting}
 				<LoadIndicator />
 			{:else}
