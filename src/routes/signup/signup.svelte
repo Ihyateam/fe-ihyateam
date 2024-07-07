@@ -112,7 +112,7 @@
 
 	<section>
 		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
-			<div class="two__inputs-grid">
+			<div class="two__inputs-flex">
 				<Label type="default" label={config[lang].firstname}>
 					<Input tabindex={1} name="firstname" placeholder={config[lang].firstname} required />
 				</Label>
@@ -130,7 +130,7 @@
 				<Input tabindex={1} name="username" placeholder={config[lang].username} required />
 			</Label>
 
-			<div class="two__inputs-grid" dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
+			<div class="two__inputs-flex" dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
 				<Label label={config[lang].password} type="default">
 					<Input
 						tabindex={1}
@@ -195,12 +195,12 @@
 		padding: 2rem 1rem 1rem 1rem;
 	}
 
-	.two__inputs-grid {
+	.two__inputs-flex {
 		display: flex;
 		gap: 0.8rem;
 	}
 
-	.two__inputs-grid > :global(*) {
+	.two__inputs-flex > :global(*) {
 		flex-grow: 1;
 	}
 
