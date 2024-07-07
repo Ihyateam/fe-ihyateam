@@ -8,16 +8,16 @@
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
 	import Error from '../(authed)/+error.svelte';
-	import { dev } from '$app/environment';
-	import { InfoIcon } from '$lib/components/icons';
-
-	export let lang: AcceptLang;
 
 	const config = {
 		ar: {
+			firstname: 'الاسم الأول',
+			lastname: 'الاسم الأخير',
 			username: 'اسم المستخدم',
 			password: 'كلمة السر',
+			confirmPassword: 'تأكيد كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
+			email: 'البريد الإلكتروني',
 			login: 'تسجيل الدخول',
 			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء.',
 			forgot: 'نسيت كلمة السر؟',
@@ -25,9 +25,13 @@
 			signUp: 'انشاء حساب'
 		},
 		en: {
-			username: 'username',
-			password: 'password',
+			firstname: 'First Name',
+			lastname: 'Last Name',
+			username: 'Username',
+			password: 'Password',
+			confirmPassword: 'Confirm Password',
 			forgetPassword: 'Forgot Password',
+			email: 'Email',
 			login: 'Login',
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forgot password?',
@@ -35,9 +39,13 @@
 			signUp: 'Signup'
 		},
 		de: {
-			username: 'Nutzername',
+			firstname: 'Vorname',
+			lastname: 'Nachname',
+			username: 'Benutzername',
 			password: 'Kennwort',
+			confirmPassword: 'Kennwort bestätigen',
 			forgetPassword: 'Kennwort vergaß',
+			email: 'Email',
 			login: 'anmelden',
 			cautionMsg:
 				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
@@ -73,128 +81,140 @@
 			}
 		};
 	};
+
+	export let lang: AcceptLang;
 </script>
 
-{#if dev}
-	<div class="caution">
-		<div>
-			<InfoIcon width="2rem" height="2rem" color="oklch(45% 0.3 220)" />
-			<p>{config[lang].cautionMsg}</p>
-		</div>
-		<div dir="ltr">
-			<p><b>username</b>: admin123</p>
-			<p><b>password</b>: admin123</p>
-		</div>
-	</div>
-{/if}
+<!-- 
+<div>
+تطوّع معنا
 
-<section>
-	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
-	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
-		<Label type="default" label={config[lang].username}>
-			<Input
-				tabindex={1}
-				name="username"
-				type="username"
-				placeholder={config[lang].username}
-				required
-			/>
-		</Label>
-		<Label
-			label={config[lang].password}
-			type="with-link"
-			href="/password_reset"
-			text={config[lang].forgetPassword}
-		>
-			<Input
-				tabindex={1}
-				name="password"
-				type="password"
-				placeholder={config[lang].password}
-				required
-			/>
-		</Label>
-		<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
-			{#if submitting}
-				<LoadIndicator />
-			{:else}
-				<span>{config[lang].login}</span>
-			{/if}
-		</button>
-		<div class="error-div">
-			<p class="error" class:visible>{msg}</p>
-		</div>
-		<div class="footer">
-			<hr />
-			<span class="align-center">
-				{config[lang].noAccount}
-				<a href="/signup" target="_self">
-					{config[lang].signUp}
-				</a>
-			</span>
-		</div>
-	</form>
-</section>
+إحياء:
+فريقٌ يقدم برنامجاً ممنهجاً متكاملاً لطلاب وطالبات المر﻿حلة الثانوية المقيمين في مدينة 
+إسطنبول والناطقين بالعربية، يهدف لرفع سويتهم في الجوانب الإيمانية والفكرية والثقافية والمهارية 
+والاجتماعية.
+
+للتعرف أكثر على إحياء:
+<a href="https://canva.com/design/DAFd-_oUe1o/6FTvy1vMgGMNGEHf-UkNuQ/view" alt="إحياء">إحياء</a>
+</div>
+
+-->
+
+<article>
+	<img
+		class="logo"
+		width="300px"
+		height="120px"
+		src="/ihya-logo.svg"
+		alt="ihya logo"
+		loading="lazy"
+	/>
+
+	<section>
+		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
+			<div class="two__inputs-grid">
+				<Label type="default" label={config[lang].firstname}>
+					<Input tabindex={1} name="firstname" placeholder={config[lang].firstname} required />
+				</Label>
+
+				<Label label={config[lang].lastname} type="default">
+					<Input tabindex={1} name="lastname" placeholder={config[lang].lastname} required />
+				</Label>
+			</div>
+
+			<Label type="default" label={config[lang].email}>
+				<Input tabindex={1} name="email" placeholder={config[lang].email} required />
+			</Label>
+
+			<Label type="default" label={config[lang].username}>
+				<Input tabindex={1} name="username" placeholder={config[lang].username} required />
+			</Label>
+
+			<div class="two__inputs-grid" dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
+				<Label label={config[lang].password} type="default">
+					<Input
+						tabindex={1}
+						name="password"
+						type="password"
+						placeholder={config[lang].password}
+						required
+					/>
+				</Label>
+
+				<Label label={config[lang].confirmPassword} type="default">
+					<Input
+						tabindex={1}
+						name="confrim-password"
+						type="password"
+						placeholder={config[lang].confirmPassword}
+						required
+					/>
+				</Label>
+			</div>
+
+			<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
+				{#if submitting}
+					<LoadIndicator />
+				{:else}
+					<span>{config[lang].login}</span>
+				{/if}
+			</button>
+
+			<div class="error-div">
+				<p class="error" class:visible>{msg}</p>
+			</div>
+		</form>
+	</section>
+</article>
 
 <style>
-	.footer {
-		margin-top: auto;
-		padding-bottom: 2.5rem;
+	article {
+		display: grid;
+		grid-template-rows: 140px 1fr;
+		overflow: auto;
+		height: 100%;
+		justify-items: center;
+		align-items: start;
+	}
+
+	img {
+		width: 420px;
+		height: auto;
+		object-fit: cover;
+		scale: 0.7;
+	}
+
+	section {
+		width: 100%;
+		position: relative;
 		display: flex;
 		flex-direction: column;
-	}
-
-	hr {
-		border: none;
-		border-top: 3px double #333;
-		color: #333;
-		overflow: visible;
-		text-align: center;
-		height: 5px;
-	}
-
-	hr::after {
-		background: var(--secondary-background-color);
-		content: '§';
-		font-family: monospace;
-		padding-inline: 4px;
-		position: relative;
-		top: -12px;
-	}
-
-	.footer > span {
-		margin-top: 8px;
-		align-self: center;
-	}
-
-	.caution > :first-of-type {
-		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 1rem;
+
+		padding: 2rem 1rem 1rem 1rem;
 	}
 
-	.caution p {
-		color: oklch(10% 0 0 / 80%);
-		font-size: 1rem;
-		line-height: 1.5rem;
+	.two__inputs-grid {
+		display: flex;
+		gap: 0.8rem;
 	}
 
-	.caution,
-	section {
-		width: 25rem;
+	.two__inputs-grid > :global(*) {
+		flex-grow: 1;
 	}
 
-	.caution {
-		outline: 2px solid oklch(95% 0.3 250);
-		border-radius: 3px;
-		font-size: 14px;
-		background-color: oklch(90% 0.2 250 / 40%);
-		padding: 0.5rem 0.75rem;
-		z-index: 1;
-		position: absolute;
-		left: 50%;
-		top: 5svh;
-		transform: translateX(-50%);
+	form {
+		flex-grow: 1;
+		width: 75%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 0.8rem;
+	}
+
+	form > * {
+		min-width: 0;
 	}
 
 	button:disabled {
@@ -222,25 +242,6 @@
 		display: flex;
 		animation: shake 200ms ease-in-out;
 	}
-
-	section {
-		overflow: auto;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-
-		min-height: 30rem;
-		padding: 2rem 1rem 1rem 1rem;
-
-		background-color: var(--secondary-background-color);
-
-		border-radius: 1rem;
-		outline: var(--base-outline);
-		box-shadow: var(--full-box-shadow);
-	}
-
 	[type='submit'] {
 		display: flex;
 		justify-content: center;
@@ -260,19 +261,6 @@
 		background-color: var(--button-hover-background-color);
 	}
 
-	form {
-		flex-grow: 1;
-		width: 75%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 0.8rem;
-	}
-
-	form > * {
-		min-width: 0;
-	}
-
 	.error-div {
 		height: 4ch;
 		display: flex;
@@ -289,17 +277,6 @@
 	}
 
 	@media screen and (max-width: 500px) {
-		section {
-			border-radius: 0;
-			box-shadow: none;
-			width: 100%;
-			height: 100%;
-		}
-
-		.caution {
-			display: none;
-		}
-
 		.error {
 			font-size: small;
 		}

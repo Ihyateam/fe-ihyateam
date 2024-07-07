@@ -25,6 +25,8 @@
 		gap: 0.3rem;
 		display: flex;
 		flex-direction: column;
+		position: relative;
+		min-width: 0;
 	}
 
 	div {

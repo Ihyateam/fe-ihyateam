@@ -32,7 +32,7 @@ export class Security {
 		return false;
 	}
 
-	isAuthenticated() {
+	isAuthorized() {
 		if (!this.user) {
 			error(401, 'unauthorized');
 		}
