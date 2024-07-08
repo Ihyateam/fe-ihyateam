@@ -4,11 +4,13 @@
 </script>
 
 <script lang="ts">
-	type $$Props = Props | ExtendProps;
+	import type { HTMLLabelAttributes } from 'svelte/elements';
+
+	type $$Props = HTMLLabelAttributes & (Props | ExtendProps);
 	export const props = $$props as $$Props;
 </script>
 
-<label dir="auto">
+<label dir="auto" {...$$restProps}>
 	<div>
 		<span>
 			{props.label}:

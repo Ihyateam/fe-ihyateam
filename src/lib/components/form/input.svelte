@@ -54,17 +54,18 @@
 		{placeholder}
 		{autocomplete}
 		{required}
+		{...$$restProps}
 	/>
 {:else}
-	<input bind:this={input} {name} {type} {placeholder} {autocomplete} {required} />
+	<input bind:this={input} {name} {type} {placeholder} {autocomplete} {required} {...$$restProps} />
 {/if}
 
 {#if type === 'password'}
 	<div id="reveal-password" tabindex="-1" use:passwordOnClickPreventDefault>
 		{#if $isPasswordVisible}
-			<ShowIcon width="50%" />
+			<ShowIcon width="20px" />
 		{:else}
-			<HideIcon width="50%" />
+			<HideIcon width="20px" />
 		{/if}
 	</div>
 {/if}
@@ -84,8 +85,8 @@
 		border-start-start-radius: 0;
 		border-end-start-radius: 0;
 		width: 2.5rem;
-		border-inline-start: 0.25px dashed gray;
-		padding-inline-end: 0.25px;
+		border-inline-start: 1px dashed gray;
+		padding-inline-end: 1px;
 		z-index: 1;
 	}
 

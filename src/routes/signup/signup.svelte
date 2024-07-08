@@ -18,10 +18,12 @@
 			confirmPassword: 'تأكيد كلمة السر',
 			forgetPassword: 'نسيت كلمة السر',
 			email: 'البريد الإلكتروني',
+			confirmEmail: 'تأكيد البريد الإلكتروني',
 			login: 'تسجيل الدخول',
 			cautionMsg: 'لا تزال المنصة قيد التطوير، توقع حدوث بعض الأخطاء.',
 			forgot: 'نسيت كلمة السر؟',
 			noAccount: 'ليس لديك حساب؟ ',
+			telephone: 'رقم الهاتف',
 			signUp: 'انشاء حساب'
 		},
 		en: {
@@ -32,11 +34,13 @@
 			confirmPassword: 'Confirm Password',
 			forgetPassword: 'Forgot Password',
 			email: 'Email',
+			confirmEmail: 'Confirm Email',
 			login: 'Login',
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forgot password?',
 			noAccount: "Don't have an account? ",
-			signUp: 'Signup'
+			telephone: 'Telephone',
+			signUp: 'Sign up'
 		},
 		de: {
 			firstname: 'Vorname',
@@ -46,11 +50,13 @@
 			confirmPassword: 'Kennwort bestätigen',
 			forgetPassword: 'Kennwort vergaß',
 			email: 'Email',
+			confirmEmail: 'Email bestätigen',
 			login: 'anmelden',
 			cautionMsg:
 				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
 			forgot: 'Kennwort vergessen?',
 			noAccount: 'Sie haben noch kein Konto? ',
+			telephone: 'Telefon',
 			signUp: 'Registrierung'
 		}
 	};
@@ -63,7 +69,7 @@
 		submitting = true;
 		visible = false;
 
-		return async ({ result, formElement }) => {
+		return async ({ result }) => {
 			switch (result.type) {
 				case 'redirect':
 					return await goto(result.location);
@@ -74,11 +80,6 @@
 					msg = result.data?.message;
 			}
 			submitting = false;
-			const input = formElement.querySelector('input[type="password"]') as HTMLInputElement;
-			if (input) {
-				input!.value = '';
-				input.focus();
-			}
 		};
 	};
 
@@ -97,7 +98,6 @@
 للتعرف أكثر على إحياء:
 <a href="https://canva.com/design/DAFd-_oUe1o/6FTvy1vMgGMNGEHf-UkNuQ/view" alt="إحياء">إحياء</a>
 </div>
-
 -->
 
 <article>
@@ -111,7 +111,13 @@
 	/>
 
 	<section>
-		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
+		<form
+			name="signup-form"
+			autocomplete="on"
+			method="POST"
+			use:enhance={extendEnhance}
+			dir={lang.includes('ar') ? 'rtl' : 'ltr'}
+		>
 			<div class="two__inputs-flex">
 				<Label type="default" label={config[lang].firstname}>
 					<Input
@@ -134,9 +140,21 @@
 				</Label>
 			</div>
 
-			<Label type="default" label={config[lang].email}>
-				<Input type="text" tabindex={1} name="email" placeholder={config[lang].email} required />
-			</Label>
+			<div class="email__div">
+				<Label type="default" label={config[lang].email}>
+					<Input type="email" tabindex={1} name="email" placeholder={config[lang].email} required />
+				</Label>
+
+				<Label type="default" label={config[lang].confirmEmail}>
+					<Input
+						type="email"
+						tabindex={1}
+						name="email"
+						placeholder={config[lang].confirmEmail}
+						required
+					/>
+				</Label>
+			</div>
 
 			<Label type="default" label={config[lang].username}>
 				<Input
@@ -148,7 +166,7 @@
 				/>
 			</Label>
 
-			<div class="two__inputs-flex" dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
+			<div class="two__inputs-flex">
 				<Label label={config[lang].password} type="default">
 					<Input
 						tabindex={1}
@@ -170,11 +188,33 @@
 				</Label>
 			</div>
 
-			<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
+			<div class="phone_upr__div">
+				<Label for="phone-prefix" label={config[lang].telephone} type="default" />
+				<div class="phone__div" dir="ltr">
+					<Input
+						id="phone-prefix"
+						type="numeric"
+						tabindex={1}
+						name="prefix"
+						required
+						placeholder="+90"
+					/>
+
+					<Input
+						tabindex={1}
+						name="confrim-password"
+						type="text"
+						placeholder="555-555-5555"
+						required
+					/>
+				</div>
+			</div>
+
+			<button type="submit" title={config[lang].login} disabled={submitting}>
 				{#if submitting}
 					<LoadIndicator />
 				{:else}
-					<span>{config[lang].login}</span>
+					<span>{config[lang].signUp}</span>
 				{/if}
 			</button>
 
@@ -202,6 +242,12 @@
 		scale: 0.7;
 	}
 
+	.phone_upr__div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+
 	section {
 		width: 100%;
 		position: relative;
@@ -211,6 +257,7 @@
 		gap: 1rem;
 
 		padding: 2rem 1rem 1rem 1rem;
+		height: 100%;
 	}
 
 	.two__inputs-flex {
@@ -222,13 +269,27 @@
 		flex-grow: 1;
 	}
 
+	.email__div {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.phone__div {
+		display: grid;
+		grid-template-columns: 60px 1fr;
+
+		align-items: end;
+		gap: 0 0.5rem;
+	}
+
 	form {
 		flex-grow: 1;
 		width: 75%;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		gap: 0.8rem;
+		align-items: stretch;
+		gap: 1rem;
 	}
 
 	form > * {
@@ -260,6 +321,7 @@
 		display: flex;
 		animation: shake 200ms ease-in-out;
 	}
+
 	[type='submit'] {
 		display: flex;
 		justify-content: center;
@@ -270,6 +332,9 @@
 		width: 100%;
 		cursor: pointer;
 		font-weight: 600;
+
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
 
 		background-color: var(--button-background-color);
 	}

@@ -240,6 +240,9 @@
 		cursor: pointer;
 		font-weight: 600;
 
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+
 		background-color: var(--button-background-color);
 	}
 
