@@ -7,7 +7,6 @@
 	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
-	import Error from '../(authed)/+error.svelte';
 	import { dev } from '$app/environment';
 	import { InfoIcon } from '$lib/components/icons';
 
@@ -60,7 +59,6 @@
 				case 'redirect':
 					return await goto(result.location);
 				case 'error':
-					throw new Error(result.error);
 				case 'failure':
 					visible = true;
 					msg = result.data?.message;

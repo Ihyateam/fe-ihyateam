@@ -44,16 +44,14 @@ export const actions = {
 			}
 		} catch (err) {
 			if (err instanceof ClientResponseError) {
-				if (!err.status) {
-					return fail(500, {
-						message: responses[lang].errorAdm
-					});
-				}
 				if (err.status === 403) {
 					return fail(err.status, { ...err.data, message: responses[lang].errorDis });
 				}
 				return fail(401, { message: responses[lang].errorMsg });
 			}
+			return fail(500, {
+				message: responses[lang].errorAdm
+			});
 		}
 
 		redirect(301, targetUrl);
