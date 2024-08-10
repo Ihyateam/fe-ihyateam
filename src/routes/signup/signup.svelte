@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
-	import type { SubmitFunction } from '@sveltejs/kit';
+	import { type SubmitFunction } from '@sveltejs/kit';
 	import type { AcceptLang } from '$lib/types';
 
 	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
@@ -26,7 +26,7 @@
 			noAccount: 'ليس لديك حساب؟ ',
 			telephone: 'رقم الهاتف',
 			emailsDontMatch: 'البريدين الإلكترونيين غير متطابقين',
-			passwordsDontMatch: 'كلمات السر غير متطابقة، يرجى التحقق منها!',
+			passwordsDontMatch: 'كلمات السر غير متطابقة',
 			signUp: 'طلب انضمام'
 		},
 
@@ -43,8 +43,8 @@
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forgot password?',
 			noAccount: "Don't have an account? ",
-			emailsDontMatch: 'Emails do not match, please check them!',
-			passwordsDontMatch: 'Passwords do not match, please check them!',
+			emailsDontMatch: 'Emails do not match',
+			passwordsDontMatch: 'Passwords do not match',
 			telephone: 'Telephone',
 			signUp: 'enroll'
 		},
@@ -63,7 +63,7 @@
 				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
 			forgot: 'Kennwort vergessen?',
 			emailsDontMatch: 'Emails stimmen nicht übere',
-			passwordsDontMatch: 'Passwörter stimmen nicht überein, bitte überprüfen Sie sie!',
+			passwordsDontMatch: 'Passwörter stimmen nicht überein',
 			noAccount: 'Sie haben noch kein Konto? ',
 			telephone: 'Telefon',
 			signUp: 'Anmelden'
@@ -73,40 +73,32 @@
 	let submitting: boolean = false;
 	let visible: boolean = false;
 	let msg: string;
+	let obj_err: {
+		[key: string]: string;
+	} = {};
 
-	const extendEnhance: SubmitFunction = async ({ formData, formElement }) => {
+	const extendEnhance: SubmitFunction = async ({ formData, controller }) => {
+		obj_err = {};
 		submitting = true;
 		visible = false;
 
 		const obj = Object.fromEntries(formData);
 
 		if (obj['confirm-email'] !== obj.email) {
-			msg = config[lang].emailsDontMatch;
-
-			setTimeout(() => {
-				visible = true;
-				submitting = false;
-			}, 0);
-
-			const confirmEmail = formElement.querySelector('#confirm-email')! as HTMLInputElement;
-			confirmEmail.focus();
-
-			return async ({ update }) => {
-				update({ reset: false });
-			};
+			obj_err.email = config[lang].emailsDontMatch;
 		}
 
 		if (obj['confirm-password'] !== obj.password) {
-			msg = 'no password match';
+			obj_err.password = config[lang].passwordsDontMatch;
+		}
 
+		if (Object.values(obj_err).length !== 0) {
+			controller.abort();
 			setTimeout(() => {
-				visible = true;
 				submitting = false;
 			}, 0);
-
-			return async ({ update }) => {
-				update({ reset: false });
-			};
+			msg = `Form hasn't been submitted correctly please correct and try again!`;
+			visible = true;
 		}
 
 		return async ({ result }) => {
@@ -116,8 +108,8 @@
 				case 'error':
 					throw new Error(result.error);
 				case 'failure':
-					visible = true;
 					msg = result.data?.message;
+					visible = true;
 			}
 			submitting = false;
 		};
@@ -162,11 +154,11 @@
 			</div>
 
 			<div class="email__div">
-				<Label type="default" label={config[lang].email}>
+				<Label type="default" label={config[lang].email} error={obj_err?.email}>
 					<Input type="email" tabindex={1} name="email" placeholder={config[lang].email} required />
 				</Label>
 
-				<Label type="default" label={config[lang].confirmEmail}>
+				<Label type="default" label={config[lang].confirmEmail} error={obj_err?.email}>
 					<Input
 						type="email"
 						id="confirm-email"
@@ -189,7 +181,7 @@
 			</Label>
 
 			<div class="two__inputs-flex">
-				<Label label={config[lang].password} type="default">
+				<Label label={config[lang].password} type="default" error={obj_err?.password}>
 					<Input
 						tabindex={1}
 						name="password"
@@ -199,10 +191,10 @@
 					/>
 				</Label>
 
-				<Label label={config[lang].confirmPassword} type="default">
+				<Label label={config[lang].confirmPassword} type="default" error={obj_err?.password}>
 					<Input
 						tabindex={1}
-						name="confrim-password"
+						name="confirm-password"
 						type="password"
 						placeholder={config[lang].confirmPassword}
 						required
@@ -222,13 +214,7 @@
 						placeholder="+90"
 					/>
 
-					<Input
-						tabindex={1}
-						name="confrim-password"
-						type="text"
-						placeholder="555-555-5555"
-						required
-					/>
+					<Input tabindex={1} name="phone-number" type="text" placeholder="555-555-5555" required />
 				</div>
 			</div>
 

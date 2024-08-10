@@ -28,22 +28,21 @@
 	let input: HTMLInputElement;
 
 	type $$Props = HTMLInputAttributes &
-		(
-			| {
-					name: string;
-					type: Exclude<string, 'password'>;
-					placeholder?: string;
-					autocomplete?: string;
-					required?: boolean;
-			  }
-			| {
-					name: string;
-					type: 'password';
-					autocomplete?: string;
-					required?: boolean;
-					placeholder?: string;
-			  }
-		);
+		(Partial<{
+			autocomplete: string;
+			required: boolean;
+			placeholder: string;
+		}> &
+			(
+				| {
+						name: string;
+						type: Exclude<string, 'password'>;
+				  }
+				| {
+						name: string;
+						type: 'password';
+				  }
+			));
 </script>
 
 {#if type === 'password'}
