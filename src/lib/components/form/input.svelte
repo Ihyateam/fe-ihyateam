@@ -56,11 +56,7 @@
 		{required}
 		{...$$restProps}
 	/>
-{:else}
-	<input bind:this={input} {name} {type} {placeholder} {autocomplete} {required} {...$$restProps} />
-{/if}
 
-{#if type === 'password'}
 	<div id="reveal-password" tabindex="-1" use:passwordOnClickPreventDefault>
 		{#if $isPasswordVisible}
 			<ShowIcon width="20px" />
@@ -68,6 +64,8 @@
 			<HideIcon width="20px" />
 		{/if}
 	</div>
+{:else}
+	<input bind:this={input} {name} {type} {placeholder} {autocomplete} {required} {...$$restProps} />
 {/if}
 
 <style>

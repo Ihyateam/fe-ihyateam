@@ -8,6 +8,7 @@
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
 	import Error from '../(authed)/+error.svelte';
+	import Header from './header.svelte';
 
 	const config = {
 		ar: {
@@ -24,8 +25,11 @@
 			forgot: 'نسيت كلمة السر؟',
 			noAccount: 'ليس لديك حساب؟ ',
 			telephone: 'رقم الهاتف',
-			signUp: 'انشاء حساب'
+			emailsDontMatch: 'البريدين الإلكترونيين غير متطابقين',
+			passwordsDontMatch: 'كلمات السر غير متطابقة، يرجى التحقق منها!',
+			signUp: 'طلب انضمام'
 		},
+
 		en: {
 			firstname: 'First Name',
 			lastname: 'Last Name',
@@ -39,9 +43,12 @@
 			cautionMsg: 'The platform is still under development, expect some errors',
 			forgot: 'Forgot password?',
 			noAccount: "Don't have an account? ",
+			emailsDontMatch: 'Emails do not match, please check them!',
+			passwordsDontMatch: 'Passwords do not match, please check them!',
 			telephone: 'Telephone',
-			signUp: 'Sign up'
+			signUp: 'enroll'
 		},
+
 		de: {
 			firstname: 'Vorname',
 			lastname: 'Nachname',
@@ -55,9 +62,11 @@
 			cautionMsg:
 				'Die Plattform befindet sich noch in der Entwicklung, rechnen Sie mit einigen Fehlern.',
 			forgot: 'Kennwort vergessen?',
+			emailsDontMatch: 'Emails stimmen nicht übere',
+			passwordsDontMatch: 'Passwörter stimmen nicht überein, bitte überprüfen Sie sie!',
 			noAccount: 'Sie haben noch kein Konto? ',
 			telephone: 'Telefon',
-			signUp: 'Registrierung'
+			signUp: 'Anmelden'
 		}
 	};
 
@@ -65,9 +74,40 @@
 	let visible: boolean = false;
 	let msg: string;
 
-	const extendEnhance: SubmitFunction = async () => {
+	const extendEnhance: SubmitFunction = async ({ formData, formElement }) => {
 		submitting = true;
 		visible = false;
+
+		const obj = Object.fromEntries(formData);
+
+		if (obj['confirm-email'] !== obj.email) {
+			msg = config[lang].emailsDontMatch;
+
+			setTimeout(() => {
+				visible = true;
+				submitting = false;
+			}, 0);
+
+			const confirmEmail = formElement.querySelector('#confirm-email')! as HTMLInputElement;
+			confirmEmail.focus();
+
+			return async ({ update }) => {
+				update({ reset: false });
+			};
+		}
+
+		if (obj['confirm-password'] !== obj.password) {
+			msg = 'no password match';
+
+			setTimeout(() => {
+				visible = true;
+				submitting = false;
+			}, 0);
+
+			return async ({ update }) => {
+				update({ reset: false });
+			};
+		}
 
 		return async ({ result }) => {
 			switch (result.type) {
@@ -86,20 +126,6 @@
 	export let lang: AcceptLang;
 </script>
 
-<!-- 
-<div>
-تطوّع معنا
-
-إحياء:
-فريقٌ يقدم برنامجاً ممنهجاً متكاملاً لطلاب وطالبات المر﻿حلة الثانوية المقيمين في مدينة 
-إسطنبول والناطقين بالعربية، يهدف لرفع سويتهم في الجوانب الإيمانية والفكرية والثقافية والمهارية 
-والاجتماعية.
-
-للتعرف أكثر على إحياء:
-<a href="https://canva.com/design/DAFd-_oUe1o/6FTvy1vMgGMNGEHf-UkNuQ/view" alt="إحياء">إحياء</a>
-</div>
--->
-
 <article>
 	<img
 		class="logo"
@@ -110,14 +136,9 @@
 		loading="lazy"
 	/>
 
-	<section>
-		<form
-			name="signup-form"
-			autocomplete="on"
-			method="POST"
-			use:enhance={extendEnhance}
-			dir={lang.includes('ar') ? 'rtl' : 'ltr'}
-		>
+	<section dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
+		<Header />
+		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 			<div class="two__inputs-flex">
 				<Label type="default" label={config[lang].firstname}>
 					<Input
@@ -148,8 +169,9 @@
 				<Label type="default" label={config[lang].confirmEmail}>
 					<Input
 						type="email"
+						id="confirm-email"
 						tabindex={1}
-						name="email"
+						name="confirm-email"
 						placeholder={config[lang].confirmEmail}
 						required
 					/>
@@ -256,7 +278,7 @@
 		align-items: center;
 		gap: 1rem;
 
-		padding: 2rem 1rem 1rem 1rem;
+		padding: 1rem 1rem 1rem 1rem;
 		height: 100%;
 	}
 
@@ -283,9 +305,12 @@
 		gap: 0 0.5rem;
 	}
 
+	section > :global(*) {
+		width: 75%;
+	}
+
 	form {
 		flex-grow: 1;
-		width: 75%;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -333,9 +358,7 @@
 		cursor: pointer;
 		font-weight: 600;
 
-		letter-spacing: 1.5px;
 		text-transform: uppercase;
-
 		background-color: var(--button-background-color);
 	}
 

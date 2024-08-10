@@ -25,6 +25,7 @@ import NoTelephoneIcon from './no-telephone-icon.svelte';
 import LinkIcon from './link-icon.svelte';
 import InfoIcon from './info-icon.svelte';
 import PhotoIcon from './photo-icon.svelte';
+import WhatsappIcon from './whatsapp-icon.svelte';
 
 export {
 	EarthIcon,
@@ -53,5 +54,6 @@ export {
 	NoTelephoneIcon,
 	LinkIcon,
 	InfoIcon,
-	PhotoIcon
+	PhotoIcon,
+	WhatsappIcon
 };

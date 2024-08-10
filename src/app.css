@@ -16,7 +16,7 @@ body {
 	--hover-background-color: hsla(0, 10%, 75%, 0.2);
 	--error-background-color: hsl(0, 100%, 40%);
 
-	--button-background-color: hsl(35.7, 100%, 50.6%);
+	--button-background-color: hsl(35.7, 90%, 50.6%);
 	--button-hover-background-color: hsl(35.7, 100%, 64.6%);
 	--button-hover-background-color-2: hsl(35.7, 100%, 64.6%, 0.5);
 	--button-secondary-hover-background-color: hsla(35.6, 100%, 80%, 0.4);

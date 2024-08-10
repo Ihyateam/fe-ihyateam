@@ -4,23 +4,24 @@
 </script>
 
 <main>
-	<div />
+	<img src="/cover-img.jpg" alt="Ihyateam Gathering" />
 	<Signup {...data} />
 </main>
 
 <style>
+	img {
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+
 	main {
 		background-color: var(--secondary-background-color);
 		display: grid;
 		grid-template-columns: 1fr minmax(32rem, 35%);
 		grid-template-rows: 1fr;
 		height: 100dvh;
-	}
-
-	div {
-		background-image: url('//ihyateam.org/wp-content/uploads/2023/09/slide_2_main-scaled.jpg');
-		background-position: center;
-		background-size: cover;
 	}
 
 	:focus-visible,
