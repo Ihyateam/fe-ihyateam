@@ -19,9 +19,11 @@
 	main {
 		background-color: var(--secondary-background-color);
 		display: grid;
+		/* position: fixed; */
 		grid-template-columns: 1fr minmax(32rem, 35%);
 		grid-template-rows: 1fr;
 		height: 100dvh;
+		/* width: 100dvw; */
 	}
 
 	:focus-visible,

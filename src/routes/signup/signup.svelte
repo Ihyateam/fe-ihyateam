@@ -25,6 +25,7 @@
 			forgot: 'نسيت كلمة السر؟',
 			noAccount: 'ليس لديك حساب؟ ',
 			telephone: 'رقم الهاتف',
+			goneWrong: 'لم يتم تقديم الطلب بشكل صحيح، يرجى تصحيحه والمحاولة مرة أخرى!',
 			emailsDontMatch: 'البريدين الإلكترونيين غير متطابقين',
 			passwordsDontMatch: 'كلمات السر غير متطابقة',
 			signUp: 'طلب انضمام'
@@ -45,6 +46,7 @@
 			noAccount: "Don't have an account? ",
 			emailsDontMatch: 'Emails do not match',
 			passwordsDontMatch: 'Passwords do not match',
+			goneWrong: "Form hasn't been submitted correctly please correct and try again!",
 			telephone: 'Telephone',
 			signUp: 'enroll'
 		},
@@ -64,6 +66,8 @@
 			forgot: 'Kennwort vergessen?',
 			emailsDontMatch: 'Emails stimmen nicht übere',
 			passwordsDontMatch: 'Passwörter stimmen nicht überein',
+			goneWrong:
+				'Das Formular wurde nicht korrekt übermittelt. Bitte korrigieren und erneut versuchen!',
 			noAccount: 'Sie haben noch kein Konto? ',
 			telephone: 'Telefon',
 			signUp: 'Anmelden'
@@ -97,11 +101,11 @@
 			setTimeout(() => {
 				submitting = false;
 			}, 0);
-			msg = `Form hasn't been submitted correctly please correct and try again!`;
+			msg = config[lang].goneWrong;
 			visible = true;
 		}
 
-		return async ({ result }) => {
+		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'redirect':
 					return await goto(result.location);
@@ -112,6 +116,7 @@
 					visible = true;
 			}
 			submitting = false;
+			update({ reset: true });
 		};
 	};
 
@@ -129,7 +134,7 @@
 	/>
 
 	<section dir={lang.includes('ar') ? 'rtl' : 'ltr'}>
-		<Header />
+		<Header {lang} />
 		<form name="signup-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 			<div class="two__inputs-flex">
 				<Label type="default" label={config[lang].firstname}>
@@ -241,6 +246,8 @@
 		height: 100%;
 		justify-items: center;
 		align-items: start;
+
+		overscroll-behavior: contain;
 	}
 
 	img {

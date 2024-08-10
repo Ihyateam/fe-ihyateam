@@ -1,29 +1,66 @@
+<script lang="ts">
+	import type { AcceptLang } from '$lib/types';
+
+	const config = {
+		ar: {
+			title: `تطوع معنا في فريق إحياء الشبابي`,
+			aboutus_title: `فريق إحياء الشبابي:`,
+			aboutus_parag: `فريقٌ يقدم برنامجاً ممنهجاً متكاملاً لطلاب وطالبات المرحلة الثانوية المقيمين في مدينة إسطنبول
+			والناطقين بالعربية، يهدف لرفع سويتهم في الجوانب الإيمانية والفكرية والثقافية والمهارية
+			والاجتماعية.`,
+			more_aboutus: `للمزيد عن فريق إحياء:`,
+			more_link: `اضغط هنا للمزيد عن فريق إحياء`,
+			social_media_title: `صفحاتنا على المنصات الاجتماعية:`,
+			contact_us: `للاستفسارات حول الفريق تواصل معنا عبر الرقم التالي:`
+		},
+
+		en: {
+			title: `Volunteer with us in the Youth Ihyateam`,
+			aboutus_title: `Youth Ihyateam:`,
+			aboutus_parag: `A team that provides a comprehensive systematic program for high school students residing in Istanbul and speaking Arabic, aiming to raise their level in the faith, intellectual, cultural, skill and social aspects.`,
+			more_aboutus: `To learn more about Ihyateam:`,
+			more_link: `Click here to learn more about Ihyateam`,
+			social_media_title: `Our pages on social media:`,
+			contact_us: 'For inquiries about the team, contact us at the following number:'
+		},
+
+		de: {
+			title: `Freiwilligenarbeit bei uns im Jugend-Ihyateam`,
+			aboutus_title: `Jugend-Ihyateam:`,
+			aboutus_parag: `Ein Team, das ein umfassendes systematisches Programm für Schülerinnen und Schüler der Sekundarstufe anbietet, die in Istanbul leben und Arabisch sprechen, mit dem Ziel, ihr Niveau in den Bereichen Glaube, intellektuell, kulturell, fähig und sozial zu erhöhen.`,
+			more_aboutus: `Mehr über Ihyateam erfahren:`,
+			more_link: `Klicken Sie hier, um mehr über Ihyateam zu erfahren`,
+			social_media_title: `Unsere Seiten in sozialen Medien:`,
+			contact_us: 'Für Anfragen zum Team kontaktieren Sie uns unter folgender Nummer:'
+		}
+	};
+
+	export let lang: AcceptLang = 'ar';
+</script>
+
 <main>
-	<h2>تطوع معنا في فريق إحياء الشبابي</h2>
+	<h2>{config[lang].title}</h2>
 
 	<section class="aboutus">
-		<h3>فريق إحياء الشبابي:</h3>
-
+		<h3>{config[lang].aboutus_title}</h3>
 		<p>
-			فريقٌ يقدم برنامجاً ممنهجاً متكاملاً لطلاب وطالبات المرحلة الثانوية المقيمين في مدينة إسطنبول
-			والناطقين بالعربية، يهدف لرفع سويتهم في الجوانب الإيمانية والفكرية والثقافية والمهارية
-			والاجتماعية.
+			{config[lang].aboutus_parag}
 		</p>
 	</section>
 
 	<section>
-		<h3>للتعرف أكثر على إحياء:</h3>
+		<h3>{config[lang].more_aboutus}</h3>
 		<a
 			href="//canva.com/design/DAFd-_oUe1o/6FTvy1vMgGMNGEHf-UkNuQ/view"
 			target="_blank"
 			referrerpolicy="no-referrer"
 		>
-			اضغط هنا للتعرف على إحياء بشكل أفضل
+			{config[lang].more_link}
 		</a>
 	</section>
 
 	<section>
-		<h3>صفحاتنا على المنصات الاجتماعية:</h3>
+		<h3>{config[lang].social_media_title}</h3>
 		<div class="social-media">
 			<a href="//www.instagram.com/ihayteam" target="_blank" referrerpolicy="no-referrer">
 				<i class="link instagram" />
@@ -43,7 +80,7 @@
 	</section>
 
 	<section>
-		<h3>للاستفسارات حول الفريق تواصل معنا عبر الرقم التالي:</h3>
+		<h3>{config[lang].contact_us}</h3>
 		<div class="tel">
 			<a dir="ltr" href="tel:+905510855212">+905510855212</a>
 		</div>
@@ -123,9 +160,12 @@
 
 	h2 {
 		align-self: center;
-		width: max-content;
+		max-width: 100%;
 		text-align: center;
 		font-size: 1.75rem;
+
+		white-space: unset;
+		text-wrap: balance;
 
 		position: relative;
 		color: hsl(188.1, 92%, 37.8%);
