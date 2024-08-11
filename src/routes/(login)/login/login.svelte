@@ -88,10 +88,12 @@
 
 <section>
 	<img class="logo" height="90" src="/ihya-logo.svg" alt="ihya logo" loading="lazy" />
+
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label type="default" label={config[lang].username}>
 			<Input name="username" type="username" placeholder={config[lang].username} required />
 		</Label>
+
 		<Label
 			label={config[lang].password}
 			type="with-link"
