@@ -36,21 +36,17 @@
 		submitting = true;
 		visible = false;
 
-		return async ({ result, formElement }) => {
+		return async ({ result }) => {
 			switch (result.type) {
 				case 'redirect':
 					return await goto(result.location);
 				case 'error':
 				case 'failure':
 					visible = true;
-					msg = result.data?.message;
+					msg = result.data!.message;
 			}
+			console.log(result);
 			submitting = false;
-			const input = formElement.querySelector('input[type="password"]') as HTMLInputElement;
-			if (input) {
-				input!.value = '';
-				input.focus();
-			}
 		};
 	};
 </script>
@@ -74,17 +70,12 @@
 		<button
 			class="cancel-btn"
 			title={config[lang].cancel}
-			disabled={submitting}
 			on:click={(e) => {
 				e.preventDefault();
 				goto('/login');
 			}}
 		>
-			{#if submitting}
-				<LoadIndicator />
-			{:else}
-				<span>{config[lang].cancel}</span>
-			{/if}
+			<span>{config[lang].cancel}</span>
 		</button>
 		<div class="error-div">
 			<p class="error" class:visible>{msg}</p>
@@ -157,7 +148,11 @@
 	}
 
 	.cancel-btn {
-		background-color: grey;
+		background-color: hsla(0, 20%, 20%, 0.2);
+	}
+
+	.cancel-btn:hover {
+		background-color: hsla(0, 20%, 15%, 0.3);
 	}
 
 	[type='submit'] {
