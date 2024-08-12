@@ -6,6 +6,7 @@ export async function load({ locals, url }): Promise<{ user: UserEntity }> {
 		redirect(303, '/login?redirect=' + url.pathname);
 	}
 
+
 	return {
 		user: locals.pb.authStore.model as UserEntity
 	};

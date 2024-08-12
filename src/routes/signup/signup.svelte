@@ -223,7 +223,7 @@
 				</div>
 			</div>
 
-			<button type="submit" title={config[lang].login} disabled={submitting}>
+			<button type="submit" title={config[lang].login} disabled={submitting} tabindex={1}>
 				{#if submitting}
 					<LoadIndicator />
 				{:else}

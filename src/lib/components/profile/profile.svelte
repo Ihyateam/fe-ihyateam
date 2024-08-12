@@ -105,7 +105,7 @@
 		z-index: 2;
 		right: 120%;
 		top: 60%;
-		width: 12ch;
+		width: 14ch;
 		height: max-content;
 		background-color: white;
 
@@ -115,17 +115,16 @@
 		overflow: hidden;
 		box-shadow: var(--base-box-shadow);
 
+		padding-block: 0.25rem;
+
 		outline: var(--base-outline);
 	}
 
 	li {
-		display: flex;
-
 		width: 100%;
+		display: flex;
 		position: relative;
-
 		text-align: right;
-
 		direction: rtl;
 
 		&:hover {
@@ -138,6 +137,7 @@
 			position: absolute;
 			left: 12.5%;
 			bottom: 0;
+
 			content: ' ';
 			width: 75%;
 			height: 1px;
@@ -146,15 +146,14 @@
 
 		& a {
 			height: 100%;
-			width: 100%;
 			text-decoration: none;
 			color: inherit;
 		}
 
 		& > * {
 			padding: 0.25rem;
-			padding-inline-start: 0.5rem;
-			padding-inline-end: 0.5rem;
+			padding-inline-start: 0.75rem;
+			padding-inline-end: 0.75rem;
 		}
 	}
 
