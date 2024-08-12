@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	type Props = { type: 'default'; label: string };
+	type Props = { type?: 'default'; label: string };
 	type ExtendProps = { type: 'with-link'; label: string; href: string; text: string };
 </script>
 
@@ -8,7 +8,7 @@
 
 	type $$Props = HTMLLabelAttributes & (Props | ExtendProps) & { error?: string };
 	export let error = '';
-	export let props = $$props as $$Props;
+	export let props = Object.assign({ type: 'default' }, $$props) as $$Props;
 </script>
 
 <label dir="auto" class:error {...$$restProps}>

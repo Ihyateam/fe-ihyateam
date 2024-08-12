@@ -29,13 +29,14 @@ export function groupBy<T, K extends keyof T>(list: T[], keySelector: (item: T) 
 	return result;
 }
 
-export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' {
+export function getActivityStatus(activity: ActivityEntity): 'done' | 'ongoing' | 'scheduled' | 'not-specified' {
 	const today = new Date().getTime();
 	const startTime = new Date(activity.start_at).getTime();
 	const endTime = new Date(activity.end_at).getTime();
 
 	if (today > endTime) return 'done';
 	if (today < startTime) return 'scheduled';
+	if (today >= startTime && today <= endTime) return 'ongoing';
 
-	return 'ongoing';
+	return 'not-specified';
 }

@@ -1,19 +1,35 @@
 <script lang="ts">
-	import type { ActivityEntity } from '$lib/types';
+	import type { AcceptLang, ActivityEntity } from '$lib/types';
 	import { getActivityStatus } from '$lib/utils/backend-utils';
 
 	const data = {
-		done: 'انتهت',
-		scheduled: 'لم تبدأ',
-		ongoing: 'مستمرة'
+		ar: {
+			done: 'انتهت',
+			scheduled: 'لم تبدأ',
+			ongoing: 'مستمرة',
+			'not-specified': 'قيد التعين'
+		},
+		en: {
+			done: 'done',
+			scheduled: 'scheduled',
+			ongoing: 'ongoing',
+			'not-specified': 'not specified'
+		},
+		de: {
+			done: 'erledigt',
+			scheduled: 'geplant',
+			ongoing: 'laufend',
+			'not-specified': 'nicht spezifiziert'
+		}
 	};
 
 	export let activity: ActivityEntity;
+	export let lang: AcceptLang = 'ar';
 
 	let status = getActivityStatus(activity);
 </script>
 
-<span class="activity__status {status}">{data[status]}</span>
+<span class="activity__status {status}">{data[lang][status]}</span>
 
 <style>
 	.activity__status {
@@ -34,6 +50,10 @@
 
 	.postponed {
 		background-color: var(--blue-color);
+	}
+
+	.not-specified {
+		background-color: black;
 	}
 
 	.ongoing {

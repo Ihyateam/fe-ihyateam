@@ -82,3 +82,7 @@ ul {
 :visited {
 	color: #0000ee;
 }
+
+.hidden {
+	display: none;
+}

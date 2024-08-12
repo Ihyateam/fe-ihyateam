@@ -59,13 +59,13 @@ export type ActivityEntity = {
 	city_id: string;
 	created_by: string;
 	description: string;
-	end_at: Date;
 	id: string;
-	photo_id: string;
-	start_at: Date;
 	students: number;
 	title: string;
 	wage_id: string;
+	photo_id: string;
+	start_at: Date;
+	end_at: Date;
 } & ExpandPhotoEntity &
 	BaseEntity &
 	ExpandVolunteersList &

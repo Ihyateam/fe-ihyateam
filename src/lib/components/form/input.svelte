@@ -16,33 +16,16 @@
 </script>
 
 <script lang="ts">
-	import type { HTMLInputAttributes } from 'svelte/elements';
+	import type { HTMLInputTypeAttribute } from 'svelte/elements';
 	import ShowIcon from '../icons/show-icon.svelte';
 	import HideIcon from '../icons/hide-icon.svelte';
 
-	export let type;
-	export let name;
+	export let type: HTMLInputTypeAttribute = 'text';
+	export let name: string;
 	export let placeholder = '';
 	export let autocomplete = '';
 	export let required = false;
 	let input: HTMLInputElement;
-
-	type $$Props = HTMLInputAttributes &
-		(Partial<{
-			autocomplete: string;
-			required: boolean;
-			placeholder: string;
-		}> &
-			(
-				| {
-						name: string;
-						type: Exclude<string, 'password'>;
-				  }
-				| {
-						name: string;
-						type: 'password';
-				  }
-			));
 </script>
 
 {#if type === 'password'}

@@ -1,20 +1,22 @@
 <script lang="ts">
 	import ActivityStatus from './activity-status.svelte';
 
-	import type { ActivityEntity } from '$lib/types';
+	import type { AcceptLang, ActivityEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 
 	export let activity: ActivityEntity;
+	export let lang: AcceptLang;
 </script>
 
 <div class="activity__header">
-	<img src={getURL(activity, { thumb: '100x100' })} alt={activity.title} />
+	<img class="card__profile" src={getURL(activity)} alt="new activity thumbnail" />
+
 	<div class="header__info">
 		<h2>{activity.title}</h2>
 		<span class="demphasize">{activity.id}</span>
 	</div>
 	<div class="header__status">
-		<ActivityStatus {activity} />
+		<ActivityStatus {activity} {lang} />
 	</div>
 </div>
 
@@ -38,7 +40,7 @@
 		box-shadow: var(--base-box-shadow);
 
 		display: grid;
-		grid-template-columns: 5rem repeat(auto-fit, minmax(100px, 1fr)) 7rem;
+		grid-template-columns: 5rem repeat(auto-fit, minmax(100px, 1fr)) 9rem;
 		justify-items: center;
 		align-items: center;
 		height: 5rem;
@@ -54,7 +56,7 @@
 
 	.header__status {
 		grid-column: -2 / -1;
-		width: 5rem;
+		width: 7rem;
 	}
 
 	.header__info {

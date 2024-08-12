@@ -1,14 +1,46 @@
-<script>
+<script lang="ts">
+	import type { AcceptLang } from '$lib/types';
+
 	import PageLayout from '$lib/components/layouts/page-layout.svelte';
-	import ActivityForm from './activity-form.svelte';
+
+	import ActivityHeader from '$lib/components/activity/activity-header.svelte';
+	import ActivityFormCard from '$lib/components/activity/activity-form-card.svelte';
+
+	const config = {
+		ar: {
+			header: 'إنشاء فعالية جديدة'
+		},
+		en: {
+			header: 'create new activity'
+		},
+		de: {
+			header: 'neue activitat erstellen'
+		}
+	};
+
+	const activity = {
+		title: 'activity title',
+		id: 'activity id',
+		city_id: 'cityid',
+		created_by: 'created by',
+		description: 'activity description',
+		wage_id: 'sljdhf',
+		created_at: 'created at',
+		students: 33
+	};
 
 	export let data;
+	export let lang: AcceptLang = 'ar';
 </script>
 
 <PageLayout>
-	<h2 slot="header">Create new an activity</h2>
+	<svelte:fragment slot="header">
+		<ActivityHeader {activity} {lang} />
+	</svelte:fragment>
+
+	<!-- <h2 slot="header">{config[lang].header}</h2> -->
 
 	<svelte:fragment slot="body">
-		<ActivityForm {...data} />
+		<ActivityFormCard />
 	</svelte:fragment>
 </PageLayout>

@@ -3,6 +3,7 @@
 	import MultipleSelect from '$lib/components/form/multiple-select.svelte';
 	import type { UserEntity, CityEntity, WageEntity } from '$lib/types';
 	import SingularSelect from '$lib/components/form/singular-select.svelte';
+	import Input from '$lib/components/form/input.svelte';
 
 	export let volunteers: UserEntity[] = [];
 	export let cities: CityEntity[] = [];
@@ -41,6 +42,7 @@
 	<MultipleSelect name="volutneers-list" arr={volunteers} let:entity>
 		{@const item = userParser(entity)}
 		<div>
+			<Input />
 			<input id={item.id} name="volunteers" type="checkbox" value={item.id} />
 			<label for={item.id}>
 				{item.name}

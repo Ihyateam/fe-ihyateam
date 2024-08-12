@@ -45,6 +45,7 @@
 			<input type="file" name="photo" accept=".png, .jpg, .jpeg" on:change={handleImageChange} />
 		</label>
 	</div>
+
 	<div class="card__info">
 		<Label label="الاسم">
 			<Input name="first_name" type="text" value={user.first_name} />
@@ -139,8 +140,8 @@
 		grid-auto-columns: 1fr 1fr;
 		gap: 1rem;
 
-		width: 100%;
-		padding-inline: 1rem;
+		width: 80%;
+		/* padding-inline: 2rem; */
 
 		margin-block: 2rem;
 	}
