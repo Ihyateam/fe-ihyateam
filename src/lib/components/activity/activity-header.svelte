@@ -21,6 +21,7 @@
 </div>
 
 <style>
+	/* 
 	.activity__header::after {
 		content: '';
 		position: absolute;
@@ -29,7 +30,8 @@
 		height: 1.5rem;
 		top: -0.75rem;
 		transform: translateZ(-1px);
-	}
+	} 
+	*/
 
 	div.activity__header {
 		transform-style: preserve-3d;

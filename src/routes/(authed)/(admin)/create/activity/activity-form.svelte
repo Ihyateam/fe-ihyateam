@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import MultipleSelect from '$lib/components/form/multiple-select.svelte';
 	import type { UserEntity, CityEntity, WageEntity } from '$lib/types';
-	import SingularSelect from '$lib/components/form/singular-select.svelte';
 	import Input from '$lib/components/form/input.svelte';
 
 	export let volunteers: UserEntity[] = [];
@@ -38,11 +36,10 @@
 	<label
 		>Description: <input name="description" placeholder="activity description" required /></label
 	>
-
+	<!-- 
 	<MultipleSelect name="volutneers-list" arr={volunteers} let:entity>
 		{@const item = userParser(entity)}
 		<div>
-			<Input />
 			<input id={item.id} name="volunteers" type="checkbox" value={item.id} />
 			<label for={item.id}>
 				{item.name}
@@ -58,8 +55,8 @@
 				{item.name} - {item.country}
 			</label>
 		</div>
-	</SingularSelect>
-
+	</SingularSelect> -->
+	<!-- 
 	<MultipleSelect name="wages-list" arr={wages} let:entity>
 		{@const item = parseWage(entity)}
 		<div>
@@ -68,7 +65,7 @@
 				{item.commuting_hour_rate} - {item.working_hour_rate}
 			</label>
 		</div>
-	</MultipleSelect>
+	</MultipleSelect> -->
 
 	<input name="photo_id" type="file" accept=".jpg,.png,.jpeg" />
 

@@ -1,17 +1,11 @@
-import type { UserEntity } from '$lib/types.js';
+import type { WageEntity, UserEntity, CityEntity } from '$lib/types.js';
 
 export async function load({ locals }) {
-	const volunteers = locals.pb?.collection('users').getFullList() as Promise<UserEntity[]>;
-	const wages = locals.pb?.collection('wage').getFullList();
-	const cities = locals.pb?.collection('city').getFullList();
-	const status = {
-		done: 'done',
-		scheduled: 'scheduled',
-		ongoing: 'ongoing',
-		postponed: 'postponed'
-	};
+	const volunteers = locals.pb?.collection<UserEntity>('users').getFullList()!;
+	const wages = locals.pb?.collection<WageEntity>('wage').getFullList()!;
+	const cities = locals.pb?.collection<CityEntity>('city').getFullList()!;
 
-	return { volunteers: await volunteers, wages: await wages, cities: await cities, status };
+	return { volunteers: await volunteers, wages: await wages, cities: await cities };
 }
 
 export const actions = {

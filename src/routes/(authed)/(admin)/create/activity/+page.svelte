@@ -41,6 +41,6 @@
 	<!-- <h2 slot="header">{config[lang].header}</h2> -->
 
 	<svelte:fragment slot="body">
-		<ActivityFormCard />
+		<ActivityFormCard action="?/createActivity" {...data} />
 	</svelte:fragment>
 </PageLayout>
