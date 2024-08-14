@@ -32,7 +32,7 @@
 
 <style>
 	tr:has(:checked) {
-		background-color: var(--blue-color-3) !important;
+		background-color: var(--blue-color-4) !important;
 		outline: 2px solid var(--blue-color-1);
 		outline-offset: -0.25rem;
 	}
@@ -55,7 +55,7 @@
 		background: oklch(from blue calc(l - 20%) c h) !important;
 	}
 
-	div {
+	fieldset {
 		container: table / inline-size;
 		width: 100%;
 		max-height: calc(4rem * 8);

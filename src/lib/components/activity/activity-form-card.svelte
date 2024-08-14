@@ -7,21 +7,67 @@
 	import { PhotoIcon } from '$lib/components/icons';
 	import type { HttpMethod } from '@sveltejs/kit';
 	import ActivitySave from './activity-save.svelte';
+	import { getURL } from '$lib/utils/backend-utils';
+	import { page } from '$app/stores';
+	import UserStatus from '../user/user-status.svelte';
 
 	let ProfileImgEl: HTMLImageElement;
 
+	// <Label type="default" label="select a city for the activity (singular)">
+	// <Label type="default" label="enroll volunteers in the activity (mutliple)">
 	const config = {
 		ar: {
 			title: 'اسم الفعالية',
-			description: 'وصف موجز للفعالية'
+			description: 'وصف موجز للفعالية',
+			users: {
+				img: 'الصورة',
+				id: 'معرف المستخدم',
+				first_name: 'الاسم الأول',
+				last_name: 'الاسم الأخير',
+				username: 'اسم المستخدم',
+				age: 'العمر',
+				email: 'البريد الإلكتروني',
+				status: 'الحالة'
+			},
+			users_selection: `اختر المتطوعين للمشاركة في الفعالية (متعدد)`,
+			city_selection: `اختر مدينة للفعالية (واحدة)`,
+			wage_selection: `اختر الأجر المناسب للفعالية (واحد)`
 		},
+
 		en: {
 			title: 'activity title',
-			description: 'activity description'
+			description: 'activity description',
+			users: {
+				img: 'image',
+				id: 'user id',
+				first_name: 'first name',
+				last_name: 'last name',
+				username: 'username',
+				age: 'age',
+				email: 'email',
+				status: 'status'
+			},
+			users_selection: `enroll volunteers in the activity (mutliple)`,
+			city_selection: `select a city for the activity (singular)`,
+			wage_selection: `select a wage for the activity (singular)`
 		},
+
 		de: {
 			title: 'titel der aktivität',
-			description: 'aktivitätsbeschreibung'
+			description: 'aktivitätsbeschreibung',
+			users: {
+				img: 'bild',
+				id: 'benutzer-id',
+				first_name: 'vorname',
+				last_name: 'nachname',
+				username: 'benutzername',
+				age: 'alt',
+				email: 'email',
+				status: 'zustand'
+			},
+			users_selection: 'freiwillige für die aktivität einschreiben (mehrere)',
+			city_selection: 'wählen sie eine stadt für die aktivität (einzahl)',
+			wage_selection: 'wählen sie einen lohn für die aktivität (einzahl)'
 		}
 	};
 
@@ -83,55 +129,57 @@
 
 	<fieldset>
 		<Label type="default" label={config[lang].title}>
-			<Input name="activity-title" />
+			<Input name="title" />
 		</Label>
 		<Label type="default" label={config[lang].description}>
-			<Input name="activity-description" />
+			<Input name="description" />
 		</Label>
 
-		<Select
-			name="volutneers-list"
-			arr={volunteers}
-			headerObj={{ name: 'اسم', id: 'رقم' }}
-			multi={true}
-			let:row
-		>
-			{@const user = userParser(row)}
-			<td>
-				<p>{user.name}</p>
-			</td>
-			<td>
-				<p>{user.id}</p>
-			</td>
-		</Select>
+		<input type="date" name="end_at" />
+		<input type="date" name="start_at" />
 
-		<Select name="city" arr={cities} headerObj={{ id: 'identifier' }} let:row>
-			{@const city = parseCity(row)}
-			<td>
-				{city.name}
-			</td>
-		</Select>
+		<Label type="default" label={config[lang].users_selection}>
+			<Select
+				name="volutneers-list"
+				arr={volunteers}
+				headerObj={config[lang].users}
+				multi={true}
+				let:row
+			>
+				<td>
+					<img
+						class:admin={$page.data.user?.isAdmin && row.isAdmin}
+						src={getURL(row)}
+						alt={row.username}
+					/>
+				</td>
+				<td data-cell={config[lang].users.id}>{row.id}</td>
+				<td data-cell={config[lang].users.first_name}>{row.first_name}</td>
+				<td data-cell={config[lang].users.last_name}>{row.last_name}</td>
+				<td data-cell={config[lang].users.username}>{row.username}</td>
+				<td data-cell={config[lang].users.age}>{row.age}</td>
+				<td data-cell={config[lang].users.email}>{row.email || '-'}</td>
+				<td data-cell={config[lang].users.status}><UserStatus user={row} /></td>
+			</Select>
+		</Label>
 
-		<!-- 
-		<SingularSelect name="cities-list" arr={cities} let:entity>
-			{@const city = parseCity(entity)}
-			<div>
-				<input id={city.id} name="city_id" type="radio" value={city.id} required />
-				<label for={city.id}>
-					{city.name} - {city.country}
-				</label>
-			</div>
-		</SingularSelect>
+		<Label type="default" label={config[lang].city_selection}>
+			<Select name="city_id" arr={cities} headerObj={{ id: 'identifier' }} let:row>
+				{@const city = parseCity(row)}
+				<td>
+					{city.name}
+				</td>
+			</Select>
+		</Label>
 
-		<MultipleSelect name="wages-list" arr={wages} let:entity>
-			{@const wage = parseWage(entity)}
-			<div>
-				<input id={wage.id} name="wage_id" type="radio" value={wage.id} required />
-				<label for={wage.id}>
-					{wage.commuting_hour_rate} - {wage.working_hour_rate}
-				</label>
-			</div>
-		</MultipleSelect> -->
+		<Label type="default" label={config[lang].city_selection}>
+			<Select name="wage_id" arr={wages} headerObj={{ id: 'identifier' }} let:row>
+				{@const wage = parseWage(row)}
+				<td>
+					{wage.working_hour_rate}/{wage.commuting_hour_rate}
+				</td>
+			</Select>
+		</Label>
 	</fieldset>
 
 	<div class="try">
@@ -140,6 +188,10 @@
 </form>
 
 <style>
+	img.admin {
+		box-shadow: 0px 0px 6px 0px oklch(80% 0.31 70);
+	}
+
 	div.try {
 		display: flex;
 		justify-content: flex-end;
@@ -163,7 +215,8 @@
 		outline: var(--base-outline);
 		border-radius: 0.25rem;
 		font-size: 1.25rem;
-		min-height: 70dvh;
+		min-height: fit-content;
+		margin-bottom: 1rem;
 
 		overflow: hidden;
 	}

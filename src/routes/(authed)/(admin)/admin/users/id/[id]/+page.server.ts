@@ -21,7 +21,7 @@ export async function load({ params, locals }) {
 				?.collection('effort')
 				.getFullList<TaskEntity>({ filter: `user_id ~ "${params.id}"` }),
 			activities: await locals.pb
-				?.collection('activity_users')
+				?.collection('activity_volunteers')
 				.getFullList<ActivityEntity>({ filter: `user_id ~ "${params.id}"` })
 		};
 	}

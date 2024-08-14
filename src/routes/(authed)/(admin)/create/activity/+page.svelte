@@ -6,18 +6,6 @@
 	import ActivityHeader from '$lib/components/activity/activity-header.svelte';
 	import ActivityFormCard from '$lib/components/activity/activity-form-card.svelte';
 
-	const config = {
-		ar: {
-			header: 'إنشاء فعالية جديدة'
-		},
-		en: {
-			header: 'create new activity'
-		},
-		de: {
-			header: 'neue activitat erstellen'
-		}
-	};
-
 	const activity = {
 		title: 'activity title',
 		id: 'activity id',
