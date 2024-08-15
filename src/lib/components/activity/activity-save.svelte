@@ -1,17 +1,25 @@
 <script lang="ts">
+	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { SaveIcon } from '../icons';
 
 	export let legend: boolean = false;
 
 	const config = {
 		ar: {
-			content: 'حفظ',
-			title: 'عدل النشاط'
+			content: 'حفظ'
+		},
+		en: {
+			content: 'Save'
+		},
+		de: {
+			content: 'Speichern'
 		}
 	};
+
+	type $$Props = HTMLInputAttributes & { legend?: boolean };
 </script>
 
-<button class="edit__container" title={config[`ar`].content} {...$$restProps}>
+<button class="edit__container" title={config[`ar`].content} {...$$restProps} on:click>
 	<span class="edit-icon">
 		<SaveIcon width="1.5rem" height="1.5rem" />
 	</span>

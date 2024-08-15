@@ -19,7 +19,7 @@
 			<ActivityStatus {activity} />
 		</div>
 		<h2 class="activity__title">{activity.title}</h2>
-		<p class="activity__description">{activity.description}</p>
+		<p class="activity__description">{activity.description || '-'}</p>
 		<footer>
 			<div class="footer__div">
 				<PupilsIcon height="1.4rem" width="1.4rem" />

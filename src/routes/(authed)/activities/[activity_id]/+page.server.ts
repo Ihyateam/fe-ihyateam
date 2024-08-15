@@ -11,7 +11,7 @@ export async function load({ params, locals }) {
 			expand: 'created_by,photo_id,city_id,wage_id'
 		});
 		activities = await locals.pb
-			?.collection('activity_users')
+			?.collection('activity_volunteers')
 			.getFullList<{ expand: { user_id: UserEntity } }>({
 				filter: `activity_id ~ '${params.activity_id}'`,
 				expand: 'user_id.photo_id'

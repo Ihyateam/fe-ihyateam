@@ -123,8 +123,9 @@ export type WageEntity = {
 } & ExpandCurrencyEntity &
 	BaseEntity;
 
-type PhotoEntity = {
+export type PhotoEntity = {
 	photo: string;
+	id: string;
 	last_update: Date;
 } & BaseEntity;
 
@@ -155,3 +156,14 @@ export type Metrics = {
 };
 
 export type AcceptLang = 'ar' | 'en' | 'de';
+
+export type PocketBaseAuthorizationError = {
+	url: string;
+	status: number;
+	response: {
+		code: number;
+		message: string;
+		data: Record<string, any[]>;
+	}
+	isAbort: boolean;
+}

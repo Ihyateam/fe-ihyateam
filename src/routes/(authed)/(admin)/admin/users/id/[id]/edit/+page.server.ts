@@ -1,4 +1,4 @@
-import type { UserEntity } from '$lib/types';
+import type { PhotoEntity, UserEntity } from '$lib/types';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, params }) {
@@ -34,9 +34,11 @@ export const actions = {
 
 			if (photo.size) {
 				const photo = data.get('photo');
-				const photo_record = await locals.pb
-					?.collection('photo')
+				const photo_record = await locals.pb!
+					.collection<PhotoEntity>('photo')
 					.create({ photo, created_by: user });
+
+				if (!photo_record || !photo_record.id) throw new Error('Photo record not created');
 
 				await locals.pb
 					?.collection('users')

@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { UserEntity, CityEntity, WageEntity, AcceptLang } from '$lib/types';
-	import Input from '$lib/components/form/input.svelte';
-	import Label from '$lib/components/form/label.svelte';
-	import Select from '$lib/components/form/select.svelte';
 	import { PhotoIcon } from '$lib/components/icons';
-	import type { HttpMethod } from '@sveltejs/kit';
-	import ActivitySave from './activity-save.svelte';
+	import { enhance } from '$app/forms';
 	import { getURL } from '$lib/utils/backend-utils';
 	import { page } from '$app/stores';
+
+	import Select from '$lib/components/form/select.svelte';
+	import Input from '$lib/components/form/input.svelte';
+	import Label from '$lib/components/form/label.svelte';
 	import UserStatus from '../user/user-status.svelte';
+	import ActivitySave from './activity-save.svelte';
+
+	import type { UserEntity, CityEntity, WageEntity, AcceptLang } from '$lib/types';
+	import type { HttpMethod } from '@sveltejs/kit';
 
 	let ProfileImgEl: HTMLImageElement;
 
-	// <Label type="default" label="select a city for the activity (singular)">
-	// <Label type="default" label="enroll volunteers in the activity (mutliple)">
 	const config = {
 		ar: {
 			title: 'اسم الفعالية',
@@ -29,6 +29,8 @@
 				email: 'البريد الإلكتروني',
 				status: 'الحالة'
 			},
+			start_at: 'تاريخ بدء الفعالية',
+			end_at: 'تاريخ انتهاء الفعالية',
 			users_selection: `اختر المتطوعين للمشاركة في الفعالية (متعدد)`,
 			city_selection: `اختر مدينة للفعالية (واحدة)`,
 			wage_selection: `اختر الأجر المناسب للفعالية (واحد)`
@@ -47,6 +49,8 @@
 				email: 'email',
 				status: 'status'
 			},
+			start_at: 'activity start date',
+			end_at: 'activity end date',
 			users_selection: `enroll volunteers in the activity (mutliple)`,
 			city_selection: `select a city for the activity (singular)`,
 			wage_selection: `select a wage for the activity (singular)`
@@ -65,6 +69,8 @@
 				email: 'email',
 				status: 'zustand'
 			},
+			start_at: 'aktivitätsstartdatum',
+			end_at: 'aktivitätsenddatum',
 			users_selection: 'freiwillige für die aktivität einschreiben (mehrere)',
 			city_selection: 'wählen sie eine stadt für die aktivität (einzahl)',
 			wage_selection: 'wählen sie einen lohn für die aktivität (einzahl)'
@@ -78,13 +84,6 @@
 			ProfileImgEl.src = URL.createObjectURL(file);
 		}
 	};
-
-	function userParser(item: UserEntity) {
-		return {
-			id: item.id,
-			name: `${item.first_name} ${item.last_name}`
-		};
-	}
 
 	function parseCity(item: CityEntity) {
 		return {
@@ -102,12 +101,12 @@
 		};
 	}
 
-	export let lang: AcceptLang = 'ar';
-	export let action: string;
-	export let method: HttpMethod = 'POST';
 	export let volunteers: UserEntity[] = [];
+	export let method: HttpMethod = 'POST';
 	export let cities: CityEntity[] = [];
 	export let wages: WageEntity[] = [];
+	export let lang: AcceptLang = 'ar';
+	export let action: string;
 </script>
 
 <form {action} class="card" {method} use:enhance enctype="multipart/form-data">
@@ -131,12 +130,20 @@
 		<Label type="default" label={config[lang].title}>
 			<Input name="title" />
 		</Label>
+
 		<Label type="default" label={config[lang].description}>
 			<Input name="description" />
 		</Label>
 
-		<input type="date" name="end_at" />
-		<input type="date" name="start_at" />
+		<div class="two-row">
+			<Label label={config[lang].start_at}>
+				<Input type="date" name="start_at" />
+			</Label>
+
+			<Label label={config[lang].end_at}>
+				<Input type="date" name="end_at" />
+			</Label>
+		</div>
 
 		<Label type="default" label={config[lang].users_selection}>
 			<Select
@@ -183,11 +190,21 @@
 	</fieldset>
 
 	<div class="try">
-		<ActivitySave legend={true} />
+		<ActivitySave type="submit" legend={true} on:click={() => history.back()} />
 	</div>
 </form>
 
 <style>
+	.two-row {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.75rem;
+
+		& > * {
+			flex-grow: 1;
+		}
+	}
+
 	img.admin {
 		box-shadow: 0px 0px 6px 0px oklch(80% 0.31 70);
 	}
@@ -271,44 +288,4 @@
 
 		width: 80%;
 	}
-
-	/* 
-	.card__info {
-		display: grid;
-		grid-auto-columns: 1fr 1fr;
-		gap: 1rem;
-
-		width: 100%;
-		padding-inline: 1rem;
-
-		margin-block: 2rem;
-	}
-
-	.edit-btn {
-		justify-self: end;
-	}
-
-	.card__header {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.25rem;
-	}
-
-	.card__header > h2 {
-		margin-block-start: 1rem;
-	}
-
-	.card__header > div {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.25rem;
-		color: var(--demphasized-font-color);
-	}
-
-	@container profile-card (width < 400px) {
-		.edit-btn {
-			justify-self: stretch;
-		}
-	} */
 </style>
