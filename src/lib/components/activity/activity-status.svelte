@@ -23,10 +23,10 @@
 		}
 	};
 
-	export let activity: ActivityEntity;
+	export let activity: {} | ActivityEntity = {};
 	export let lang: AcceptLang = 'ar';
 
-	let status = getActivityStatus(activity);
+	let status = getActivityStatus(activity as ActivityEntity);
 </script>
 
 <span class="activity__status {status}">{data[lang][status]}</span>

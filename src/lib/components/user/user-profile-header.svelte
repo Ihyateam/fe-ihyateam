@@ -1,13 +1,15 @@
 <script lang="ts">
 	import UserStatus from '$lib/components/user/user-status.svelte';
 
-	import type { UserEntity } from '$lib/types';
+	import type { AcceptLang, UserEntity } from '$lib/types';
 	import { getURL } from '$lib/utils/backend-utils';
 
 	export let user: UserEntity;
+
+	export let lang: AcceptLang = 'ar';
 </script>
 
-<div class="profile__header">
+<div dir={lang === 'ar' ? 'rtl' : 'ltr'} class="profile__header">
 	<img class="profile__img profile" src={getURL(user, { thumb: '100x100' })} alt={user.username} />
 	<div class="header__info">
 		<h2>{user.first_name} {user.last_name}</h2>

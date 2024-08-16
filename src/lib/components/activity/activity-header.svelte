@@ -11,13 +11,8 @@
 <div class="activity__header">
 	<img class="card__profile" src={getURL(activity)} alt="new activity thumbnail" />
 
-	<div class="header__info">
-		<h2>{activity.title}</h2>
-		<span class="demphasize">{activity.id}</span>
-	</div>
-
 	<div class="header__status">
-		<ActivityStatus {activity} {lang} />
+		<ActivityStatus {lang} />
 	</div>
 </div>
 
@@ -26,10 +21,11 @@
 		content: '';
 		position: absolute;
 		background-color: white;
-		width: 105%;
+		width: 115%;
 		height: 1.5rem;
 		top: -0.75rem;
-		transform: translateZ(-1px);
+
+		transform: translateX(4rem) translateZ(-1px);
 	}
 
 	div.activity__header {
@@ -40,12 +36,12 @@
 		outline: var(--base-outline);
 		box-shadow: var(--base-box-shadow);
 
-		display: grid;
-		grid-template-columns: 5rem repeat(auto-fit, minmax(100px, 1fr)) 9rem;
-		justify-items: center;
+		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		height: 5rem;
 		border-radius: 0.5rem;
+		padding-inline: 1rem;
 		z-index: 1;
 
 		& > img {
