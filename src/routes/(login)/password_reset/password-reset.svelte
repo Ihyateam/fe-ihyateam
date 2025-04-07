@@ -7,6 +7,7 @@
 	import LoadIndicator from '$lib/components/layouts/load-indicator.svelte';
 	import Label from '$lib/components/form/label.svelte';
 	import Input from '$lib/components/form/input.svelte';
+	import { onMount } from 'svelte';
 
 	export let lang: AcceptLang;
 
@@ -14,17 +15,20 @@
 		ar: {
 			username: 'اسم المستخدم أو البريد الإلكتروني',
 			reset: 'إعادة تعيين كلمة المرور',
-			cancel: 'إلغاء'
+			cancel: 'إلغاء',
+			back: 'العودة إلى تسجيل الدخول'
 		},
 		en: {
 			username: 'username or email',
 			reset: 'Reset Password',
-			cancel: 'Cancel'
+			cancel: 'Cancel',
+			back: 'Back to login'
 		},
 		de: {
 			username: 'Nutzername oder E-Mail',
 			reset: 'Passwort zurücksetzen',
-			cancel: 'Abbrechen'
+			cancel: 'Abbrechen',
+			back: 'Zurück zur Anmeldung'
 		}
 	};
 
@@ -45,7 +49,6 @@
 					visible = true;
 					msg = result.data!.message;
 			}
-			console.log(result);
 			submitting = false;
 		};
 	};
@@ -56,7 +59,7 @@
 
 	<form name="login-form" autocomplete="on" method="POST" use:enhance={extendEnhance}>
 		<Label type="default" label={config[lang].username}>
-			<Input name="username" type="username" placeholder={config[lang].username} required />
+			<Input name="reset-target" type="text" placeholder={config[lang].username} required />
 		</Label>
 
 		<button type="submit" title={config[lang].reset} disabled={submitting}>
@@ -69,13 +72,16 @@
 
 		<button
 			class="cancel-btn"
-			title={config[lang].cancel}
+			title={config[lang].back}
 			on:click={(e) => {
 				e.preventDefault();
 				goto('/login');
 			}}
 		>
-			<span>{config[lang].cancel}</span>
+			<span>
+				<span class="html-special-char">&LeftArrow;</span>
+				{config[lang].back}</span
+			>
 		</button>
 		<div class="error-div">
 			<p class="error" class:visible>{msg}</p>
@@ -149,6 +155,18 @@
 
 	.cancel-btn {
 		background-color: hsla(0, 20%, 20%, 0.2);
+	}
+
+	.cancel-btn:is(:hover, :focus, :focus-within) span.html-special-char {
+		visibility: visible;
+	}
+
+	span.html-special-char {
+		visibility: hidden;
+		height: 100%;
+		font-size: 1.5rem;
+		line-height: 0;
+		background-color: red;
 	}
 
 	.cancel-btn:hover {
